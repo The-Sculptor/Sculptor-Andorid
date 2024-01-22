@@ -5,7 +5,9 @@
 
     <color name="main_orange">#FF5935</color>
     <color name="main_back_black">#171717</color>
+    <color name="black_222227">#222227</color>
     <color name="gray_46464E">#46464E</color>
+    <color name="gray_5A5A5A">#5A5A5A</color>
     <color name="gray_606060">#606060</color>
     <color name="gray_6C6C6C">#6C6C6C</color>
     <color name="gray_ABABAB">#ABABAB</color>
@@ -14,4 +16,5 @@
     <color name="gray_D3D3D3">#D3D3D3</color>
     <color name="gray_DFDFDF">#DFDFDF</color>
     <color name="gray_E6E0E9">#E6E0E9</color>
+    <color name="gray_ECECEC">#ECECEC</color>
 </resources>

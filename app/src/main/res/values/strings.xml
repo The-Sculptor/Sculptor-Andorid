@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Sculptor</string>
+    <string name="home_fragment">홈</string>
+    <string name="workshop_fragment">공방</string>
+    <string name="museum_fragment">박물관</string>
+    <string name="store_fragment">상점</string>
 </resources>

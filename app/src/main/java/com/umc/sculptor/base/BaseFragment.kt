@@ -1,4 +1,4 @@
-package com.capjjang.rightnow.base
+package com.umc.sculptor.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
