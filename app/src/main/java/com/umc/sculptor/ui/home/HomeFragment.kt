@@ -8,6 +8,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun initStartView() {
         super.initStartView()
+
+
     }
 
     override fun initDataBinding() {
