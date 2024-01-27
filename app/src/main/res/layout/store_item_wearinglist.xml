@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black_222227">
+
+    <ImageView
+        android:id="@+id/backIcon"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:src="@drawable/store_backicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"
+        />
+    <ImageView
+        android:id="@+id/wearingList"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:src="@drawable/wearinglist"
+        app:layout_constraintStart_toEndOf="@+id/backIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="14dp"
+        />
+    <ImageView
+        android:id="@+id/totalcheck_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_solid_check"
+        app:layout_constraintTop_toBottomOf="@+id/backIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="40dp"
+        />
+    <TextView
+        android:id="@+id/totalcheckCount_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:text="전체 선택(2)"
+        app:layout_constraintStart_toEndOf="@+id/totalcheck_iv"
+        app:layout_constraintTop_toBottomOf="@+id/backIcon"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="10dp"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/store_wearingitems_rv"
+        android:layout_width="match_parent"
+        android:layout_height="388dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/store_item_wearinglistitem"
+        app:layout_constraintTop_toTopOf="@+id/store_wearingitems_content_vp"
+        />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/store_wearingitems_content_vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#2B2B2F"
+        android:elevation="-1dp"
+        app:layout_constraintBottom_toTopOf="@+id/totalstone_powder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalcheckCount_tv"
+        android:layout_marginTop="18dp"
+        />
+
+
+
+
+
+
+    <ImageView
+        android:id="@+id/store_recordbtn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:src="@drawable/record_btn"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <ImageView
+        android:id="@+id/totalstone_powder"
+        android:layout_width="match_parent"
+        android:layout_height="214dp"
+        android:src="@drawable/store_total_stone_powder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="-1dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1234"
+        android:textSize="30sp"
+        android:textColor="#E6E0E9"
+        app:layout_constraintEnd_toEndOf="@+id/totalstone_powder"
+        app:layout_constraintTop_toTopOf="@+id/totalstone_powder"
+        android:layout_marginEnd="42dp"
+        android:layout_marginTop="24dp"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
