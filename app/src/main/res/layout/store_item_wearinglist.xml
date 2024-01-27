@@ -64,7 +64,6 @@
         android:id="@+id/store_wearingitems_content_vp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#2B2B2F"
         android:elevation="-1dp"
         app:layout_constraintBottom_toTopOf="@+id/totalstone_powder"
         app:layout_constraintEnd_toEndOf="parent"
