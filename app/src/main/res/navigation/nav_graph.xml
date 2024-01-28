@@ -9,7 +9,14 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.umc.sculptor.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alarmFragment"
+            app:destination="@id/alarmFragment" />
+    </fragment>
     <fragment
         android:id="@+id/storeFragment"
         android:name="com.umc.sculptor.ui.store.StoreFragment"
@@ -22,4 +29,12 @@
         android:id="@+id/museumFragment"
         android:name="com.umc.sculptor.ui.museum.MuseumFragment"
         android:label="MuseumFragment" />
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:name="com.umc.sculptor.ui.home.MyPageFragment"
+        android:label="MyPageFragment" />
+    <fragment
+        android:id="@+id/alarmFragment"
+        android:name="com.umc.sculptor.ui.home.AlarmFragment"
+        android:label="AlarmFragment" />
 </navigation>
