@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/main_back_black"
+        android:background="@color/gray_5A5A5A"
         android:id="@+id/home_fragment">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -46,22 +46,12 @@
             android:layout_marginTop="12dp"
             android:src="@drawable/icon_profile"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_main_back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/main_back_img"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/main_logo" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_main_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/iv_main_back"
+            app:layout_constraintTop_toTopOf="@id/main_logo"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +82,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_main_text" />
 
-
         <View
             android:id="@+id/line0"
             android:layout_width="match_parent"
@@ -104,40 +93,57 @@
             app:layout_constraintStart_toStartOf="@+id/et_profile_search"
             app:layout_constraintTop_toBottomOf="@+id/et_profile_search" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_my_habit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="나의 대표 습관"
-            android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/gray_D8D8D8"
-            app:layout_constraintTop_toBottomOf="@id/iv_main_back"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="20dp"
-            android:textSize="16sp"/>
-
-        <include
-            layout="@layout/item_statue_card"
-            android:id="@+id/my_staue_card"
+        <LinearLayout
+            android:id="@+id/layout_my_habit"
             android:layout_width="match_parent"
-            android:layout_height="264dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginHorizontal="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_my_habit"
+            android:layout_height="match_parent"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/et_profile_search"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintBottom_toTopOf="@id/tv_friends_statue"
+            android:orientation="vertical">
 
-        <View
-            android:id="@+id/line"
-            android:background="@color/gray_454545"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_staue_card"
-            android:layout_marginTop="40dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#908F90"/>
+
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_habit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="나의 대표 습관"
+                android:textColor="@color/gray_D8D8D8"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/layout_my_habit" />
+
+
+            <include
+                layout="@layout/item_statue_card"
+                android:id="@+id/my_staue_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="36dp"
+                android:layout_marginHorizontal="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_habit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#908F90"/>
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_friends_statue"
@@ -147,7 +153,7 @@
             android:textColor="@color/gray_D8D8D8"
             android:textSize="16sp"
             android:fontFamily="@font/roboto_regular"
-            app:layout_constraintTop_toBottomOf="@id/line"
+            app:layout_constraintTop_toBottomOf="@id/layout_my_habit"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"/>
@@ -157,6 +163,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

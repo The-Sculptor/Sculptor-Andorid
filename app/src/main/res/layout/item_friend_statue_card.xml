@@ -2,33 +2,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="360dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="25dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black_212021">
+    android:background="@drawable/round_8_rectangle_color_171717">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_statue"
         android:layout_width="132dp"
         android:layout_height="240dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/statue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/statue"/>
-
-    <View
-        android:id="@+id/view_friend_profile"
-        android:layout_width="166dp"
-        android:layout_height="58dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/friend_statue_profile_background"/>
+        app:layout_constraintTop_toTopOf="@+id/tv_d_day" />
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:background="@drawable/circle_white_border"
         android:src="@drawable/profile_ex_img"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -37,12 +30,13 @@
 
 
     <TextView
-        android:layout_width="91dp"
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:fontFamily="@font/rock_salt_regular"
         android:text="SONG"
-        android:textColor="@color/black_1D1B20"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/profile_image"
         app:layout_constraintStart_toEndOf="@+id/profile_image"
         app:layout_constraintTop_toTopOf="@id/profile_image" />
@@ -52,82 +46,135 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="D-66"
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="7dp"
+        android:background="@drawable/round_8_rectangle_orange"
         android:textColor="@color/main_orange"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="18dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginStart="18dp"
         android:fontFamily="@font/pretendard_medium"
-        android:textSize="32sp"/>
+        android:textSize="16sp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_achievement_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/round_8_rectangle_white"
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="7dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/pretendard_medium"
         android:text="80%"
         android:textColor="@color/white"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_d_day"
-        app:layout_constraintTop_toBottomOf="@+id/tv_d_day"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_statue_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:fontFamily="@font/roboto_bold"
-        app:layout_constraintBottom_toTopOf="@id/tv_goal"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"
-        android:text="조각상 이름"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_goal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="목표 하루에 한 시간 씩 조깅하기"
         android:textSize="16sp"
-        android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/gray_D3D3D3"
-        app:layout_constraintBottom_toTopOf="@+id/tv_goal_date"
-        app:layout_constraintStart_toStartOf="@+id/tv_statue_name"/>
+        app:layout_constraintStart_toStartOf="@+id/tv_d_day"
+        app:layout_constraintTop_toBottomOf="@+id/tv_d_day" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_goal_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text = "2024.01.04"
-        app:layout_constraintStart_toStartOf="@id/tv_goal"
-        android:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="21dp"
-        android:textSize="16sp"
-        android:textColor="@color/gray_908F90"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_heart_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5"
-        android:textSize="14sp"
-        android:fontFamily="@font/roboto_regular"
-        app:layout_constraintEnd_toEndOf="@id/iv_heart"
-        app:layout_constraintStart_toStartOf="@id/iv_heart"
-        app:layout_constraintBottom_toTopOf="@id/iv_heart"
-        android:layout_marginBottom="7dp"
-        android:textColor="@color/gray_CAC4D0"/>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_heart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_heart_fill"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_like"
+        android:background="@drawable/heart_round_8_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"/>
+        app:layout_constraintBottom_toBottomOf="@+id/iv_statue"
+        android:layout_marginEnd="20dp"
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_heart_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="16sp"
+            android:layout_marginEnd="7dp"
+            android:textColor="#BFBFBF"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_heart_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_heart"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="1dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/bottom_round_8"
+        android:orientation="vertical"
+        android:paddingVertical="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_statue">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_statue_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="조각상 이름"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="목표 하루에 한 시간 씩 조깅하기"
+            android:textColor="@color/gray_D3D3D3"
+            android:textSize="16sp" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_goal_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/roboto_light"
+            android:text="2024.01.04"
+            android:textColor="@color/gray_908F90"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tv_goal" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <!--    <androidx.appcompat.widget.AppCompatTextView-->
+<!--        android:id="@+id/tv_heart_number"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="5"-->
+<!--        android:textSize="14sp"-->
+<!--        android:fontFamily="@font/roboto_regular"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/iv_heart"-->
+<!--        app:layout_constraintStart_toStartOf="@id/iv_heart"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/iv_heart"-->
+<!--        android:layout_marginBottom="7dp"-->
+<!--        android:textColor="@color/gray_CAC4D0"/>-->
+
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/iv_heart"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/icon_heart_fill"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:layout_marginBottom="24dp"/>-->
 
 
 
