@@ -20,6 +20,8 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
     private lateinit var itemRVAdapter: ItemRVAdapter
 
+    private  val information = arrayListOf("나의 조각상", "착용중인 상품", "구매한 상품")
+
     // StoreFragment에서 사용할 인터페이스
     interface OnItemSelectListener {
         fun onItemSelected(item: Item)
@@ -66,8 +68,10 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         val storeTabAdapter = StorePagerAdapter(this)
         binding.ItemsContentVp.adapter = storeTabAdapter
 
-
-
+        TabLayoutMediator(binding.tabLayout2, binding.ItemsContentVp){
+            tab, position ->
+            tab.text = information[position]
+        }.attach()
 
         return binding.root
     }

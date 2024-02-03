@@ -37,8 +37,6 @@ class Item_MyStatueFragment: Fragment() {
         val itemRVAdapter = ItemRVAdapter(itemDatas)
         binding.mystatueRv.adapter = itemRVAdapter
 
-
-
         itemRVAdapter.setMyItemClickListener(object : ItemRVAdapter.MyItemClickListener {
             override fun onItemCLick(position: Int) {
                 for (i in itemDatas.indices) {
