@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.umc.sculptor.R
 import com.umc.sculptor.databinding.FragmentMystatueBinding
 import com.umc.sculptor.databinding.StoreItemStatueBinding
@@ -13,8 +14,9 @@ class Item_MyStatueFragment: Fragment() {
     lateinit var binding: FragmentMystatueBinding
     private var itemDatas = ArrayList<Item>()
     private lateinit var itemRVAdapter: ItemRVAdapter
+    private lateinit var viewModel: StoreViewModel
 
-    private lateinit var onItemSelectListener: StoreFragment.OnItemSelectListener
+//    private lateinit var onItemSelectListener: StoreFragment.OnItemSelectListener
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +24,7 @@ class Item_MyStatueFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMystatueBinding.inflate(inflater,container,false)
-
+        viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
         //아이템 데이터
         itemDatas.apply {
@@ -44,6 +46,9 @@ class Item_MyStatueFragment: Fragment() {
                     if (i == position) {
                         item.backImg = R.drawable.store_space_picked
 
+                        // 뷰모델을 통해 선택된 아이템 공유
+                        viewModel.updateSelectedItem(item)
+
 
                     } else {
                         item.backImg = R.drawable.store_space
@@ -52,6 +57,8 @@ class Item_MyStatueFragment: Fragment() {
                 itemRVAdapter.notifyDataSetChanged()
             }
         })
+
+
 
         return binding.root
     }

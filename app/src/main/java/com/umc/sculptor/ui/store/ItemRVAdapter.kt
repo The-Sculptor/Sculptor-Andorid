@@ -17,9 +17,6 @@ class ItemRVAdapter(private val itemList: ArrayList<Item>):RecyclerView.Adapter<
         myItemClickListener = itemClickListener
     }
 
-
-
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ItemRVAdapter.ViewHolder {
         val binding: StoreItemStatueBinding =
             StoreItemStatueBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup,false)
