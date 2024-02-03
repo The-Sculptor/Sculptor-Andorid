@@ -10,28 +10,19 @@
         >
 
 
-        <TextView
-            android:id="@+id/Store"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="store"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/statue_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/statue"
-            app:layout_constraintTop_toBottomOf="@+id/Store"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayout1"
             android:layout_marginTop="80dp"
-            />
+            android:src="@drawable/statue"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/howmuch_iv"
             android:layout_width="wrap_content"
@@ -115,21 +106,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
-        <ImageView
-            android:id="@+id/SaveBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/store_savebtn"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayout1"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="14dp"
-            />
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="#1C1C1C"
             app:layout_constraintBottom_toTopOf="@+id/tabLayout2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -170,7 +152,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="#2B2B2F"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -201,19 +183,6 @@
         </com.google.android.material.tabs.TabLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/store_statue_rv"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/store_item_statue"
-            app:layout_constraintTop_toTopOf="@+id/Items_content_vp"
-            android:elevation="1dp"
-            />
-
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/Items_content_vp"
             android:layout_width="match_parent"
@@ -222,10 +191,22 @@
             android:elevation="-1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tabLayout2"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout2"
+            app:layout_constraintVertical_bias="0.0" />
 
+
+        <ImageButton
+            android:id="@+id/SaveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/store_savebtn"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout1"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

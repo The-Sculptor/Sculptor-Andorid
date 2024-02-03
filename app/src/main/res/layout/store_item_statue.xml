@@ -25,6 +25,7 @@
         app:layout_constraintTop_toTopOf="@+id/item_statue_back_img"
         app:layout_constraintBottom_toBottomOf="@+id/item_statue_back_img"/>
     <TextView
+        android:id="@+id/statue_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="조각상 명"
