@@ -13,6 +13,9 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
 
     override fun initStartView() {
         super.initStartView()
+        (activity as MainActivity).hideBottomNav(true)
+
+
     }
 
     override fun initDataBinding() {

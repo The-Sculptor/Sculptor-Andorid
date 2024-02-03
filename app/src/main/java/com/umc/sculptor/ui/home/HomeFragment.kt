@@ -3,6 +3,7 @@ package com.umc.sculptor.ui.home
 import android.util.Log
 import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.FriendStatue
@@ -14,6 +15,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private lateinit var friendStatueAdapter: FriendStatueAdapter
     override fun initStartView() {
         super.initStartView()
+        (activity as MainActivity).hideBottomNav(false)
 
 
 

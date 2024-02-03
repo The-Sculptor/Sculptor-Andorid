@@ -2,6 +2,7 @@ package com.umc.sculptor
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -43,6 +44,14 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.popBackStack()
         } else {
             super.onBackPressed()
+        }
+    }
+
+    fun hideBottomNav(state: Boolean){
+        if(state){
+            binding.bottomNavigation.visibility = View.GONE
+        }else{
+            binding.bottomNavigation.visibility = View.VISIBLE
         }
     }
 

@@ -2,6 +2,7 @@ package com.umc.sculptor.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.Alarm
@@ -15,6 +16,7 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(R.layout.fragment_alarm
 
     override fun initStartView() {
         super.initStartView()
+        (activity as MainActivity).hideBottomNav(true)
     }
 
     override fun initDataBinding() {

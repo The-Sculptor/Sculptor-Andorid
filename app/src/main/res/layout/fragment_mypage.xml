@@ -5,7 +5,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_back_black">
+    android:background="#3C3C41">
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_back_black"
+        android:orientation="vertical">
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_back"
@@ -28,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="68dp"/>
+        android:layout_marginTop="12dp"/>
 
 
     <View
@@ -41,18 +51,23 @@
         android:layout_height="1dp"
         android:background="#474747"/>
 
-    <TextView
-        android:id="@+id/tv_kakao_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="카카오 계정"
-        android:fontFamily="@font/roboto_regular"
-        android:textSize="16sp"
-        android:textColor="@color/gray_E6E0E9"
-        app:layout_constraintTop_toBottomOf="@+id/line0"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="24dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintTop_toBottomOf="@+id/line0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_kakao_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="카카오 계정"
+                android:layout_marginTop="11dp"
+                android:textColor="@color/gray_E6E0E9"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_profile_img"
@@ -76,221 +91,182 @@
         android:layout_marginLeft="16dp"/>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/iv_profile_img"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_marginTop="16dp"
-            android:background="#3C3C41"/>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:id="@+id/edit_profile"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:gravity="center_vertical|start"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginLeft="24dp"
-                android:text="닉네임 수정"
-                android:textColor="@color/gray_E6E0E9"
-                android:textSize="16sp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile_img">
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="64dp"
-                android:layout_height="32dp"
-                android:text="수정하기"
-                android:layout_marginRight="24dp"
-                android:textColor="#1F1D20"
-                android:textSize="12sp"
-                android:fontFamily="@font/roboto_medium"
-                android:background="@drawable/back_edit_button"
-                android:paddingHorizontal="4dp"
-                android:paddingVertical="8dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="16dp"
+                android:background="#3C3C41" />
 
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/account_privacy"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#474747"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="계정 공개 범위"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
 
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
-        <LinearLayout
-            android:id="@+id/purchase_history"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:gravity="center_vertical|start"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginLeft="24dp"
-                android:text="구매 내역"
-                android:textColor="@color/gray_E6E0E9"
-                android:textSize="16sp" />
-
-
-        </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="24dp"
+                    android:background="@drawable/switch_off"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingRight="20dp"
+                    android:text="비공개"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/gray_414141" />
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#474747"/>
-
-
-
-
-        <LinearLayout
-            android:id="@+id/manage_friend"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:gravity="center_vertical|start"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginLeft="24dp"
-                android:text="친구 관리"
-                android:textColor="@color/gray_E6E0E9"
-                android:textSize="16sp" />
-
-
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#474747"/>
-
-
-        <LinearLayout
-            android:id="@+id/account_privacy"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:gravity="center_vertical|start"
-            android:orientation="horizontal">
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginLeft="24dp"
-                android:text="계정 공개 범위"
-                android:textColor="@color/gray_E6E0E9"
-                android:textSize="16sp" />
+            </LinearLayout>
 
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_switch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/switch_off"
-                android:text="비공개"
-                android:textAlignment="textEnd"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingRight="20dp"
-                android:textColor="@color/gray_414141"
-                android:layout_marginRight="24dp"/>
+
+            <LinearLayout
+                android:id="@+id/manage_friend"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="친구 관리"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+            <LinearLayout
+                android:id="@+id/purchase_history"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="구매 내역"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+            <LinearLayout
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="로그아웃"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+            <LinearLayout
+                android:id="@+id/withdraw"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="회원탈퇴"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
 
 
         </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#474747"/>
-
-
-        <LinearLayout
-            android:id="@+id/logout"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:gravity="center_vertical|start"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginLeft="24dp"
-                android:text="로그아웃"
-                android:textColor="@color/gray_E6E0E9"
-                android:textSize="16sp" />
-
-
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#474747"/>
-
-
-        <LinearLayout
-            android:id="@+id/withdraw"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:gravity="center_vertical|start"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginLeft="24dp"
-                android:text="회원탈퇴"
-                android:textColor="@color/gray_E6E0E9"
-                android:textSize="16sp" />
-
-
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#474747"/>
-
-
 
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
