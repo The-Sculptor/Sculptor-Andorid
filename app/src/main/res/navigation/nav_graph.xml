@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/rockNameFragment">
 
 
     <fragment
@@ -44,4 +44,40 @@
         android:id="@+id/searchFragment"
         android:name="com.umc.sculptor.ui.home.SearchFragment"
         android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/rockCategoryFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockCategoryFragment"
+        android:label="RockCategoryFragment" >
+        <action
+            android:id="@+id/action_rockCategoryFragment_to_rockGoalFragment"
+            app:destination="@id/rockGoalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rockCompleteFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockCompleteFragment"
+        android:label="RockCompleteFragment" />
+    <fragment
+        android:id="@+id/rockDateFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockDateFragment"
+        android:label="RockDateFragment" >
+        <action
+            android:id="@+id/action_rockDateFragment_to_rockCompleteFragment"
+            app:destination="@id/rockCompleteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rockGoalFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockGoalFragment"
+        android:label="RockGoalFragment" >
+        <action
+            android:id="@+id/action_rockGoalFragment_to_rockDateFragment"
+            app:destination="@id/rockDateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rockNameFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockNameFragment"
+        android:label="RockNameFragment" >
+        <action
+            android:id="@+id/action_rockNameFragment_to_rockCategoryFragment"
+            app:destination="@id/rockCategoryFragment" />
+    </fragment>
 </navigation>
