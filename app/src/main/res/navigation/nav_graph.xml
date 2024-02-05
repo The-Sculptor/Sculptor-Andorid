@@ -9,17 +9,63 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.umc.sculptor.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_workshopFragment"
+            app:destination="@id/workshopFragment" />
+    </fragment>
     <fragment
         android:id="@+id/storeFragment"
         android:name="com.umc.sculptor.ui.store.StoreFragment"
         android:label="StoreFragment" />
-    <fragment
-        android:id="@+id/workshopFragment"
-        android:name="com.umc.sculptor.ui.workshop.WorkshopFragment"
-        android:label="WorkshopFragment" />
+
     <fragment
         android:id="@+id/museumFragment"
         android:name="com.umc.sculptor.ui.museum.MuseumFragment"
         android:label="MuseumFragment" />
+    <fragment
+        android:id="@+id/workshopFragment"
+        android:name="com.umc.sculptor.ui.workshop.WorkshopFragment"
+        android:label="WorkshopFragment"
+        >
+        <action
+            android:id="@+id/action_workshopFragment_to_DetailworkshopFragment"
+            app:destination="@id/DetailworkshopFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/DetailworkshopFragment"
+        android:name="com.umc.sculptor.ui.workshop.DetailWorkshopFragment"
+        android:label="WorkshopFragment"
+        >
+        <action
+            android:id="@+id/action_DetailworkshopFragment_to_TodaycheckFragment"
+            app:destination="@id/TodaycheckFragment" />
+        <action
+            android:id="@+id/action_DetailworkshopFragment_to_workshopFragment"
+            app:destination="@id/workshopFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/StonepowderFragment"
+        android:name="com.umc.sculptor.ui.workshop.StonepowderFragment"
+        android:label="WorkshopFragment"
+        >
+        <action
+            android:id="@+id/action_StonepowderFragment_to_workshopFragment"
+            app:destination="@id/workshopFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/TodaycheckFragment"
+        android:name="com.umc.sculptor.ui.workshop.TodaycheckFragment"
+        android:label="WorkshopFragment">
+        <action
+            android:id="@+id/action_TodaycheckFragment_to_StonepowderFragment"
+            app:destination="@id/StonepowderFragment" />
+        <action
+            android:id="@+id/action_TodaycheckFragment_to_workshopFragment"
+            app:destination="@id/workshopFragment" />
+    </fragment>
+
+
 </navigation>

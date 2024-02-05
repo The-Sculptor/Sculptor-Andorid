@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_goal_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:visibility="visible"
+    android:background="@color/main_orange">
+
+    <ImageView
+        android:id="@+id/date_orange"
+        android:layout_width="56dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="0dp"
+        android:src="@drawable/date_orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_d_day"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="D-66"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/date_orange"
+        app:layout_constraintTop_toTopOf="@id/date_orange" />
+
+    <TextView
+        android:id="@+id/tv_d_day2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:text="UX 리서치"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_d_day"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="2024.01.04"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/tv_d_day2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_d_day2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black_222227"
+        android:src="@drawable/stone"
+       android:layout_marginStart="250dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
