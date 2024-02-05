@@ -1,6 +1,7 @@
 package com.umc.sculptor.ui.home
 
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.sculptor.MainActivity
@@ -16,7 +17,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
-
+        (activity as MainActivity).binding.mainLogo.visibility = View.VISIBLE
 
 
     }
@@ -44,5 +45,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.etProfileSearch.setOnClickListener {
             navController.navigate(R.id.action_homeFragment_to_searchFragment)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).binding.mainLogo.visibility = View.GONE
     }
 }
