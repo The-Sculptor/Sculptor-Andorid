@@ -18,6 +18,16 @@
         android:id="@+id/home_fragment">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/home_background_img"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_my_habit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/main_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,17 +108,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@id/et_profile_search"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/home_back_linear"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tv_friends_statue"
-            android:orientation="vertical">
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line0">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#908F90"/>
-
+                android:background="#908F90" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -126,24 +136,34 @@
 
 
             <include
-                layout="@layout/item_statue_card"
                 android:id="@+id/my_staue_card"
+                layout="@layout/item_statue_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="36dp"
-                android:layout_marginHorizontal="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_my_habit"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_habit" />
 
 
             <View
+                android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#908F90"/>
+                android:background="#908F90" />
         </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/home_background_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_my_habit" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_friends_statue"
@@ -168,7 +188,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintTop_toBottomOf="@id/tv_friends_statue"
             app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/item_friend_statue_card" />
