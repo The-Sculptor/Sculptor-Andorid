@@ -13,11 +13,7 @@
     <fragment
         android:id="@+id/storeFragment"
         android:name="com.umc.sculptor.ui.store.StoreFragment"
-        android:label="StoreFragment" >
-        <action
-            android:id="@+id/action_storeFragment_to_itemListFragment"
-            app:destination="@id/itemListFragment" />
-    </fragment>
+        android:label="StoreFragment" />
     <fragment
         android:id="@+id/workshopFragment"
         android:name="com.umc.sculptor.ui.workshop.WorkshopFragment"
@@ -26,12 +22,4 @@
         android:id="@+id/museumFragment"
         android:name="com.umc.sculptor.ui.museum.MuseumFragment"
         android:label="MuseumFragment" />
-    <fragment
-        android:id="@+id/itemListFragment"
-        android:name="com.umc.sculptor.ui.store.ItemListFragment"
-        android:label="ItemListFragment" >
-        <action
-            android:id="@+id/action_itemListFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
-    </fragment>
 </navigation>
