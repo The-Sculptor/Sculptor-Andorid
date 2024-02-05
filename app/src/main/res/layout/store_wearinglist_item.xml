@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp">
+
+    <ImageView
+        android:id="@+id/wearingList_item_bg"
+        android:layout_width="412dp"
+        android:layout_height="92dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/store_wearinglist_item"
+        />
+
+    <ImageView
+        android:id="@+id/wearingList_checkbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_outline_check"
+        app:layout_constraintStart_toStartOf="@+id/wearingList_item_bg"
+        android:layout_margin="30dp"
+        app:layout_constraintTop_toTopOf="@+id/wearingList_item_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/wearingList_item_bg"
+        app:layout_constraintEnd_toStartOf="@+id/wearingList_item"/>
+    <ImageView
+        android:id="@+id/wearingList_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/store_wearingitem_r"
+        app:layout_constraintStart_toEndOf="@+id/wearingList_checkbtn"
+        android:layout_marginStart="28dp"
+        app:layout_constraintTop_toTopOf="@+id/wearingList_item_bg"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/wearingList_item_g_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/wearingList_item_bg"
+        app:layout_constraintTop_toTopOf="@+id/wearingList_item_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/wearingList_item_bg"
+        android:layout_marginEnd="36dp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
