@@ -23,6 +23,7 @@ class RockGoalFragment : BaseFragment<FragmentCreateRockGoalBinding>(R.layout.fr
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(true)
+        (activity as MainActivity).hideIconAndShowBack(true)
     }
 
     override fun initDataBinding() {
@@ -71,4 +72,5 @@ class RockGoalFragment : BaseFragment<FragmentCreateRockGoalBinding>(R.layout.fr
             navController.navigate(R.id.action_rockGoalFragment_to_rockDateFragment)
         }
     }
+
 }

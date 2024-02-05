@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_workshopFragment_to_detailWorkshopFragment"
             app:destination="@id/detailWorkshopFragment" />
+        <action
+            android:id="@+id/action_workshopFragment_to_rockNameFragment"
+            app:destination="@id/rockNameFragment" />
     </fragment>
     <fragment
         android:id="@+id/museumProfileMeFragment"
@@ -121,7 +124,11 @@
     <fragment
         android:id="@+id/rockCompleteFragment"
         android:name="com.umc.sculptor.ui.workshop.createStone.RockCompleteFragment"
-        android:label="RockCompleteFragment" />
+        android:label="RockCompleteFragment" >
+        <action
+            android:id="@+id/action_rockCompleteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/rockNameFragment"
         android:name="com.umc.sculptor.ui.workshop.createStone.RockNameFragment"

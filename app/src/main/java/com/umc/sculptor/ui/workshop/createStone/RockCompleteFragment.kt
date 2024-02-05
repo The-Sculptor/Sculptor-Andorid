@@ -13,6 +13,7 @@ class RockCompleteFragment : BaseFragment<FragmentCreateRockCompleteBinding>(R.l
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(true)
+        (activity as MainActivity).hideIconAndShowBack(true)
     }
 
     override fun initDataBinding() {
@@ -25,6 +26,17 @@ class RockCompleteFragment : BaseFragment<FragmentCreateRockCompleteBinding>(R.l
     override fun initAfterBinding() {
         super.initAfterBinding()
 
+
+        binding.btnComplete.setOnClickListener {
+            navController.navigate(R.id.action_rockCompleteFragment_to_homeFragment)
+        }
+
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).hideIconAndShowBack(false)
 
     }
 }

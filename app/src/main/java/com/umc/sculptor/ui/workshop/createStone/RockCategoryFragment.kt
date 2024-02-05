@@ -22,6 +22,7 @@ class RockCategoryFragment : BaseFragment<FragmentCreateRockCategoryBinding>(R.l
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(true)
+        (activity as MainActivity).hideIconAndShowBack(true)
     }
 
     override fun initDataBinding() {
@@ -101,5 +102,9 @@ class RockCategoryFragment : BaseFragment<FragmentCreateRockCategoryBinding>(R.l
             binding.btnComplete.isEnabled = false
             binding.btnComplete.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_908F90))
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }
