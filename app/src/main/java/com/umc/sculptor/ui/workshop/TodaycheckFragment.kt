@@ -22,7 +22,7 @@ class TodaycheckFragment : BaseFragment<FragmentTodaycheckBinding>(R.layout.frag
     override fun initAfterBinding() {
         super.initAfterBinding()
         binding.x.setOnClickListener{
-            navController.navigate(R.id.action_TodaycheckFragment_to_workshopFragment)
+            navController.navigate(R.id.action_todaycheckFragment_to_workshopFragment)
         }
 
     }

@@ -46,8 +46,8 @@
         android:label="WorkshopFragment"
         >
         <action
-            android:id="@+id/action_workshopFragment_to_DetailworkshopFragment"
-            app:destination="@id/DetailworkshopFragment" />
+            android:id="@+id/action_workshopFragment_to_detailWorkshopFragment"
+            app:destination="@id/detailWorkshopFragment" />
     </fragment>
     <fragment
         android:id="@+id/museumProfileMeFragment"
@@ -138,5 +138,35 @@
         <action
             android:id="@+id/action_itemListFragment_to_storeFragment"
             app:destination="@id/storeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailWorkshopFragment"
+        android:name="com.umc.sculptor.ui.workshop.DetailWorkshopFragment"
+        android:label="DetailWorkshopFragment" >
+        <action
+            android:id="@+id/action_detailWorkshopFragment_to_todaycheckFragment"
+            app:destination="@id/todaycheckFragment" />
+        <action
+            android:id="@+id/action_detailWorkshopFragment_to_workshopFragment"
+            app:destination="@id/workshopFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todaycheckFragment"
+        android:name="com.umc.sculptor.ui.workshop.TodaycheckFragment"
+        android:label="TodaycheckFragment" >
+        <action
+            android:id="@+id/action_todaycheckFragment_to_stonepowderFragment"
+            app:destination="@id/stonepowderFragment" />
+        <action
+            android:id="@+id/action_todaycheckFragment_to_workshopFragment"
+            app:destination="@id/workshopFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stonepowderFragment"
+        android:name="com.umc.sculptor.ui.workshop.StonepowderFragment"
+        android:label="StonepowderFragment" >
+        <action
+            android:id="@+id/action_stonepowderFragment_to_workshopFragment"
+            app:destination="@id/workshopFragment" />
     </fragment>
 </navigation>

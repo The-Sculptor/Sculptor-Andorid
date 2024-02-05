@@ -22,10 +22,10 @@ class StonepowderFragment : BaseFragment<FragmentStonepowderBinding>(R.layout.fr
     override fun initAfterBinding() {
         super.initAfterBinding()
         binding.x.setOnClickListener{
-            navController.navigate(R.id.action_StonepowderFragment_to_workshopFragment)
+            navController.navigate(R.id.action_stonepowderFragment_to_workshopFragment)
         }
         binding.okButton.setOnClickListener {
-            navController.navigate(R.id.action_TodaycheckFragment_to_StonepowderFragment)
+            navController.navigate(R.id.action_todaycheckFragment_to_stonepowderFragment)
         }
 
     }

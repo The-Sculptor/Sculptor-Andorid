@@ -36,9 +36,9 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
     override fun initAfterBinding() {
         super.initAfterBinding()
         binding.record.setOnClickListener {
-            navController.navigate(R.id.action_DetailworkshopFragment_to_TodaycheckFragment)}
+            navController.navigate(R.id.action_detailWorkshopFragment_to_todaycheckFragment)}
         binding.back.setOnClickListener {
-            navController.navigate(R.id.action_DetailworkshopFragment_to_workshopFragment)} }}
+            navController.navigate(R.id.action_detailWorkshopFragment_to_workshopFragment)} }}
 //        val itemRVAdapter = DateAdapter(itemDatas)
 //        binding.recyclerview2.adapter = itemRVAdapter
 //
