@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.databinding.FragmentDetailWorkshopBinding
@@ -17,6 +18,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
     private lateinit var boxAdapter: BoxAdapter
     override fun initStartView() {
         super.initStartView()
+        (activity as MainActivity).hideIconAndShowBack(true)
     }
 
     override fun initDataBinding() {
@@ -36,9 +38,17 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
     override fun initAfterBinding() {
         super.initAfterBinding()
         binding.record.setOnClickListener {
-            navController.navigate(R.id.action_detailWorkshopFragment_to_todaycheckFragment)}
-        binding.back.setOnClickListener {
-            navController.navigate(R.id.action_detailWorkshopFragment_to_workshopFragment)} }}
+            navController.navigate(R.id.action_detailWorkshopFragment_to_todaycheckFragment)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).hideIconAndShowBack(false)
+    }
+
+}
+
 //        val itemRVAdapter = DateAdapter(itemDatas)
 //        binding.recyclerview2.adapter = itemRVAdapter
 //

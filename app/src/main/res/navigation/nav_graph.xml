@@ -146,9 +146,6 @@
         <action
             android:id="@+id/action_detailWorkshopFragment_to_todaycheckFragment"
             app:destination="@id/todaycheckFragment" />
-        <action
-            android:id="@+id/action_detailWorkshopFragment_to_workshopFragment"
-            app:destination="@id/workshopFragment" />
     </fragment>
     <fragment
         android:id="@+id/todaycheckFragment"

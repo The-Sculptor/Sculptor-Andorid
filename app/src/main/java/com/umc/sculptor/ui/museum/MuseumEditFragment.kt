@@ -2,6 +2,7 @@ package com.umc.sculptor.ui.museum
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.databinding.FragmentMuseumEditBinding
@@ -10,7 +11,8 @@ class MuseumEditFragment : BaseFragment<FragmentMuseumEditBinding>(R.layout.frag
 
     private lateinit var museumEditRVAdapter: MuseumEditRVAdapter
     override fun initStartView() {
-        super.initStartView()
+        (activity as MainActivity).hideBottomNav(true)
+        (activity as MainActivity).hideIconAndShowBack(true)
     }
 
     override fun initDataBinding() {
@@ -27,14 +29,8 @@ class MuseumEditFragment : BaseFragment<FragmentMuseumEditBinding>(R.layout.frag
     }
 
 
-    override fun initAfterBinding() {
-        super.initAfterBinding()
-        binding.museumBackBtn.setOnClickListener{
-            //onbackpressed가 안되서 대체
-            binding.museumBackBtn.setOnClickListener{
-                navController.navigate(R.id.action_museumEditFragment_to_museumProfileMeFragment)
-            }
-        }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 }

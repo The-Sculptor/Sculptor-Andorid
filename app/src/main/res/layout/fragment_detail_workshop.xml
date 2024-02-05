@@ -23,28 +23,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/vector_left"
-                app:layout_constraintBottom_toTopOf="@+id/category"
-                app:layout_constraintStart_toStartOf="@+id/category" />
-
             <TextView
                 android:id="@+id/category"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="조깅하기"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="130dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:text="조깅하기"
                 android:textColor="@color/white"
                 android:textSize="32sp"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         <TextView
             android:id="@+id/goal_title"
             android:layout_width="match_parent"
@@ -310,30 +299,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-
-
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/record"
-                android:layout_width="435dp"
-                android:layout_height="65dp"
-                android:background="@color/black_222227"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/box_record"
-                app:layout_constraintTop_toBottomOf="@id/text5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text=" + 기록하기"
-                android:textColor="@color/white"
-                android:textSize="9pt"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="107dp" />
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_wrtie"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text5"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -341,7 +318,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="30dp"
             android:text=" 2024년 1월"
-            android:textSize="10pt"
+            android:textSize="16sp"
+            android:autoSizeMaxTextSize="16dp"
             android:textColor="@color/white"
             android:background="@color/black_222227"
             app:layout_constraintTop_toBottomOf="@id/gridLayout"

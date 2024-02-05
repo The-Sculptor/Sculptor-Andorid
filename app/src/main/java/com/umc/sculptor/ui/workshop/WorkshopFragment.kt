@@ -5,14 +5,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
+import com.umc.sculptor.data.model.dto.FriendStatue
 import com.umc.sculptor.databinding.FragmentTodaycheckBinding
 import com.umc.sculptor.databinding.FragmentWorkshopBinding
+import com.umc.sculptor.ui.home.FriendStatueAdapter
 
 class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_workshop) {
 
     private var itemDatas = ArrayList<Box>()
 
     private lateinit var boxAdapter: BoxAdapter
+
+
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
@@ -21,24 +25,28 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
     override fun initDataBinding() {
         super.initDataBinding()
 
-        boxAdapter = BoxAdapter(ArrayList())
+        itemDatas.add(Box("D- 66"))
+        itemDatas.add(Box("D- 66"))
+
+        boxAdapter = BoxAdapter(itemDatas)
 
         binding.recyclerview.adapter = boxAdapter
         binding.recyclerview.layoutManager = LinearLayoutManager(context)
+
+        // 아이템 클릭 리스너 설정
+        boxAdapter.setOnItemClickListener(object : BoxAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                navController.navigate(R.id.action_workshopFragment_to_detailWorkshopFragment)
+            }
+        })
+
+
     }
 
 
     override fun initAfterBinding() {
         super.initAfterBinding()
 
-        // If you want to add some initial data, you can do it like this
-        itemDatas.add(Box("Sample Data 1"))
-        itemDatas.add(Box("Sample Data 2"))
-
-        // Update the existing adapter with the initial data
-        boxAdapter.updateData(itemDatas)
-
-        Log.d("WorkshopFragment", "initAfterBinding executed")
 
 
     }

@@ -20,6 +20,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
         (activity as MainActivity).binding.mainLogo.visibility = View.VISIBLE
+        (activity as MainActivity).hideIconAndShowBack(false)
 
     }
 

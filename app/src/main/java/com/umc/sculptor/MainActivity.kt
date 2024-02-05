@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-
         binding.ivProfile.setOnClickListener {
             replaceFragmentToMyPage()
         }
@@ -80,6 +79,19 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigation.visibility = View.GONE
         }else{
             binding.bottomNavigation.visibility = View.VISIBLE
+        }
+    }
+
+
+    fun hideIconAndShowBack(state: Boolean){
+        if(state){
+            binding.ivBack.visibility = View.VISIBLE
+            binding.ivNotification.visibility = View.GONE
+            binding.ivProfile.visibility = View.GONE
+        }else{
+            binding.ivBack.visibility = View.GONE
+            binding.ivNotification.visibility = View.VISIBLE
+            binding.ivProfile.visibility = View.VISIBLE
         }
     }
 
