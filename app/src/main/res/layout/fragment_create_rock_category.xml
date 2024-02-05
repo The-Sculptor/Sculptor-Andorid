@@ -78,6 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view_back" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_stone_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="조깅"
@@ -160,7 +161,7 @@
         android:text="기록하기"
         android:fontFamily="@font/pretendard_semi_bold"
         android:textSize="16sp"
-        android:checked="false"
+        android:enabled="false"
         android:background="@drawable/create_stone_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

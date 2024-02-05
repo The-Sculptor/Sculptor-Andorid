@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_category"
+        android:id="@+id/tv_goal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="27dp"
@@ -79,6 +79,7 @@
 
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_stone_goal"
         android:layout_width="match_parent"
         android:layout_height="104dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +94,7 @@
         android:gravity="top"
         android:layout_marginHorizontal="27dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_category" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_goal" />
 
 
     <LinearLayout
@@ -106,6 +107,7 @@
         android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_stone_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="조깅"
@@ -119,7 +121,7 @@
 
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_category_health"
+        android:id="@+id/tv_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="운동"
