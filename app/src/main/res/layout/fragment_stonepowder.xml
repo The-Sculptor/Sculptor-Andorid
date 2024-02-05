@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".stonepowder">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_222227"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:gravity="center"
+                android:text="축하합니다!\n_g의 돌가루를 모았어요!"
+                android:textColor="@color/white"
+                android:textSize="10pt" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/ok_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginTop="680dp"
+                android:text="확인" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/stonepowder"
+                android:layout_marginTop="100dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="+1000g"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_marginTop="470dp"
+                android:textSize="12pt" />
+
+            <ImageView
+                android:id="@+id/x"
+                android:layout_width="46dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="360dp"
+                android:layout_marginBottom="620dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/x" />
+
+        </FrameLayout>
+
+
+</layout>

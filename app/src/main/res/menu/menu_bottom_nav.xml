@@ -16,4 +16,5 @@
         android:id="@id/storeFragment"
         android:icon="@drawable/store"
         android:title="@string/store_fragment"/>
+
 </menu>

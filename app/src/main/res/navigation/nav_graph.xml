@@ -43,7 +43,12 @@
     <fragment
         android:id="@+id/workshopFragment"
         android:name="com.umc.sculptor.ui.workshop.WorkshopFragment"
-        android:label="WorkshopFragment" />
+        android:label="WorkshopFragment"
+        >
+        <action
+            android:id="@+id/action_workshopFragment_to_DetailworkshopFragment"
+            app:destination="@id/DetailworkshopFragment" />
+    </fragment>
     <fragment
         android:id="@+id/museumProfileMeFragment"
         android:name="com.umc.sculptor.ui.museum.MuseumProfileMeFragment"
