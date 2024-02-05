@@ -22,28 +22,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/relatveLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
-
-<!--            아이콘 배치 -->
-            <ImageView
-                android:id="@+id/icon_mypage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="380dp"
-                android:src="@drawable/mypage"/>
-
-            <ImageView
-                android:id="@+id/icon_ring"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="300dp"
-                android:src="@drawable/ring" />
-
-        </RelativeLayout>
 
         <TextView
             android:id="@+id/subtitlie_workshop"
