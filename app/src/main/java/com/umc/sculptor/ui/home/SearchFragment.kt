@@ -1,7 +1,9 @@
 package com.umc.sculptor.ui.home
 
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.Alarm
@@ -14,6 +16,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     override fun initStartView() {
         super.initStartView()
+        (activity as MainActivity).hideBottomNav(true)
+        (activity as MainActivity).hideIconAndShowBack(true)
     }
 
     override fun initDataBinding() {
@@ -34,9 +38,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     override fun initAfterBinding() {
         super.initAfterBinding()
 
-        binding.ivBack.setOnClickListener {
-            (requireActivity() as AppCompatActivity).onBackPressed()
-        }
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 }

@@ -14,7 +14,7 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(true)
-        (activity as MainActivity).binding.ivBack.visibility = View.VISIBLE
+        (activity as MainActivity).hideIconAndShowBack(true)
 
     }
 
@@ -33,6 +33,6 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity as MainActivity).binding.ivBack.visibility = View.GONE
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 }

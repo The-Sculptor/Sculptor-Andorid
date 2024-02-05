@@ -18,7 +18,7 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(R.layout.fragment_alarm
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(true)
-        (activity as MainActivity).binding.ivBack.visibility = View.VISIBLE
+        (activity as MainActivity).hideIconAndShowBack(true)
     }
 
     override fun initDataBinding() {
@@ -45,6 +45,6 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(R.layout.fragment_alarm
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity as MainActivity).binding.ivBack.visibility = View.GONE
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 }

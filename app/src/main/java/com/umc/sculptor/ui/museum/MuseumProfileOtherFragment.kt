@@ -15,6 +15,7 @@ class MuseumProfileOtherFragment : BaseFragment<FragmentMuseumProfileOtherBindin
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 
     override fun initDataBinding() {
@@ -28,5 +29,6 @@ class MuseumProfileOtherFragment : BaseFragment<FragmentMuseumProfileOtherBindin
         super.initAfterBinding()
 
     }
+
 
 }

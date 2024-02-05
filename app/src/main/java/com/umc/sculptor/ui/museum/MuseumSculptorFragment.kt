@@ -36,9 +36,7 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
             binding.museumSculptorInclude2.root.visibility = View.VISIBLE
             binding.museumSculptorInclude.root.visibility = View.GONE
         }
-        binding.sculptorBack.setOnClickListener{
-            navController.navigate(R.id.action_museumSculptorFragment_to_museumProfileMeFragment)
-        }
+
 
     }
 
