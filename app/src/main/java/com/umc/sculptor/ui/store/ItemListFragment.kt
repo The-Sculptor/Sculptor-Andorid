@@ -21,7 +21,7 @@ class ItemListFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentStoreItemWearinglistBinding.inflate(inflater, container,false)
-
+        (activity as MainActivity).hideBottomNav(true)
         (activity as MainActivity).hideIconAndShowBack(true)
 
 
