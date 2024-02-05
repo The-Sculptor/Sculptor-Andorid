@@ -5,6 +5,7 @@
          <item name="colorPrimary">@color/main_back_black</item>
     </style>
 
+
     <style name="Theme.Sculptor" parent="Base.Theme.Sculptor" />
 
     <style name="AppTheme" parent="Base.Theme.Sculptor">

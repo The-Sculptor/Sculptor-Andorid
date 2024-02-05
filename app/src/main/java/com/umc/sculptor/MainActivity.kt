@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.umc.sculptor.databinding.ActivityMainBinding
+import com.umc.sculptor.ui.home.AlarmFragment
+import com.umc.sculptor.ui.home.MyPageFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +29,32 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         binding.bottomNavigation.setupWithNavController(navController)
+        setSupportActionBar(binding.toolbar)
 
+        // Disable displaying the title in the Toolbar
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+
+        binding.ivProfile.setOnClickListener {
+            replaceFragmentToMyPage()
+        }
+
+        binding.ivNotification.setOnClickListener {
+            replaceFragmentAlarmPage()
+        }
+
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
+
+
+        binding.ivProfile.setOnClickListener {
+            replaceFragmentToMyPage()
+        }
+
+        binding.ivNotification.setOnClickListener {
+            replaceFragmentAlarmPage()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -53,6 +81,28 @@ class MainActivity : AppCompatActivity() {
         }else{
             binding.bottomNavigation.visibility = View.VISIBLE
         }
+    }
+
+    private fun replaceFragmentToMyPage() {
+        val secondFragment = MyPageFragment()
+
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        transaction.replace(R.id.fragmentContainerView2, secondFragment)
+
+        transaction.addToBackStack(null) // 백스택에 추가하여 뒤로 가기를 처리할 수 있도록 함
+        transaction.commit()
+    }
+
+    private fun replaceFragmentAlarmPage() {
+        val secondFragment = AlarmFragment()
+
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        transaction.replace(R.id.fragmentContainerView2, secondFragment)
+
+        transaction.addToBackStack(null) // 백스택에 추가하여 뒤로 가기를 처리할 수 있도록 함
+        transaction.commit()
     }
 
 }

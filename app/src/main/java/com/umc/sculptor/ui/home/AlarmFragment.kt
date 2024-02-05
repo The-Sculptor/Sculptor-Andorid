@@ -1,5 +1,6 @@
 package com.umc.sculptor.ui.home
 
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.sculptor.MainActivity
@@ -17,6 +18,7 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(R.layout.fragment_alarm
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(true)
+        (activity as MainActivity).binding.ivBack.visibility = View.VISIBLE
     }
 
     override fun initDataBinding() {
@@ -38,9 +40,11 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(R.layout.fragment_alarm
     override fun initAfterBinding() {
         super.initAfterBinding()
 
-        binding.ivBack.setOnClickListener {
-            (requireActivity() as AppCompatActivity).onBackPressed()
-        }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).binding.ivBack.visibility = View.GONE
     }
 }

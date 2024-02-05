@@ -2,6 +2,7 @@ package com.umc.sculptor.ui.museum
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.databinding.FragmentMuseumProfileMeBinding
@@ -11,6 +12,7 @@ class MuseumProfileMeFragment : BaseFragment<FragmentMuseumProfileMeBinding>(R.l
     private lateinit var museumSculptorRVAdapter: MuseumSculptorRVAdapter
     override fun initStartView() {
         super.initStartView()
+        (activity as MainActivity).hideBottomNav(false)
     }
 
     override fun initDataBinding() {
