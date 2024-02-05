@@ -22,6 +22,15 @@
         <action
             android:id="@+id/action_homeFragment_to_workshopFragment"
             app:destination="@id/workshopFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alarmFragment"
+            app:destination="@id/alarmFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
@@ -35,14 +44,6 @@
         android:id="@+id/workshopFragment"
         android:name="com.umc.sculptor.ui.workshop.WorkshopFragment"
         android:label="WorkshopFragment" />
-    <fragment
-        android:id="@+id/museumEditFragment"
-        android:name="com.umc.sculptor.ui.museum.MuseumEditFragment"
-        android:label="MuseumEditFragment" >
-        <action
-            android:id="@+id/action_museumEditFragment_to_museumProfileMeFragment"
-            app:destination="@id/museumProfileMeFragment" />
-    </fragment>
     <fragment
         android:id="@+id/museumProfileMeFragment"
         android:name="com.umc.sculptor.ui.museum.MuseumProfileMeFragment"
