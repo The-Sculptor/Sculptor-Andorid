@@ -41,14 +41,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         super.initAfterBinding()
 
 
-        binding.ivProfile.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_myPageFragment)
-        }
-
-        binding.ivNotification.setOnClickListener {
-            navController.navigate(R.id.action_homeFragment_to_alarmFragment)
-        }
-
         binding.etProfileSearch.setOnClickListener {
             navController.navigate(R.id.action_homeFragment_to_searchFragment)
         }

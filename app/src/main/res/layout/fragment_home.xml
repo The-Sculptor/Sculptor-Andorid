@@ -27,41 +27,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/main_logo"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/iv_profile"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/icon_notification"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/icon_profile"/>
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_main_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/main_logo"
+            app:layout_constraintTop_toTopOf="parent"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
