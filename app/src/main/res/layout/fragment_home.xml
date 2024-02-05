@@ -124,15 +124,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#908F90" />
-
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/home_bottom_background"
+            android:scaleType="fitXY"
+            android:src="@drawable/home_background_bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_my_habit" />

@@ -48,6 +48,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        binding.ivProfile.setOnClickListener {
+            replaceFragmentToMyPage()
+        }
+
+        binding.ivNotification.setOnClickListener {
+            replaceFragmentAlarmPage()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
