@@ -10,6 +10,7 @@ import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.FriendStatue
 import com.umc.sculptor.databinding.FragmentHomeBinding
+import com.umc.sculptor.ui.workshop.BoxAdapter
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
@@ -37,6 +38,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.rvFriendStatue.adapter = friendStatueAdapter
         binding.rvFriendStatue.layoutManager = LinearLayoutManager(context)
 
+
+        // 아이템 클릭 리스너 설정
+        friendStatueAdapter.setOnItemClickListener(object : FriendStatueAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                navController.navigate(R.id.action_homeFragment_to_friendStoneFragment)
+            }
+        })
+
     }
 
 
@@ -47,6 +56,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.etProfileSearch.setOnClickListener {
             navController.navigate(R.id.action_homeFragment_to_searchFragment)
         }
+
     }
 
     @SuppressLint("ResourceAsColor")
