@@ -23,6 +23,17 @@
             android:id="@+id/action_homeFragment_to_workshopFragment"
             app:destination="@id/workshopFragment" />
     </fragment>
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alarmFragment"
+            app:destination="@id/alarmFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/storeFragment"
         android:name="com.umc.sculptor.ui.store.StoreFragment"
@@ -63,4 +74,55 @@
             app:destination="@id/museumProfileMeFragment" />
     </fragment>
 
+        android:id="@+id/museumFragment"
+        android:name="com.umc.sculptor.ui.museum.MuseumFragment"
+        android:label="MuseumFragment" />
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:name="com.umc.sculptor.ui.home.MyPageFragment"
+        android:label="MyPageFragment" />
+    <fragment
+        android:id="@+id/alarmFragment"
+        android:name="com.umc.sculptor.ui.home.AlarmFragment"
+        android:label="AlarmFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.umc.sculptor.ui.home.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/rockCategoryFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockCategoryFragment"
+        android:label="RockCategoryFragment" >
+        <action
+            android:id="@+id/action_rockCategoryFragment_to_rockGoalFragment"
+            app:destination="@id/rockGoalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rockCompleteFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockCompleteFragment"
+        android:label="RockCompleteFragment" />
+    <fragment
+        android:id="@+id/rockDateFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockDateFragment"
+        android:label="RockDateFragment" >
+        <action
+            android:id="@+id/action_rockDateFragment_to_rockCompleteFragment"
+            app:destination="@id/rockCompleteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rockGoalFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockGoalFragment"
+        android:label="RockGoalFragment" >
+        <action
+            android:id="@+id/action_rockGoalFragment_to_rockDateFragment"
+            app:destination="@id/rockDateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rockNameFragment"
+        android:name="com.umc.sculptor.ui.workshop.createStone.RockNameFragment"
+        android:label="RockNameFragment" >
+        <action
+            android:id="@+id/action_rockNameFragment_to_rockCategoryFragment"
+            app:destination="@id/rockCategoryFragment" />
+    </fragment>
 </navigation>

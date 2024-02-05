@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_back_black">
+
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시작 날짜를 설정해주세요!"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/pretendard_semi_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_back"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="30dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#A3FFFFFF"
+        android:text="시작일을 기준으로 66일 동안 진행되어요"
+        android:textSize="16sp"
+        android:fontFamily="@font/pretendard_semi_bold"
+        app:layout_constraintTop_toBottomOf="@+id/tv_main"
+        app:layout_constraintStart_toStartOf="@+id/tv_main"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_stone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/example_stone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="122dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_explain"/>
+
+    <View
+        android:id="@+id/view_back"
+        android:layout_width="wrap_content"
+        android:layout_height="155dp"
+        android:layout_marginBottom="-28dp"
+        android:background="@drawable/create_stone_back"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_stone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_start_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="시작 날짜 설정"
+        android:textColor="@color/gray_BABABA"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_back" />
+
+
+    <LinearLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/iv_stone"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="조깅"
+        android:background="@drawable/round_4_rectangle"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
+        android:fontFamily="@font/pretendard_medium"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_category_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="운동"
+        android:layout_marginStart="15dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/purple_E8DEF8"
+        android:background="@drawable/round_4_rectangle"
+        android:drawableStart="@drawable/icon_category"
+        android:paddingVertical="6dp"
+        android:drawablePadding="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="12dp"/>
+
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_complete"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="기록하기"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:textSize="16sp"
+        android:checked="false"
+        android:background="@drawable/create_stone_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/et_stone_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/edittext_rounded_corner_rectangle"
+        android:padding="18dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/gray_D8D8D8"
+        android:textColorHint="#908F90"
+        android:drawableEnd="@drawable/icon_calender"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="시작일   |   2024.01.04"
+        android:letterSpacing="0.005"
+        android:gravity="top"
+        android:layout_marginHorizontal="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_start_date" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
