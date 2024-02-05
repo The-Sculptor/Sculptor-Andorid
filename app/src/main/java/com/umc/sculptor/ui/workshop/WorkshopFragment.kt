@@ -47,6 +47,11 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
     override fun initAfterBinding() {
         super.initAfterBinding()
 
+        binding.btnPlus.setOnClickListener {
+            navController.navigate(R.id.action_workshopFragment_to_rockNameFragment)
+        }
+
+
 
 
     }

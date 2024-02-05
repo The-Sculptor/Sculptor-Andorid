@@ -20,6 +20,7 @@ class RockNameFragment : BaseFragment<FragmentCreateRockNameBinding>(R.layout.fr
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(true)
+        (activity as MainActivity).hideIconAndShowBack(true)
     }
 
 
@@ -64,6 +65,7 @@ class RockNameFragment : BaseFragment<FragmentCreateRockNameBinding>(R.layout.fr
             navController.navigate(R.id.action_rockNameFragment_to_rockCategoryFragment)
         }
     }
+
 
 
 }
