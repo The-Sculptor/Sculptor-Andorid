@@ -3,6 +3,7 @@ package com.umc.sculptor.ui.museum
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.databinding.FragmentMuseumSculptorBinding
@@ -12,6 +13,8 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
     private lateinit var museumCommentRVAdapter: MuseumCommentRVAdapter
     override fun initStartView() {
         super.initStartView()
+        (activity as MainActivity).hideBottomNav(true)
+        (activity as MainActivity).hideIconAndShowBack(true)
     }
 
     override fun initDataBinding() {
@@ -38,6 +41,11 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
         }
 
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 
 }
