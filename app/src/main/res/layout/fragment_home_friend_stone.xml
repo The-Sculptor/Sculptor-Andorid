@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/home_friend_stone_background">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_friend_stone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="69dp"
+        android:background="@drawable/friend_stone_card_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/circle_white_border"
+        android:src="@drawable/profile_ex_img"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@id/layout_friend_stone"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/rock_salt_regular"
+        android:layout_marginTop="12dp"
+        android:text="SONG"
+        android:textSize="20sp"
+        android:textColor="#CBCAC4"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="@id/layout_friend_stone" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_following"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/btn_following"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="@id/layout_friend_stone"
+        app:layout_constraintTop_toTopOf="@id/textView3" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_dday_explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="남은 기간"
+        android:textColor="@color/gray_D3D3D3"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/profile_image"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="2dp"
+        android:layout_height="60dp"
+        android:background="@color/gray_D8D8D8"
+        app:layout_constraintBottom_toBottomOf="@id/tv_d_day"
+        app:layout_constraintEnd_toEndOf="@id/layout_friend_stone"
+        app:layout_constraintStart_toStartOf="@id/tv_dday_explain"
+        app:layout_constraintTop_toTopOf="@+id/tv_dday_explain" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="달성률"
+        android:textColor="@color/gray_D3D3D3"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/line"
+        app:layout_constraintTop_toTopOf="@+id/line" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_d_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D-66"
+        app:layout_constraintStart_toStartOf="@id/profile_image"
+        android:layout_marginStart="4dp"
+        android:textSize="32sp"
+        android:fontFamily="@font/pretendard_medium"
+        android:textColor="@color/main_orange"
+        app:layout_constraintTop_toBottomOf="@id/tv_dday_explain"
+        android:layout_marginTop="4dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_achievement_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="80%"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextView"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_statue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/statue"
+        app:layout_constraintTop_toTopOf="@id/layout_friend_stone"
+        app:layout_constraintStart_toStartOf="@id/layout_friend_stone"
+        app:layout_constraintEnd_toEndOf="@id/layout_friend_stone"
+        app:layout_constraintBottom_toBottomOf="@id/layout_friend_stone"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_statue_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        app:layout_constraintTop_toBottomOf="@id/iv_statue"
+        app:layout_constraintStart_toStartOf="@id/tv_d_day"
+        android:layout_marginTop="32dp"
+        android:text="조각상 이름"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/tv_statue_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_statue_name"
+        android:fontFamily="@font/roboto_regular"
+        android:text="목표 하루에 한 시간 씩 조깅하기"
+        android:textColor="@color/gray_D3D3D3"
+        android:textSize="16sp" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_goal_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="2024.01.04"
+        android:textColor="@color/gray_908F90"
+        app:layout_constraintStart_toStartOf="@id/tv_statue_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_goal"
+        android:textSize="16sp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_go_musuem"
+        app:layout_constraintEnd_toEndOf="@id/btn_following"
+        app:layout_constraintTop_toTopOf="@+id/tv_goal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_friendStoneFragment"
+            app:destination="@id/friendStoneFragment" />
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
@@ -173,4 +176,8 @@
             android:id="@+id/action_stonepowderFragment_to_workshopFragment"
             app:destination="@id/workshopFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/friendStoneFragment"
+        android:name="com.umc.sculptor.ui.home.FriendStoneFragment"
+        android:label="FriendStoneFragment" />
 </navigation>
