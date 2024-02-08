@@ -55,7 +55,9 @@ class FriendStatueAdapter(itemList: List<Follwing>) :
 
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.friendStone.setOnClickListener {
+
             onItemClickListener?.onItemClick(position)
+
         }
 
         holder.friendName.text = friendStatueList[position].nickname
