@@ -1,6 +1,13 @@
+import java.util.Properties
+import java.io.File
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+}
+
+val properties = Properties().apply {
+    load(File(rootProject.projectDir, "local.properties").inputStream())
 }
 
 android {
@@ -15,6 +22,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "NATIVE_APP_KEY",properties.getProperty("native.app.key"))
+
+        manifestPlaceholders["NATIVE_APP_KEY"] =
+            properties.getProperty("native.app.key")
     }
 
     buildTypes {
@@ -38,6 +49,7 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -60,6 +72,8 @@ dependencies {
     implementation ("com.kakao.sdk:v2-talk:2.15.0") // 친구, 메시지(카카오톡)
     implementation ("com.kakao.sdk:v2-share:2.15.0") // 메시지(카카오톡 공유)
     implementation ("com.kakao.sdk:v2-friend:2.15.0") // 카카오톡 소셜 피커, 리소스 번들 파일 포함
+
+    implementation ("com.jakewharton.timber:timber:5.0.1")
 
 
 }

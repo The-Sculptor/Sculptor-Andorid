@@ -54,7 +54,9 @@ class FriendStatueAdapter(itemList: ArrayList<FriendStatue>) :
 
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.friendStone.setOnClickListener {
+
             onItemClickListener?.onItemClick(position)
+
         }
 
     }
