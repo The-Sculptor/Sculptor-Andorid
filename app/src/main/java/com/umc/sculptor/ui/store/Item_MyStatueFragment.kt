@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.umc.sculptor.R
 import com.umc.sculptor.databinding.FragmentMystatueBinding
-import com.umc.sculptor.databinding.StoreItemStatueBinding
 
 class Item_MyStatueFragment: Fragment() {
     lateinit var binding: FragmentMystatueBinding
@@ -48,7 +47,6 @@ class Item_MyStatueFragment: Fragment() {
 
                         // 뷰모델을 통해 선택된 아이템 공유
                         viewModel.updateSelectedItem(item)
-
 
                     } else {
                         item.backImg = R.drawable.store_space
