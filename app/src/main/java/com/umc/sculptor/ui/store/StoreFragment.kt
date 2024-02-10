@@ -7,12 +7,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
@@ -31,6 +28,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         fun onItemSelected(item: Item)
     }
 
+
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
@@ -46,7 +44,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
     private fun onSaveBtn() {
         binding.SaveBtn.setOnClickListener {
-            binding.SaveBtn.setBackgroundResource(R.drawable.store_savebtn_clicked)
+            binding.SaveBtn.setBackgroundResource(R.drawable.store_btn_clicked)
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.SaveBtn.setBackgroundResource(R.drawable.store_savebtn)
             }, 1000)
@@ -74,11 +72,34 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
             tab.text = information[position]
         }.attach()
 
+        binding.btnBeforeIv.setOnClickListener(){
+            Log.d("BeforeBtn", "clicked")
+        }
+
+        binding.btnAfterIv.setOnClickListener(){
+            Log.d("AfterBtn", "clicked")
+        }
+
+        binding.btnResetIv.setOnClickListener(){
+            Log.d("ResetBtn", "clicked")
+        }
 
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
+        viewModel.selectedStatue.observe(viewLifecycleOwner, Observer { selectedStatue -> // 뷰모델의 selectedItem을 observe하여 선택된 아이템이 변경되었을 때 호출되는 콜백 설정
+            binding.statueIv.setImageResource(selectedStatue.statueImg ?: R.drawable.statue) // 선택된 아이템의 이미지를 statueiv에 설정
+
+        })
+
         viewModel.selectedItem.observe(viewLifecycleOwner, Observer { selectedItem -> // 뷰모델의 selectedItem을 observe하여 선택된 아이템이 변경되었을 때 호출되는 콜백 설정
-            binding.statueIv.setImageResource(selectedItem.statueImg ?: R.drawable.statue) // 선택된 아이템의 이미지를 statueiv에 설정
+            if(selectedItem.buy == true) {
+                binding.saveBtnText.text = "구매"
+                binding.SaveBtn.setBackgroundResource(R.drawable.store_btn_clicked)
+            } else {
+                binding.saveBtnText.text = "저장"
+                binding.SaveBtn.setBackgroundResource(R.drawable.store_savebtn)
+            }
+
         })
 
         return binding.root
