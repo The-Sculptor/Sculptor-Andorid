@@ -71,7 +71,7 @@ class RockCategoryFragment : BaseFragment<FragmentCreateRockCategoryBinding>(R.l
     private fun setCategoryBackground(){
         when(currentIndex){
             1 -> {
-                category = Category.HEALTH
+                category = Category.WORKOUT
                 binding.tvCategoryStudy.setBackgroundResource(R.drawable.round_4_rectangle_purple)
                 binding.tvCategoryHealth.setBackgroundResource(R.drawable.round_4_rectangle_purple_border)
                 binding.tvCategoryEtc.setBackgroundResource(R.drawable.round_4_rectangle_purple)
@@ -83,7 +83,7 @@ class RockCategoryFragment : BaseFragment<FragmentCreateRockCategoryBinding>(R.l
                 binding.tvCategoryEtc.setBackgroundResource(R.drawable.round_4_rectangle_purple)
             }
             3 -> {
-                category = Category.ETC
+                category = Category.DAILY
                 binding.tvCategoryStudy.setBackgroundResource(R.drawable.round_4_rectangle_purple)
                 binding.tvCategoryHealth.setBackgroundResource(R.drawable.round_4_rectangle_purple)
                 binding.tvCategoryEtc.setBackgroundResource(R.drawable.round_4_rectangle_purple_border)

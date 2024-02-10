@@ -13,11 +13,14 @@ import com.umc.sculptor.data.model.dto.FriendStatue
 import com.umc.sculptor.data.model.remote.home.FollowingsStones
 import com.umc.sculptor.data.model.remote.home.Follwing
 import com.umc.sculptor.databinding.FragmentHomeBinding
+import com.umc.sculptor.login.LocalDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
@@ -26,6 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     @SuppressLint("ResourceAsColor")
     override fun initStartView() {
         super.initStartView()
+
         (activity as MainActivity).hideBottomNav(false)
         (activity as MainActivity).binding.mainLogo.visibility = View.VISIBLE
         (activity as MainActivity).hideIconAndShowBack(false)
@@ -41,43 +45,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 //        dumy.add(FriendStatue("SONG"))
 //        dumy.add(FriendStatue("SONG"))
 
-        // 코루틴을 사용하기 위한 스코프 생성
-        val coroutineScope = CoroutineScope(Dispatchers.Main)
+        // 서버 통신 요청
+        val call: Call<FollowingsStones> = homeService.getFollowingsStones("JSESSIONID="+LocalDataSource.getAccessToken().toString())
 
-        // 데이터 받아오고 처리하는 함수
-        fun fetchDataAndProcess() {
-            coroutineScope.launch {
-                try {
-                    // 서버에서 데이터 받아오기
-                    val response = homeService.getHome().execute()
-
-                    if (response.isSuccessful) {
-                        val data: FollowingsStones? = response.body()
-                        data?.let {
-                            // xml에 있는 값 매핑
-                            binding.tvFriendsStatue.text = it.data.userName
-
-                            // 리사이클러뷰 리스트 매핑
-                            itemList = it.data.follwings
-                            Log.d("server", "success")
-
-                            // 어댑터 설정
-                            friendStatueAdapter = FriendStatueAdapter(itemList)
-                            binding.rvFriendStatue.adapter = friendStatueAdapter
-                            binding.rvFriendStatue.layoutManager = LinearLayoutManager(context)
-                        }
-                    } else {
-                        // 실패 처리
-                        Log.d("server", "서버 에러 발생")
-                        Toast.makeText(requireContext(), "서버 에러 발생", Toast.LENGTH_SHORT).show()
-                    }
-                } catch (e: Exception) {
-                    // 예외 처리
-                    e.printStackTrace()
-                    Log.d("server", "서버 통신 오류 발생")
+        // 비동기적으로 요청 수행
+        call.enqueue(object : Callback<FollowingsStones> {
+            override fun onResponse(call: Call<FollowingsStones>, response: Response<FollowingsStones>) {
+                if (response.isSuccessful) {
+                    itemList = response.body()?.data?.follwings ?: ArrayList<Follwing>()
+                    Log.d("홈 서버",itemList.toString())
+                } else {
+                    // 서버에서 오류 응답을 받은 경우 처리
+                    Log.d("홈 서버","서버통신 오류")
                 }
             }
-        }
+
+            override fun onFailure(call: Call<FollowingsStones>, t: Throwable) {
+                // 통신 실패 처리
+                Log.d("홈 서버",t.message.toString())
+            }
+        })
+
+        // 코루틴을 사용하기 위한 스코프 생성
+        friendStatueAdapter = FriendStatueAdapter(itemList)
+        binding.rvFriendStatue.adapter = friendStatueAdapter
+        binding.rvFriendStatue.layoutManager = LinearLayoutManager(context)
 
 
         // 아이템 클릭 리스너 설정

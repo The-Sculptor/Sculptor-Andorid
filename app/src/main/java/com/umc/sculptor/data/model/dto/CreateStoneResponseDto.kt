@@ -1,15 +1,15 @@
-package com.umc.sculptor.data.model.remote.home
+package com.umc.sculptor.data.model.dto
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class FollowingsStones(
+data class CreateStoneResponseDto(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val data: Data?,
+    val `data`: Data,
     @SerialName("message")
     val message: String
 )

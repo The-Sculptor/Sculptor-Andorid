@@ -5,11 +5,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class FollowingsStones(
+data class ResearchResponseDto(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val data: Data?,
+    val `data`: List<DataX>,
     @SerialName("message")
     val message: String
 )

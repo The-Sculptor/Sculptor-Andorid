@@ -1,10 +1,17 @@
 package com.capjjang.rightnow.api
 
+import com.umc.sculptor.data.model.dto.CreateStoneRequestDto
+import com.umc.sculptor.data.model.dto.CreateStoneResponseDto
+import com.umc.sculptor.data.model.remote.home.FollowingsStones
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.POST
 
 
 interface WorkshopService {
-//    @GET("/home")
-//    fun test(): Call<>
+    @POST("/workplace/create")
+    fun createStone(@Header("Cookie") accessToken: String, @Body createStoneRequestDto: CreateStoneRequestDto): Call<CreateStoneResponseDto>
+
 }

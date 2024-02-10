@@ -1,5 +1,6 @@
 package com.umc.sculptor.data.model.dto
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kakao.sdk.auth.model.OAuthToken
@@ -19,7 +20,10 @@ class LoginViewModel(private val kakaoLoginService: KakaoLoginService) : ViewMod
         KakaoLoginCallback {
             _isKakaoLogin.value = true
             Timber.d("토큰!!!! $token")
-            LocalDataSource.setAccessToken("$token")
+            Log.d("소셜로그인", token.toString())
+            if (token != null) {
+                LocalDataSource.setAccessToken(token.accessToken)
+            }
         }.handleResult(token, error)
     }
 

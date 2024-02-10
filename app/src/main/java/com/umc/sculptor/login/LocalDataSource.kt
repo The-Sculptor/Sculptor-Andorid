@@ -13,4 +13,9 @@ object LocalDataSource {
     fun setAccessToken(token: String) {
         sharedPreferences.edit().putString("access_token", token).apply()
     }
+
+    fun getAccessToken() : String? {
+        return sharedPreferences.getString("access_token","")
+    }
+
 }

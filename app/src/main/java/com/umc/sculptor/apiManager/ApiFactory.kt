@@ -6,6 +6,7 @@ import com.capjjang.rightnow.api.StoreService
 import com.capjjang.rightnow.api.WorkshopService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.umc.sculptor.BuildConfig
+import com.umc.sculptor.api.LoginService
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -36,6 +37,7 @@ object ApiFactory {
 }
 
 object ServicePool {
+    val loginService = ApiFactory.create<LoginService>()
     val homeService = ApiFactory.create<HomeService>()
     val museumService = ApiFactory.create<MuseumService>()
     val storeService = ApiFactory.create<StoreService>()

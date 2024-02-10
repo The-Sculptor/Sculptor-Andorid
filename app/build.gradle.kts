@@ -28,7 +28,6 @@ android {
         manifestPlaceholders["NATIVE_APP_KEY"] =
             properties.getProperty("native.app.key")
         buildConfigField("String", "AUTH_BASE_URL", properties.getProperty("base.url"))
-        buildConfigField("String", "SESSION_ID", properties.getProperty("session.id"))
     }
 
     buildTypes {
@@ -52,6 +51,7 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -86,6 +86,9 @@ dependencies {
     implementation ("com.kakao.sdk:v2-friend:2.15.0") // 카카오톡 소셜 피커, 리소스 번들 파일 포함
 
     implementation ("com.jakewharton.timber:timber:5.0.1")
+
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
 
 }

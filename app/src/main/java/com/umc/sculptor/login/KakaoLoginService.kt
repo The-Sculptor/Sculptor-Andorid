@@ -33,7 +33,7 @@ class KakaoLoginService(private val context: Context) {
         UserApiClient.instance.logout(kakaoLogoutCallBack)
     }
 
-    // 탈퇴퇴
+    // 탈퇴
     fun kakaoDeleteAccount(kakaoLogoutCallBack: (Throwable?) -> Unit) {
         UserApiClient.instance.unlink(kakaoLogoutCallBack)
     }

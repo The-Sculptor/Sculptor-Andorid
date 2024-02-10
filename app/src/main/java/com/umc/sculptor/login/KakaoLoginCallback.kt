@@ -1,7 +1,9 @@
 package com.umc.sculptor.login
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.common.model.ClientError
@@ -45,15 +47,8 @@ class KakaoLoginCallback(private val onSuccess: (accessToken: String) -> Unit) {
                 }
             }
         } else if (token != null) {
-            Timber.d("로그인 성공")
+            Log.d("소셜로그인","로그인 성공")
             onSuccess(token.accessToken)
-
-            // 로그인 성공 시 다음 액티비티로 전환
-            val context = GlobalApplication.getContext()
-            val intent = Intent(context, MainActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // 이 플래그를 추가합니다.
-            }
-            context.startActivity(intent)
 
         }
     }
