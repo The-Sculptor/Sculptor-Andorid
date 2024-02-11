@@ -1,6 +1,14 @@
+import java.util.Properties
+import java.io.File
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
+}
+
+val properties = Properties().apply {
+    load(File(rootProject.projectDir, "local.properties").inputStream())
 }
 
 android {
@@ -15,6 +23,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "NATIVE_APP_KEY",properties.getProperty("native.app.key"))
+
+        manifestPlaceholders["NATIVE_APP_KEY"] =
+            properties.getProperty("native.app.key")
+        buildConfigField("String", "AUTH_BASE_URL", properties.getProperty("base.url"))
     }
 
     buildTypes {
@@ -38,6 +51,7 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -54,5 +68,27 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
+
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
+
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    implementation("com.kakao.sdk:v2-all:2.15.0") // 전체 모듈 설치, 2.11.0 버전부터 지원
+    implementation ("com.kakao.sdk:v2-user:2.15.0") // 카카오 로그인
+    implementation ("com.kakao.sdk:v2-talk:2.15.0") // 친구, 메시지(카카오톡)
+    implementation ("com.kakao.sdk:v2-share:2.15.0") // 메시지(카카오톡 공유)
+    implementation ("com.kakao.sdk:v2-friend:2.15.0") // 카카오톡 소셜 피커, 리소스 번들 파일 포함
+
+    implementation ("com.jakewharton.timber:timber:5.0.1")
+
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
 
 }

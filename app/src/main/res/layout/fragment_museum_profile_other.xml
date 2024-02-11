@@ -76,26 +76,12 @@
             app:layout_constraintTop_toBottomOf="@+id/museum_intro_name" />
 
         <ImageView
-            android:id="@+id/museum_profile_follow"
             android:layout_width="70dp"
             android:layout_height="32dp"
             android:layout_marginEnd="24dp"
             android:src="@drawable/btn_museum_profile_followadd"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/museum_intro_name"
-            android:visibility="visible"/>
-
-        <ImageView
-            android:id="@+id/museum_profile_following"
-            android:layout_width="70dp"
-            android:layout_height="32dp"
-            android:src="@drawable/btn_following"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/museum_intro_name"
-            android:layout_marginEnd="24dp"
-            android:visibility="gone"
-            />
-
+            app:layout_constraintTop_toTopOf="@+id/museum_intro_name" />
 
 
         <ImageView
@@ -224,23 +210,12 @@
             android:layout_marginStart="36dp"
             android:layout_marginEnd="36dp"
             />
-        <ImageView
-            android:id="@+id/museum_gradiant2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bg_museum_gradiant2"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="215dp"
-
-            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/museum_profile_sculptor_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/museum_gradiant2"
+            app:layout_constraintTop_toBottomOf="@+id/museum_gradiant1"
             android:layout_marginTop="72dp"
             tools:listitem="@layout/item_museum_profile"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

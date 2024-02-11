@@ -1,8 +1,11 @@
 package com.umc.sculptor
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import com.umc.sculptor.login.LocalDataSource
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
@@ -54,6 +57,8 @@ class MainActivity : AppCompatActivity() {
         binding.ivNotification.setOnClickListener {
             replaceFragmentAlarmPage()
         }
+        LocalDataSource.init(this)
+        LocalDataSource.setAccessToken("D16845D8CC35F1309B0E0A42D507F98C")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
