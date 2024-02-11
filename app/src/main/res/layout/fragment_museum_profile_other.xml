@@ -76,6 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/museum_intro_name" />
 
         <ImageView
+            android:id="@+id/museum_profile_follow"
             android:layout_width="70dp"
             android:layout_height="32dp"
             android:layout_marginEnd="24dp"
@@ -210,18 +211,30 @@
             android:layout_marginStart="36dp"
             android:layout_marginEnd="36dp"
             />
+        <ImageView
+            android:id="@+id/museum_profile_following"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg_museum_gradiant2"
+            app:layout_constraintTop_toBottomOf="@id/museum_btn1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="32dp"
+
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/museum_profile_sculptor_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/museum_gradiant1"
             android:layout_marginTop="72dp"
-            tools:listitem="@layout/item_museum_profile"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toTopOf="@+id/museum_profile_following"
+            tools:layout_editor_absoluteX="0dp"
 
-            />
+            tools:listitem="@layout/item_museum_profile" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,7 +62,7 @@ class MuseumProfileOtherFragment : BaseFragment<FragmentMuseumProfileOtherBindin
 
 
 
-        binding.btnFollow.setOnClickListener {
+        binding.museumProfileFollow.setOnClickListener {
             val call: Call<FollowResponseDto> = ServicePool.homeService.follow(
                 "JSESSIONID="+ LocalDataSource.getAccessToken().toString(),
                 id)
