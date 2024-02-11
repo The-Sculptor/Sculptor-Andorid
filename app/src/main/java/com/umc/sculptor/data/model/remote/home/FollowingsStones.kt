@@ -9,7 +9,7 @@ data class FollowingsStones(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val data: Data?,
+    val `data`: List<Data>,
     @SerialName("message")
     val message: String
 )

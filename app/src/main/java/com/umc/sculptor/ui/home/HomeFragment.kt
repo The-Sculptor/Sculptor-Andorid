@@ -3,24 +3,19 @@ package com.umc.sculptor.ui.home
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool.homeService
 import com.umc.sculptor.base.BaseFragment
-import com.umc.sculptor.data.model.dto.FriendStatue
+import com.umc.sculptor.data.model.remote.home.Data
 import com.umc.sculptor.data.model.remote.home.FollowingsStones
 import com.umc.sculptor.data.model.remote.home.Follwing
 import com.umc.sculptor.databinding.FragmentHomeBinding
 import com.umc.sculptor.login.LocalDataSource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
@@ -39,11 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun initDataBinding() {
         super.initDataBinding()
 
-        var itemList : List<Follwing> =ArrayList<Follwing>()
-//        dumy.add(FriendStatue("SONG"))
-//        dumy.add(FriendStatue("SONG"))
-//        dumy.add(FriendStatue("SONG"))
-//        dumy.add(FriendStatue("SONG"))
+        var itemList : List<Data> =ArrayList<Data>()
 
         // 서버 통신 요청
         val call: Call<FollowingsStones> = homeService.getFollowingsStones("JSESSIONID="+LocalDataSource.getAccessToken().toString())
@@ -52,7 +43,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         call.enqueue(object : Callback<FollowingsStones> {
             override fun onResponse(call: Call<FollowingsStones>, response: Response<FollowingsStones>) {
                 if (response.isSuccessful) {
-                    itemList = response.body()?.data?.follwings ?: ArrayList<Follwing>()
+                    itemList = response.body()?.data ?: ArrayList<Data>()
+                    friendStatueAdapter.friendStatueList = itemList
+                    friendStatueAdapter.notifyDataSetChanged()
                     Log.d("홈 서버",itemList.toString())
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
@@ -66,7 +59,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             }
         })
 
-        // 코루틴을 사용하기 위한 스코프 생성
         friendStatueAdapter = FriendStatueAdapter(itemList)
         binding.rvFriendStatue.adapter = friendStatueAdapter
         binding.rvFriendStatue.layoutManager = LinearLayoutManager(context)

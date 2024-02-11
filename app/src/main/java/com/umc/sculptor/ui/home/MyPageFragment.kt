@@ -2,16 +2,11 @@ package com.umc.sculptor.ui.home
 
 import android.annotation.SuppressLint
 import android.util.Log
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginRight
 import com.bumptech.glide.Glide
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
-import com.umc.sculptor.data.model.remote.home.FollowingsStones
-import com.umc.sculptor.data.model.remote.home.Follwing
 import com.umc.sculptor.data.model.remote.home.MyPageResonseDto
 import com.umc.sculptor.databinding.FragmentMypageBinding
 import com.umc.sculptor.login.LocalDataSource

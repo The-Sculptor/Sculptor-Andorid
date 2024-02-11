@@ -6,8 +6,18 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Data(
-    @SerialName("follwings")
-    val follwings: List<Follwing>,
+    @SerialName("achieveRate")
+    val achieveRate: Int,
+    @SerialName("id")
+    val id: String,
+    @SerialName("isLike")
+    val isLike: Boolean,
+    @SerialName("like")
+    val like: Int,
+    @SerialName("nickname")
+    val nickname: String,
+    @SerialName("profileImage")
+    val profileImage: String,
     @SerialName("startDate")
     val startDate: String,
     @SerialName("stoneDDay")
@@ -15,9 +25,5 @@ data class Data(
     @SerialName("stoneGoal")
     val stoneGoal: String,
     @SerialName("stoneName")
-    val stoneName: String,
-    @SerialName("userId")
-    val userId: String,
-    @SerialName("userName")
-    val userName: String
+    val stoneName: String
 )

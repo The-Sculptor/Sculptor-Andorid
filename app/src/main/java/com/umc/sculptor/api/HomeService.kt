@@ -4,7 +4,6 @@ import com.umc.sculptor.data.model.remote.home.FollowResponseDto
 import com.umc.sculptor.data.model.remote.home.FollowingsStones
 import com.umc.sculptor.data.model.remote.home.MyPageResonseDto
 import com.umc.sculptor.data.model.remote.home.ResearchResponseDto
-import com.umc.sculptor.ui.home.MyPageFragment
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
