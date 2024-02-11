@@ -14,6 +14,8 @@ class MuseumProfileMeFragment : BaseFragment<FragmentMuseumProfileMeBinding>(R.l
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
         (activity as MainActivity).hideIconAndShowBack(false)
+
+
     }
 
     override fun initDataBinding() {
@@ -33,6 +35,7 @@ class MuseumProfileMeFragment : BaseFragment<FragmentMuseumProfileMeBinding>(R.l
             }
 
         })
+
 
     }
 

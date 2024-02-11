@@ -28,6 +28,16 @@ class MuseumProfileOtherFragment : BaseFragment<FragmentMuseumProfileOtherBindin
     override fun initAfterBinding() {
         super.initAfterBinding()
 
+        binding.museumProfileFollow.setOnClickListener {
+            binding.museumProfileFollowing.visibility = View.VISIBLE
+            binding.museumProfileFollow.visibility = View.GONE
+        }
+        binding.museumProfileFollowing.setOnClickListener {
+            binding.museumProfileFollowing.visibility = View.GONE
+            binding.museumProfileFollow.visibility = View.VISIBLE
+        }
+
+
     }
 
 
