@@ -31,9 +31,9 @@ class RockGoalFragment : BaseFragment<FragmentCreateRockGoalBinding>(R.layout.fr
 
         binding.tvStoneName.text = viewModel.getNewStone().value?.name ?: "null"
         when(viewModel.getNewStone().value?.category){
-            Category.HEALTH -> binding.tvCategory.text = "건강"
+            Category.WORKOUT -> binding.tvCategory.text = "건강"
             Category.STUDY -> binding.tvCategory.text = "공부"
-            Category.ETC -> binding.tvCategory.text = "기타"
+            Category.DAILY -> binding.tvCategory.text = "기타"
             else -> binding.tvCategory.text = ""
         }
 

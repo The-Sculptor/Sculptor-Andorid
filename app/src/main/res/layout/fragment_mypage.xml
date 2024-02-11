@@ -59,14 +59,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_profile_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ellipse"
-        app:layout_constraintTop_toBottomOf="@id/tv_kakao_account"
-        app:layout_constraintStart_toStartOf="@id/tv_kakao_account"
-        android:layout_marginTop="12dp"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile_img"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ellipse"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/main_back_black"
+                app:layout_constraintTop_toBottomOf="@id/tv_kakao_account"
+                app:layout_constraintStart_toStartOf="@id/tv_kakao_account"
+                android:layout_marginTop="12dp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_email"
@@ -109,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="24dp"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="계정 공개 범위"
+                    android:text="계정 전체공개"
                     android:textColor="@color/gray_E6E0E9"
                     android:textSize="16sp" />
 
@@ -119,17 +121,18 @@
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_switch"
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="24dp"
-                    android:background="@drawable/switch_off"
-                    android:fontFamily="@font/roboto_regular"
-                    android:paddingRight="20dp"
-                    android:text="비공개"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/gray_414141" />
+                    android:layout_marginEnd="24dp"
+                    android:textOff=""
+                    android:textOn=""
+                    android:thumb="@drawable/switch_track_thumb"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:switchMinWidth="0dp"
+                    app:track="@drawable/switch_track_selector" />
 
 
             </LinearLayout>

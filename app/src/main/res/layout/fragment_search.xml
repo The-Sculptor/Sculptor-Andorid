@@ -17,7 +17,6 @@
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/gray_DFDFDF"
         android:drawableLeft="@drawable/icon_search"
-        android:drawableRight="@drawable/icon_cancel"
         android:fontFamily="@font/roboto_regular"
         android:gravity="center|left"
         android:hint="친구를 검색해보세요"
@@ -41,6 +40,15 @@
         app:layout_constraintStart_toStartOf="@id/et_profile_search"
         app:layout_constraintEnd_toEndOf="@+id/et_profile_search"/>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_profile_search"
+        app:layout_constraintEnd_toEndOf="@+id/et_profile_search"
+        app:layout_constraintTop_toTopOf="@+id/et_profile_search"
+        app:srcCompat="@drawable/icon_cancel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

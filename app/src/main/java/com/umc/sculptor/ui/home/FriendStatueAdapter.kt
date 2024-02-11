@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.data.model.dto.FriendStatue
+import com.umc.sculptor.data.model.remote.home.Data
+import com.umc.sculptor.data.model.remote.home.Follwing
 import com.umc.sculptor.databinding.ItemFriendStatueCardBinding
 
-class FriendStatueAdapter(itemList: ArrayList<FriendStatue>) :
+class FriendStatueAdapter(itemList: List<Data>) :
     RecyclerView.Adapter<FriendStatueAdapter.ViewHolder>() {
 
-    var friendStatueList: ArrayList<FriendStatue> = itemList
+    var friendStatueList: List<Data> = itemList
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -56,6 +58,8 @@ class FriendStatueAdapter(itemList: ArrayList<FriendStatue>) :
         holder.friendStone.setOnClickListener {
             onItemClickListener?.onItemClick(position)
         }
+
+        holder.friendName.text = friendStatueList[position].nickname
 
     }
 

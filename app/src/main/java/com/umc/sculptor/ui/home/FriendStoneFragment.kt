@@ -34,5 +34,6 @@ class FriendStoneFragment : BaseFragment<FragmentHomeFriendStoneBinding>(R.layou
     override fun onDestroyView() {
         super.onDestroyView()
         (activity as MainActivity).hideIconAndShowBack(false)
+
     }
 }
