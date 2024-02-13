@@ -10,6 +10,7 @@ import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.FriendMuseumViewModel
+import com.umc.sculptor.data.model.dto.FriendStoneViewModel
 import com.umc.sculptor.data.model.dto.NewStoneViewModel
 import com.umc.sculptor.data.model.remote.home.DataX
 import com.umc.sculptor.data.model.remote.home.ResearchResponseDto
@@ -22,8 +23,8 @@ import retrofit2.Response
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
 
     private lateinit var searchAdapter: SearchAdapter
-    val viewModel: FriendMuseumViewModel by lazy {
-        ViewModelProvider(requireActivity()).get(FriendMuseumViewModel::class.java)
+    val viewModel: FriendStoneViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(FriendStoneViewModel::class.java)
     }
 
     override fun initStartView() {
@@ -48,8 +49,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         // 아이템 클릭 리스너 설정
         searchAdapter.setOnItemClickListener(object : SearchAdapter.OnItemClickListener {
             override fun onItemClick(id: String) {
-                viewModel.message.value = id
-                navController.navigate(R.id.action_searchFragment_to_museumProfileOtherFragment)
+                viewModel.friendId.value = id
+                navController.navigate(R.id.action_searchFragment_to_friendStoneFragment)
             }
         })
 

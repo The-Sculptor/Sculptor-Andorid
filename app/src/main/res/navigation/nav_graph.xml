@@ -103,6 +103,9 @@
         <action
             android:id="@+id/action_searchFragment_to_museumProfileOtherFragment"
             app:destination="@id/museumProfileOtherFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_friendStoneFragment"
+            app:destination="@id/friendStoneFragment" />
     </fragment>
     <fragment
         android:id="@+id/rockCategoryFragment"
@@ -183,5 +186,9 @@
     <fragment
         android:id="@+id/friendStoneFragment"
         android:name="com.umc.sculptor.ui.home.FriendStoneFragment"
-        android:label="FriendStoneFragment" />
+        android:label="FriendStoneFragment" >
+        <action
+            android:id="@+id/action_friendStoneFragment_to_museumProfileOtherFragment"
+            app:destination="@id/museumProfileOtherFragment" />
+    </fragment>
 </navigation>
