@@ -18,15 +18,14 @@ class ItemListFragment : Fragment(){
     lateinit var binding: FragmentStoreItemWearinglistBinding
     private var itemDatas = ArrayList<Item_WB>()
     private lateinit var itemListRVAdapter: ItemListRVAdapter
-
     private lateinit var viewModel: StoreViewModel
 
-    private fun toggleCheckIcon(imageView: ImageView) {
+    private fun toggleCheckIcon(imageView: ImageView, isTrue: Boolean) {
         val currentImage = imageView.drawable.constantState
-        val newImage = if (currentImage == ContextCompat.getDrawable(requireContext(), R.drawable.icon_solid_check)?.constantState) {
-            R.drawable.icon_outline_check
-        } else {
+        val newImage = if (isTrue) {
             R.drawable.icon_solid_check
+        } else {
+            R.drawable.icon_outline_check
         }
         imageView.setImageResource(newImage)
     }
@@ -47,15 +46,50 @@ class ItemListFragment : Fragment(){
 
         }
 
-        itemListRVAdapter = ItemListRVAdapter(itemDatas)
+
+        var isAllItemsSelected = false
+        var selectedItemCount = 0
+
+        itemListRVAdapter = ItemListRVAdapter(itemDatas) { position, isSelected ->
+            val item = itemDatas[position]
+            item.isSelected = isSelected
+
+            // 선택된 아이템 수 업데이트
+            if (isSelected) {
+                selectedItemCount++
+            } else{
+                selectedItemCount--
+            }
+            isAllItemsSelected = selectedItemCount == itemDatas.size
+
+            binding.totalcheckCountTv.text = "전체 선택($selectedItemCount)" // 선택된 아이템 수 UI 업데이트
+            toggleCheckIcon(binding.totalcheckIv, isAllItemsSelected)
+            itemListRVAdapter.notifyItemChanged(position)
+        }
         binding.storeWearingitemsRv.adapter = itemListRVAdapter
 
-        
-        binding.totalcheckIv.setOnClickListener(){// 체크 버튼 처리
-            toggleCheckIcon(binding.totalcheckIv)
+
+        binding.totalcheckIv.setOnClickListener(){// 전체 선택 체크 버튼 처리
+            isAllItemsSelected = !isAllItemsSelected
+            if (!isAllItemsSelected) {
+                selectedItemCount = 0 // 전체 선택 해제 시 선택된 아이템 수 초기화
+            }
+            // 전체 아이템 선택 상태 업데이트
+            itemDatas.forEach { it.isSelected = isAllItemsSelected }
+
+            // 선택된 아이템 수 업데이트
+            selectedItemCount = if (isAllItemsSelected) itemDatas.size else 0
+            binding.totalcheckCountTv.text = "전체 선택($selectedItemCount)"
+            toggleCheckIcon(binding.totalcheckIv, isAllItemsSelected)
+
+            itemListRVAdapter.notifyDataSetChanged()// 아이템 어댑터에 변경사항 알림
         }
+
+
+        var haveCeck = false
         binding.havecheckIv.setOnClickListener(){
-            toggleCheckIcon(binding.havecheckIv)
+            haveCeck = !haveCeck
+            toggleCheckIcon(binding.havecheckIv,haveCeck)
         }
 
 
@@ -65,7 +99,7 @@ class ItemListFragment : Fragment(){
                 "구매가 완료되었습니다!",
                 Snackbar.LENGTH_SHORT
             )
-            snackbar.anchorView = binding.totalcheckIv
+            snackbar.anchorView = binding.havecheckIv
             snackbar.show()
         }
 

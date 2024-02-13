@@ -72,6 +72,8 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
             tab.text = information[position]
         }.attach()
 
+
+
         binding.btnBeforeIv.setOnClickListener(){
             Log.d("BeforeBtn", "clicked")
         }

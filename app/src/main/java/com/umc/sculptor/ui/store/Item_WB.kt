@@ -5,6 +5,6 @@ data class Item_WB(
     var ItemImg: Int? = null,
     var backImg: Int? = null,
     var price: Int? = null,
-    var buy: Boolean = false
-
+    var buy: Boolean = false,
+    var isSelected: Boolean = false
 )
