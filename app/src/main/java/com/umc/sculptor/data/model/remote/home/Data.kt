@@ -11,9 +11,9 @@ data class Data(
     @SerialName("id")
     val id: String,
     @SerialName("isLike")
-    val isLike: Boolean,
+    var isLike: Boolean,
     @SerialName("like")
-    val like: Int,
+    var like: Int,
     @SerialName("nickname")
     val nickname: String,
     @SerialName("profileImage")
@@ -24,6 +24,8 @@ data class Data(
     val stoneDDay: String,
     @SerialName("stoneGoal")
     val stoneGoal: String,
+    @SerialName("stoneId")
+    val stoneId: String,
     @SerialName("stoneName")
     val stoneName: String
 )

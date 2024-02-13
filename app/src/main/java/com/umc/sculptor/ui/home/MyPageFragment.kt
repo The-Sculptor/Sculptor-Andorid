@@ -8,6 +8,9 @@ import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.remote.home.MyPageResonseDto
+import com.umc.sculptor.data.model.remote.home.MyRepresentStone
+import com.umc.sculptor.data.model.remote.home.PrivateDto
+import com.umc.sculptor.data.model.remote.home.PrivateRequestDto
 import com.umc.sculptor.databinding.FragmentMypageBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call
@@ -54,6 +57,14 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
             }
         })
 
+        binding.switch1.setOnClickListener {
+            if(binding.switch1.isChecked){
+                changePrivate(true)
+            }else{
+                changePrivate(false)
+            }
+        }
+
     }
 
     override fun initDataBinding() {
@@ -67,10 +78,33 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
     override fun initAfterBinding() {
         super.initAfterBinding()
 
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
 //        (activity as MainActivity).hideIconAndShowBack(false)
+    }
+
+    private fun changePrivate(isPrivate : Boolean){
+        val call: Call<PrivateDto> = ServicePool.homeService.changePrivate("JSESSIONID="+LocalDataSource.getAccessToken().toString(), PrivateRequestDto(isPrivate))
+
+        // 비동기적으로 요청 수행
+        call.enqueue(object : Callback<PrivateDto> {
+            override fun onResponse(call: Call<PrivateDto>, response: Response<PrivateDto>) {
+                if (response.isSuccessful) {
+                    Log.d("홈 서버",response.body()?.data.toString())
+                } else {
+                    // 서버에서 오류 응답을 받은 경우 처리
+                    Log.d("홈 서버","서버통신 오류")
+                }
+            }
+
+            override fun onFailure(call: Call<PrivateDto>, t: Throwable) {
+                // 통신 실패 처리
+                Log.d("홈 서버",t.message.toString())
+            }
+        })
+
     }
 }
