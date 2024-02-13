@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragmentAlarmPage()
         }
         LocalDataSource.init(this)
-        LocalDataSource.setAccessToken("D16845D8CC35F1309B0E0A42D507F98C")
+        LocalDataSource.setAccessToken("DE2732EB38CA57D61C69286DEDA06244")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

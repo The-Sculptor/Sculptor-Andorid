@@ -1,13 +1,22 @@
 package com.umc.sculptor.ui.store
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
+import com.umc.sculptor.data.model.remote.home.Data
+import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.databinding.StoreItemStatueBinding
 
 
-class ItemRVAdapter(private val itemList: ArrayList<Item>):RecyclerView.Adapter<ItemRVAdapter.ViewHolder>() {
+class ItemRVAdapter(itemList: List<Stone>):RecyclerView.Adapter<ItemRVAdapter.ViewHolder>() {
+
+    var itemList: List<Stone> = itemList
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     interface MyItemClickListener{
         fun onItemCLick(position: Int)
@@ -25,8 +34,6 @@ class ItemRVAdapter(private val itemList: ArrayList<Item>):RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: ItemRVAdapter.ViewHolder, position: Int) {
-
-        holder.bind(itemList[position])
         holder.itemView.setOnClickListener{
             myItemClickListener.onItemCLick(position)
             notifyDataSetChanged()
