@@ -1,6 +1,5 @@
 package com.umc.sculptor.ui.workshop.createStone
 
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.umc.sculptor.MainActivity
@@ -9,8 +8,6 @@ import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.Category
 import com.umc.sculptor.data.model.dto.NewStoneViewModel
 import com.umc.sculptor.databinding.FragmentCreateRockCategoryBinding
-import com.umc.sculptor.databinding.FragmentHomeBinding
-import com.umc.sculptor.databinding.FragmentWorkshopBinding
 
 class RockCategoryFragment : BaseFragment<FragmentCreateRockCategoryBinding>(R.layout.fragment_create_rock_category) {
     val viewModel: NewStoneViewModel by lazy {
@@ -27,7 +24,6 @@ class RockCategoryFragment : BaseFragment<FragmentCreateRockCategoryBinding>(R.l
 
     override fun initDataBinding() {
         super.initDataBinding()
-
 
         binding.tvStoneName.text = viewModel.getNewStone().value?.name ?: "null"
 
