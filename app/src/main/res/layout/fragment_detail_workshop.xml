@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedscrollview1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -13,12 +14,14 @@
         android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintlayout1"
             android:background="@color/main_back_black"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
             <ImageView
+                android:id="@+id/background_workshop_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
@@ -29,6 +32,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
+                android:id="@+id/tv_iamgeview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
@@ -53,6 +57,7 @@
                 android:layout_marginStart="24dp"/>
 
             <TextView
+                android:id="@+id/icon_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="운동"
@@ -215,6 +220,7 @@
                 android:layout_marginEnd="28dp"/>
 
             <ImageView
+                android:id="@+id/iv_detailworkshop_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/btn_detail_workshop_plus"
@@ -287,6 +293,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_achievement">
 
                 <TextView
+                    android:id="@+id/num_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -296,6 +303,7 @@
                     android:textSize="24sp" />
 
                 <TextView
+                    android:id="@+id/tv_num_all"
                     android:layout_width="77dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -322,6 +330,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_achievement">
 
                 <TextView
+                    android:id="@+id/num_mid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -331,6 +340,7 @@
                     android:textSize="24sp" />
 
                 <TextView
+                    android:id="@+id/icon_num_mid"
                     android:layout_width="91dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -357,6 +367,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_achievement">
 
                 <TextView
+                    android:id="@+id/num_none"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -366,6 +377,7 @@
                     android:textSize="24sp" />
 
                 <TextView
+                    android:id="@+id/icon_num_none"
                     android:layout_width="77dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -412,7 +424,7 @@
 
 
             <TextView
-
+                android:id="@+id/tv_record"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -465,7 +477,7 @@
                 android:layout_marginBottom="10dp"
                 app:layout_constraintTop_toBottomOf="@id/tv_today_date"
                 app:layout_constraintVertical_bias="0.0"
-                tools:listitem="@layout/item_achievement" />
+                tools:listitem="@layout/item_date" />
 
 
 

@@ -10,7 +10,6 @@
     android:visibility="visible"
     android:layout_marginBottom="16dp"
     android:background="@drawable/workshop_back_orange">
-
     <TextView
         android:id="@+id/tv_d_day"
         android:layout_width="wrap_content"
@@ -43,6 +42,7 @@
 
 
     <TextView
+        android:id="@+id/tv_date_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2024.01.04"
@@ -56,6 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ImageView
+        android:id="@+id/tv_stone_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_4_rectangle_black"
