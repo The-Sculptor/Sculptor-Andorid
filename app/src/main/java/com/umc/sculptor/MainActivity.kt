@@ -1,12 +1,13 @@
 package com.umc.sculptor
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import com.umc.sculptor.login.LocalDataSource
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.umc.sculptor.databinding.ActivityMainBinding
 import com.umc.sculptor.ui.home.AlarmFragment
+import com.umc.sculptor.ui.home.HomeFragment
 import com.umc.sculptor.ui.home.MyPageFragment
 
 
@@ -75,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+
     }
 
     fun hideBottomNav(state: Boolean){
@@ -119,5 +122,6 @@ class MainActivity : AppCompatActivity() {
         transaction.addToBackStack(null) // 백스택에 추가하여 뒤로 가기를 처리할 수 있도록 함
         transaction.commit()
     }
+
 
 }

@@ -3,24 +3,23 @@ package com.umc.sculptor.ui.home
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
-import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.apiManager.ServicePool.homeService
 import com.umc.sculptor.base.BaseFragment
-import com.umc.sculptor.data.model.dto.FriendMuseumViewModel
 import com.umc.sculptor.data.model.dto.FriendStoneViewModel
 import com.umc.sculptor.data.model.remote.home.Data
 import com.umc.sculptor.data.model.remote.home.FollowingsStone
 import com.umc.sculptor.data.model.remote.home.MyRepresentStone
-import com.umc.sculptor.data.model.remote.home.PressLike
 import com.umc.sculptor.databinding.FragmentHomeBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     val viewModel: FriendStoneViewModel by lazy {
@@ -127,5 +126,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         super.onDestroyView()
         (activity as MainActivity).binding.mainLogo.visibility = View.GONE
     }
+
 
 }
