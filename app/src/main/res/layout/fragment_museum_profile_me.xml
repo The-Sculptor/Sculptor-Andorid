@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@color/main_back_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/museum_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/museum_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="35dp"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_museum_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/museum_profile_sculptor_rv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/museum_gradiant1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="23dp"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_museum_gradiant"
+            app:layout_constraintBottom_toBottomOf="@+id/museum_btn2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.492" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_museum_profileimg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/museum_intro_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="SONG"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/museum_intro_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="매일 건강한 습관 만들기 박물관입니다 :)"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/museum_intro_name" />
+
+        <ImageView
+            android:id="@+id/museum_btn_write"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/btn_museum_write"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/museum_intro_name" />
+
+
+        <ImageView
+            android:id="@+id/museum_btn1"
+            android:layout_width="99dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="17dp"
+            android:src="@drawable/btn_museum_profile"
+            app:layout_constraintEnd_toStartOf="@+id/museum_btn2"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/museum_intro_text" />
+
+        <TextView
+            android:id="@+id/museum_sculptor_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="조각상"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintTop_toTopOf="@+id/museum_btn1"
+            app:layout_constraintStart_toStartOf="@+id/museum_btn1"
+            app:layout_constraintEnd_toEndOf="@+id/museum_btn1"
+            android:layout_marginTop="47dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            />
+        <TextView
+            android:id="@+id/museum_sculptor_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="10"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            app:layout_constraintTop_toTopOf="@+id/museum_btn1"
+            app:layout_constraintStart_toStartOf="@+id/museum_btn1"
+            app:layout_constraintEnd_toEndOf="@+id/museum_btn1"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            />
+
+        <ImageView
+            android:id="@+id/museum_btn2"
+            android:layout_width="99dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/btn_museum_profile"
+            app:layout_constraintEnd_toStartOf="@+id/museum_btn3"
+            app:layout_constraintStart_toEndOf="@+id/museum_btn1"
+            app:layout_constraintTop_toTopOf="@+id/museum_btn1" />
+
+        <TextView
+            android:id="@+id/museum_follow_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="팔로워"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintTop_toTopOf="@+id/museum_btn2"
+            app:layout_constraintStart_toStartOf="@+id/museum_btn2"
+            app:layout_constraintEnd_toEndOf="@+id/museum_btn2"
+            android:layout_marginTop="47dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            />
+
+        <TextView
+            android:id="@+id/museum_follow_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="5"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            app:layout_constraintTop_toTopOf="@+id/museum_btn2"
+            app:layout_constraintStart_toStartOf="@+id/museum_btn2"
+            app:layout_constraintEnd_toEndOf="@+id/museum_btn2"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            />
+
+        <ImageView
+            android:id="@+id/museum_btn3"
+            android:layout_width="99dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/btn_museum_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/museum_btn2"
+            app:layout_constraintTop_toTopOf="@+id/museum_btn2" />
+
+        <TextView
+            android:id="@+id/museum_following_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="팔로잉"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintTop_toTopOf="@+id/museum_btn3"
+            app:layout_constraintStart_toStartOf="@+id/museum_btn3"
+            app:layout_constraintEnd_toEndOf="@+id/museum_btn3"
+            android:layout_marginTop="47dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            />
+
+        <TextView
+            android:id="@+id/museum_following_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="2"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            app:layout_constraintTop_toTopOf="@+id/museum_btn3"
+            app:layout_constraintStart_toStartOf="@+id/museum_btn3"
+            app:layout_constraintEnd_toEndOf="@+id/museum_btn3"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/museum_profile_sculptor_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/museum_gradiant1"
+            android:layout_marginTop="72dp"
+            tools:listitem="@layout/item_museum_profile"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

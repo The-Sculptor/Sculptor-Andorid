@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp">
+
+
+    <ImageView
+        android:id="@+id/museum_sculptor_comment_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/img_museum_sculptor_comment"
+    />
+
+
+
+    <ImageView
+        android:id="@+id/museum_sculptor_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/museum_sculptor_comment_img"
+        app:layout_constraintStart_toStartOf="@+id/museum_sculptor_comment_img"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/img_museum_sculptor_profile"
+
+        />
+
+
+    <TextView
+        android:id="@+id/museum_sculptor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="매트"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="#454545"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="19dp"/>
+
+    <TextView
+        android:id="@+id/museum_sculptor_comment_text"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/museum_sculptor_profile"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:text="너무 예쁘게 가꾸셨네요! 저도 따라 해봐야겠어요!!"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="#333333"
+        />
+    <ImageView
+        android:id="@+id/museum_comment_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_heart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="visible"/>
+    <!--<ImageView
+        android:id="@+id/museum_comment_like_fill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_heart_fill"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

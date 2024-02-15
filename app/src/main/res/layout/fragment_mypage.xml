@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3C3C41">
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_back_black"
+        android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_mypage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="마이페이지"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:fontFamily="@font/pretendard_semi_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="12dp"/>
+
+
+    <View
+        android:id="@+id/line0"
+        app:layout_constraintTop_toBottomOf="@id/tv_mypage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="37dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#474747"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:layout_constraintTop_toBottomOf="@+id/line0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_kakao_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="카카오 계정"
+                android:layout_marginTop="11dp"
+                android:textColor="@color/gray_E6E0E9"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile_img"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ellipse"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/main_back_black"
+                app:layout_constraintTop_toBottomOf="@id/tv_kakao_account"
+                app:layout_constraintStart_toStartOf="@id/tv_kakao_account"
+                android:layout_marginTop="12dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/iv_profile_img"
+        android:textColor="@color/gray_8B8B8B"
+        android:fontFamily="@font/roboto_light"
+        android:text="gyoyeon106@gmail.com"
+        app:layout_constraintTop_toTopOf="@id/iv_profile_img"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile_img"
+        android:layout_marginLeft="16dp"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile_img">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="16dp"
+                android:background="#3C3C41" />
+
+
+            <LinearLayout
+                android:id="@+id/account_privacy"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="계정 전체공개"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:textOff=""
+                    android:textOn=""
+                    android:thumb="@drawable/switch_track_thumb"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:switchMinWidth="0dp"
+                    app:track="@drawable/switch_track_selector" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+            <LinearLayout
+                android:id="@+id/manage_friend"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="친구 관리"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+            <LinearLayout
+                android:id="@+id/purchase_history"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="구매 내역"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+            <LinearLayout
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="로그아웃"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+            <LinearLayout
+                android:id="@+id/withdraw"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical|start"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="회원탈퇴"
+                    android:textColor="@color/gray_E6E0E9"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#474747" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>

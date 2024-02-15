@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/gray_5A5A5A"
+        android:id="@+id/home_fragment">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/home_top_bakground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/layout_my_habit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_main_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="74dp"
+            android:layout_marginStart="20sp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="교연님의 인생을\n멋지게 조각해보세요!"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/et_profile_search"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/gray_DFDFDF"
+            android:drawableLeft="@drawable/icon_search"
+            android:drawableRight="@drawable/icon_cancel"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center|left"
+            android:hint="계정을 검색해보세요"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray_908F90"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_text" />
+
+        <View
+            android:id="@+id/line0"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/et_profile_search"
+            app:layout_constraintStart_toStartOf="@+id/et_profile_search"
+            app:layout_constraintTop_toBottomOf="@+id/et_profile_search" />
+
+        <LinearLayout
+            android:id="@+id/layout_my_habit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line0">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#908F90" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_habit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="나의 대표 습관"
+                android:textColor="@color/gray_D8D8D8"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/layout_my_habit" />
+
+
+            <include
+                android:id="@+id/my_staue_card"
+                layout="@layout/item_statue_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="36dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_habit" />
+
+        </LinearLayout>
+
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/appCompatImageView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="550dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:src="@drawable/home_background_bottom"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/layout_my_habit" />-->
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_friends_statue"
+            android:layout_height="1dp"
+            android:background="#908F90" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_friends_statue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="친구들의 돌 구경하기"
+            android:textColor="@color/gray_D8D8D8"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintTop_toBottomOf="@id/layout_my_habit"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_friend_statue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_friends_statue"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/item_friend_statue_card" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+</layout>

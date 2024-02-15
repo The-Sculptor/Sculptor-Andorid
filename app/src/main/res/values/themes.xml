@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Sculptor" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/main_back_black</item>
+    </style>
+
+
+    <style name="Theme.Sculptor" parent="Base.Theme.Sculptor" />
+
+    <style name="AppTheme" parent="Base.Theme.Sculptor">
+        <!-- 기본 테마 속성들 -->
+        <item name="colorPrimary">@color/black_222227</item>
+        <item name="colorPrimaryDark">@color/black_222227</item>
+        <item name="colorAccent">@color/main_orange</item>
+
+        <!-- Bottom Navigation Bar 관련 속성 -->
+        <item name="bottomNavigationStyle">@style/Widget.MyApp.BottomNavigationView</item>
+    </style>
+
+    <style name="Widget.MyApp.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <!-- Bottom Navigation Bar에 대한 사용자 지정 속성들 -->
+        <item name="background">@color/black_222227</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
+        <item name="itemBackground">@drawable/menu_selected_color</item>
+    </style>
+
+</resources>
