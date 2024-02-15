@@ -34,7 +34,7 @@ class MuseumProfileMeFragment : BaseFragment<FragmentMuseumProfileMeBinding>(R.l
         dumy.add(Sculptor("D+12","일기쓰기","2023.10.20",R.drawable.img_museum_sculptor))*/
         var itemList : List<Stone> =ArrayList<Stone>()
         // 서버 통신 요청
-        val call: Call<Data> = ServicePool.museumService.getMuseum("JSESSIONID="+ LocalDataSource.getAccessToken().toString(), "911283E9D6D9ED556CD01ED21D8BF613")
+        val call: Call<Data> = ServicePool.museumService.getMuseum("JSESSIONID="+ LocalDataSource.getAccessToken().toString(), "48cc649d-74cf-4e1d-9bb6-0e1b36857c37")
 
         // 비동기적으로 요청 수행
         call.enqueue(object : Callback<Data> {

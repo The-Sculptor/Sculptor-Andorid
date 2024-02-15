@@ -34,6 +34,7 @@ class LoginActivity:  AppCompatActivity() {
 
         KakaoSdk.init(this, BuildConfig.NATIVE_APP_KEY)
 
+        LocalDataSource.init(this)
 
 
         binding.appCompatImageView2.setOnClickListener {

@@ -57,8 +57,6 @@ class MainActivity : AppCompatActivity() {
         binding.ivNotification.setOnClickListener {
             replaceFragmentAlarmPage()
         }
-        LocalDataSource.init(this)
-        LocalDataSource.setAccessToken("CC3C48F167C42EB0E75C215AECCE92A0")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
