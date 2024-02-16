@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="14dp"
+    android:layout_marginBottom="14dp">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="준비중인 서비스입니다."
+    android:textSize="16sp"
+    android:textStyle="bold"
+    android:textColor="@color/black_1D1B20"
+    app:layout_constraintTop_toTopOf="parent"
+    android:textAlignment="center"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

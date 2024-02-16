@@ -54,6 +54,7 @@ class ItemListFragment : Fragment(){
             val item = itemDatas[position]
             item.isSelected = isSelected
 
+
             // 선택된 아이템 수 업데이트
             if (isSelected) {
                 selectedItemCount++
@@ -61,6 +62,8 @@ class ItemListFragment : Fragment(){
                 selectedItemCount--
             }
             isAllItemsSelected = selectedItemCount == itemDatas.size
+
+            binding.buyBtnTv.text = "구매하기 (${selectedItemCount})" //구매 버튼 내 선택된 아이템 수 UI 업데이트
 
             binding.totalcheckCountTv.text = "전체 선택($selectedItemCount)" // 선택된 아이템 수 UI 업데이트
             toggleCheckIcon(binding.totalcheckIv, isAllItemsSelected)

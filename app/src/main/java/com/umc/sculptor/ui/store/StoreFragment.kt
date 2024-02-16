@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -53,6 +54,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
             Log.d("saveBtn", "clicked")
         }
     }
+    
 
 
     override fun onCreateView(
@@ -67,11 +69,24 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         val storeTabAdapter = StorePagerAdapter(this)
         binding.ItemsContentVp.adapter = storeTabAdapter
 
+
+
+        // tabLayout2 설정
         TabLayoutMediator(binding.tabLayout2, binding.ItemsContentVp){
             tab, position ->
             tab.text = information[position]
         }.attach()
 
+
+        // tabLayout1 설정
+        TabLayoutMediator(binding.tabLayout1, binding.ItemsContentVp) {
+                tab, position ->
+                tab.text = information[position]
+            tab.view.setOnClickListener {
+                val adapterPosition = if (position == 2) position + 3 else position
+                binding.ItemsContentVp.setCurrentItem(adapterPosition, true)
+            }
+        }.attach()
 
 
         binding.btnBeforeIv.setOnClickListener(){
@@ -85,6 +100,8 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         binding.btnResetIv.setOnClickListener(){
             Log.d("ResetBtn", "clicked")
         }
+
+
 
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
@@ -106,5 +123,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
         return binding.root
     }
+
+
 
 }
