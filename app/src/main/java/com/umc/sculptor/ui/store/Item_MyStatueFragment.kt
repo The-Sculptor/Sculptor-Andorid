@@ -53,7 +53,7 @@ class Item_MyStatueFragment : Fragment() {
 
             override fun onFailure(call: Call<UserStones>, t: Throwable) {
                 // 통신 실패 처리
-                Log.d("상점 서버 통신 실패 처리", itemDatas.toString() +t.message.toString())
+                Log.d("상점 서버 통신 실패 처리", t.message.toString())
             }
         })
 

@@ -3,9 +3,19 @@ package com.umc.sculptor.ui.store
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.umc.sculptor.R
+import com.umc.sculptor.data.model.remote.store.Item
+import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.databinding.StoreItemWearingBinding
 
-class ItemWearingRVAdapter (private val itemList: ArrayList<Item_WB>): RecyclerView.Adapter<ItemWearingRVAdapter.ViewHolder>() {
+class ItemWearingRVAdapter(itemList: List<Item>): RecyclerView.Adapter<ItemWearingRVAdapter.ViewHolder>() {
+
+    var itemList: List<Item> = itemList
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
 
     interface MyItemClickListener{
         fun onItemCLick(position: Int)
@@ -25,7 +35,8 @@ class ItemWearingRVAdapter (private val itemList: ArrayList<Item_WB>): RecyclerV
 
     override fun onBindViewHolder(holder: ItemWearingRVAdapter.ViewHolder, position: Int) {
 
-        holder.bind(itemList[position])
+        val item = itemList[position]
+        holder.bind(item)
         holder.itemView.setOnClickListener{
             myItemClickListener.onItemCLick(position)
             notifyDataSetChanged()
@@ -34,10 +45,10 @@ class ItemWearingRVAdapter (private val itemList: ArrayList<Item_WB>): RecyclerV
 
     override fun getItemCount(): Int = itemList.size
     inner class ViewHolder(val binding: StoreItemWearingBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: Item_WB){
-            binding.itemUsingbgImg.setImageResource(item.backImg!!)
-            binding.howmuchTv.setText("${item.price!!}")
-            binding.itemUsingitemImg.setImageResource(item.ItemImg!!)
+        fun bind(item: Item){
+            binding.itemUsingbgImg.setImageResource(R.drawable.store_wearingitem_r)
+            binding.howmuchTv.setText("${item.itemPrice}")
+            //binding.itemUsingitemImg.setImageResource(item.ItemImg!!)
         }
     }
 }

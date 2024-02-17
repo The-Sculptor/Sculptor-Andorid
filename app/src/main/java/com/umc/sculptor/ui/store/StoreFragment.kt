@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayoutMediator
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool.storeService
@@ -27,7 +28,8 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
     private lateinit var viewModel: StoreViewModel
     private lateinit var itemRVAdapter: ItemRVAdapter
 
-    private  val information = arrayListOf("나의 조각상", "착용중인 상품", "구매한 상품")
+    private  val information1 = arrayListOf("MY", "원석", "상품", "테마")
+    private  val information2 = arrayListOf("나의 조각상", "착용중인 상품", "구매한 상품")
 
     //    // StoreFragment에서 사용할 인터페이스
     interface OnItemSelectListener {
@@ -96,20 +98,23 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
         onSaveBtn()
 
+        val sharedViewPager = binding.ItemsContentVp
+
         val storeTabAdapter = StorePagerAdapter(this)
-        binding.ItemsContentVp.adapter = storeTabAdapter
+        sharedViewPager.adapter = storeTabAdapter
 
 
-//
-//// TabLayout2 설정
-//        TabLayoutMediator(binding.tabLayout2, binding.ItemsContentVp) { tab, position ->
-//            val index = position % 3 // TabLayout2의 탭 수는 3개
-//            tab.text = information[index]
-//        }.attach()
-//
-//// TabLayout1 설정
-//        TabLayoutMediator(binding.tabLayout1, binding.ItemsContentVp) { tab, position ->
-//            tab.text = information[position]
+        // TabLayout1 설정
+        TabLayoutMediator(binding.tabLayout1, sharedViewPager) { tab, position ->
+            tab.text = information1[position]
+            Log.d("tab", "${tab.text}")
+        }.attach()
+
+//        // 두 번째 탭 레이아웃과 연결할 어댑터
+//        val storeTabAdapter2 = StorePagerAdapter2(this)
+//        // TabLayout2 설정
+//        TabLayoutMediator(binding.tabLayout2, sharedViewPager) { tab, position ->
+//            tab.text = information2[position]
 //        }.attach()
 
 
