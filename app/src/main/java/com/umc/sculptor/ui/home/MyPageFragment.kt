@@ -81,11 +81,6 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-//        (activity as MainActivity).hideIconAndShowBack(false)
-    }
-
     private fun changePrivate(isPrivate : Boolean){
         val call: Call<PrivateDto> = ServicePool.homeService.changePrivate("JSESSIONID="+LocalDataSource.getAccessToken().toString(), PrivateRequestDto(isPrivate))
 

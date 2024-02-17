@@ -32,6 +32,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 
     override fun initDataBinding() {
