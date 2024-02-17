@@ -25,13 +25,7 @@ class Item_WearingFragment: Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
 
-//        //아이템 데이터
-//        itemDatas.apply {
-//            add(Item_WB("wearing", R.drawable.bell, R.drawable.store_wearingitem_r,1, true))
-//            add(Item_WB("sum", R.drawable.bell, R.drawable.store_wearingitem_r,2, true))
-//            add(Item_WB("sumin", R.drawable.person, R.drawable.store_wearingitem_r,3))
-//            add(Item_WB("sum", R.drawable.person, R.drawable.store_wearingitem_r,4))
-//        }
+
 
 
         itemWearingRVAdapter = ItemWearingRVAdapter(itemDatas)

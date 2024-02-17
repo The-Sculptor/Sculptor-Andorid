@@ -11,11 +11,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.capjjang.rightnow.api.StoreService
 import com.google.android.material.tabs.TabLayoutMediator
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
+import com.umc.sculptor.apiManager.ServicePool.storeService
 import com.umc.sculptor.base.BaseFragment
+import com.umc.sculptor.data.model.remote.store.DataXX
+import com.umc.sculptor.data.model.remote.store.Stone
+import com.umc.sculptor.data.model.remote.store.UserMoney
+import com.umc.sculptor.data.model.remote.store.UserStones
 import com.umc.sculptor.databinding.FragmentStoreBinding
+import com.umc.sculptor.login.LocalDataSource
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store) {
 
@@ -24,7 +34,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
     private  val information = arrayListOf("나의 조각상", "착용중인 상품", "구매한 상품")
 
-//    // StoreFragment에서 사용할 인터페이스
+    //    // StoreFragment에서 사용할 인터페이스
     interface OnItemSelectListener {
         fun onItemSelected(item: Item)
     }
@@ -33,11 +43,39 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
-        (activity as MainActivity).hideIconAndShowBack(false)
     }
 
     override fun initDataBinding() {
         super.initDataBinding()
+
+        var userMoney : List<DataXX> =ArrayList<DataXX>()
+
+        val call: Call<UserMoney> = storeService.getMoney("JSESSIONID="+ LocalDataSource.getAccessToken().toString())
+
+        call.enqueue(object : Callback<UserMoney> {
+            override fun onResponse(call: Call<UserMoney>, response: Response<UserMoney>) {
+                if (response.isSuccessful) {
+                    var userMoney: UserMoney? = response.body()
+                    userMoney?.let {
+                        val howMuchValue = it.data.totalPowder.toString() // totalPowder 값을 가져옴
+                        binding.howmuchTv.text = "$howMuchValue" // 가져온 값을 TextView에 설정
+                    }
+                } else {
+                    // 서버에서 오류 응답을 받은 경우 처리
+                    binding.howmuchTv.text = "서버 오류"
+                }
+            }
+
+            override fun onFailure(call: Call<UserMoney>, t: Throwable) {
+                // 통신 실패 처리
+                Log.d("상점 서버",t.message.toString())
+            }
+        })
+
+
+
+
+
     }
 
     override fun initAfterBinding() {
@@ -55,7 +93,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
             Log.d("saveBtn", "clicked")
         }
     }
-    
+
 
 
     override fun onCreateView(
@@ -71,23 +109,25 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         binding.ItemsContentVp.adapter = storeTabAdapter
 
 
+//
+//        // tabLayout2 설정
+//        TabLayoutMediator(binding.tabLayout2, binding.ItemsContentVp){
+//                tab, position ->
+//            tab.text = information[position]
+//        }.attach()
 
-        // tabLayout2 설정
-        TabLayoutMediator(binding.tabLayout2, binding.ItemsContentVp){
-            tab, position ->
-            tab.text = information[position]
-        }.attach()
+
+//        // tabLayout1 설정
+//        TabLayoutMediator(binding.tabLayout1, binding.ItemsContentVp) {
+//                tab, position ->
+//            tab.text = information[position]
+//            tab.view.setOnClickListener {
+//                val adapterPosition = if (position == 2) position + 3 else position
+//                binding.ItemsContentVp.setCurrentItem(adapterPosition, true)
+//            }
+//        }.attach()
 
 
-        // tabLayout1 설정
-        TabLayoutMediator(binding.tabLayout1, binding.ItemsContentVp) {
-                tab, position ->
-                tab.text = information[position]
-            tab.view.setOnClickListener {
-                val adapterPosition = if (position == 2) position + 3 else position
-                binding.ItemsContentVp.setCurrentItem(adapterPosition, true)
-            }
-        }.attach()
 
 
         binding.btnBeforeIv.setOnClickListener(){
