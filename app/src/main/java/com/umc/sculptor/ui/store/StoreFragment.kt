@@ -7,20 +7,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.capjjang.rightnow.api.StoreService
-import com.google.android.material.tabs.TabLayoutMediator
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool.storeService
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.remote.store.DataXX
-import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.data.model.remote.store.UserMoney
-import com.umc.sculptor.data.model.remote.store.UserStones
 import com.umc.sculptor.databinding.FragmentStoreBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call
@@ -72,10 +67,6 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
             }
         })
 
-
-
-
-
     }
 
     override fun initAfterBinding() {
@@ -110,21 +101,15 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
 
 //
-//        // tabLayout2 설정
-//        TabLayoutMediator(binding.tabLayout2, binding.ItemsContentVp){
-//                tab, position ->
-//            tab.text = information[position]
+//// TabLayout2 설정
+//        TabLayoutMediator(binding.tabLayout2, binding.ItemsContentVp) { tab, position ->
+//            val index = position % 3 // TabLayout2의 탭 수는 3개
+//            tab.text = information[index]
 //        }.attach()
-
-
-//        // tabLayout1 설정
-//        TabLayoutMediator(binding.tabLayout1, binding.ItemsContentVp) {
-//                tab, position ->
+//
+//// TabLayout1 설정
+//        TabLayoutMediator(binding.tabLayout1, binding.ItemsContentVp) { tab, position ->
 //            tab.text = information[position]
-//            tab.view.setOnClickListener {
-//                val adapterPosition = if (position == 2) position + 3 else position
-//                binding.ItemsContentVp.setCurrentItem(adapterPosition, true)
-//            }
 //        }.attach()
 
 

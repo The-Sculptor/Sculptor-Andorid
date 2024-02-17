@@ -1,11 +1,9 @@
 package com.umc.sculptor.ui.store
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
-import com.umc.sculptor.data.model.remote.home.Data
 import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.databinding.StoreItemStatueBinding
 
@@ -26,7 +24,7 @@ class ItemRVAdapter(itemList: List<Stone>):RecyclerView.Adapter<ItemRVAdapter.Vi
         myItemClickListener = itemClickListener
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ItemRVAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding: StoreItemStatueBinding =
             StoreItemStatueBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup,false)
 
@@ -34,18 +32,24 @@ class ItemRVAdapter(itemList: List<Stone>):RecyclerView.Adapter<ItemRVAdapter.Vi
     }
 
     override fun onBindViewHolder(holder: ItemRVAdapter.ViewHolder, position: Int) {
-        holder.itemView.setOnClickListener{
+        val stone = itemList[position]
+        holder.bind(stone)
+
+        holder.itemView.setOnClickListener {
             myItemClickListener.onItemCLick(position)
-            notifyDataSetChanged()
         }
     }
 
     override fun getItemCount(): Int = itemList.size
     inner class ViewHolder(val binding: StoreItemStatueBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: Item){
-            binding.statueNameTv.text = item.name
-            binding.itemStatueImg.setImageResource(item.statueImg!!)
-            binding.itemStatueBackImg.setImageResource(item.backImg!!)
+        fun bind(stone: Stone){
+            binding.statueNameTv.text = stone.name
+            if (stone.isSelected==true) {
+                binding.itemStatueBackImg.setImageResource(R.drawable.store_space_picked)
+            } else {
+                binding.itemStatueBackImg.setImageResource(R.drawable.store_space)
+            }
         }
     }
+
 }
