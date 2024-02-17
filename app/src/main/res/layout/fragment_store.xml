@@ -111,16 +111,17 @@
                 android:text="MY" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/Stone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원석" />
+
+            <com.google.android.material.tabs.TabItem
                 android:id="@+id/Item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="상품" />
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/Stone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="원석" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/Them"
