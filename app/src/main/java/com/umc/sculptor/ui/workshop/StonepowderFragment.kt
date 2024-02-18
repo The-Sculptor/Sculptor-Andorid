@@ -38,31 +38,6 @@ class StonepowderFragment : BaseFragment<FragmentStonepowderBinding>(R.layout.fr
         super.initAfterBinding()
 
 
-        val call: retrofit2.Call<getAllAchieves> = ServicePool.workshopService.getAllAchieves(
-            accessToken = "JSESSIONID="+ LocalDataSource.getAccessToken().toString(),
-            contentType = ""
-        )
-
-        call.enqueue(object : Callback<getAllAchieves> {
-            override fun onResponse(call: Call<getAllAchieves> , response: Response<getAllAchieves>) {
-                if (response.isSuccessful) {
-                    val data = response.body()?.data
-                    Log.d("공방 달성현황 서버",data.toString())
-
-                } else {
-                    // 서버에서 오류 응답을 받은 경우 처리
-                    Log.d("공방 달성현황 서버","서버통신 오류")
-                }
-            }
-
-            override fun onFailure(call: Call<getAllAchieves> , t: Throwable) {
-                // 통신 실패 처리
-                Log.d("공방 달성현황 서버",t.message.toString())
-            }
-        })
-
-
-
         binding.x2.setOnClickListener{
             navController.navigate(R.id.action_stonepowderFragment_to_workshopFragment)
         }
