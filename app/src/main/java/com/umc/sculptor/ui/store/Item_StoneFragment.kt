@@ -55,7 +55,8 @@ class Item_StoneFragment: Fragment() {
             }
 
             override fun onFailure(call: Call<StoreItems>, t: Throwable) {
-                TODO("Not yet implemented")
+                // 통신 실패 처리
+                Log.d("상점 서버",t.message.toString())
             }
         })
 
@@ -70,11 +71,10 @@ class Item_StoneFragment: Fragment() {
                     val item = itemDatas[i]
                     if (i == position) {
                         item.isSelected = true
-                            //R.drawable.store_wearing_item_r_selected
-                        //viewModel.updateSelectedItem_item(item)
+                        viewModel.updateSelectedItem_item(item)
                     } else {
                         item.isSelected = false
-                    //item.backImg = R.drawable.store_wearingitem_r
+                        viewModel.updatereleasedItem_item(item)
                     }
                 }
                 stoneRVAdapter.notifyDataSetChanged()

@@ -4,13 +4,14 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.umc.sculptor.databinding.ItemBoxBinding
+import com.umc.sculptor.api.DataX
+import com.umc.sculptor.databinding.FragmentDetailWorkshopBinding
 import com.umc.sculptor.databinding.ItemDateBinding
 
-class DateAdapter(itemList: ArrayList<Date>) :
+class DateAdapter(itemList: List<DataX>) :
     RecyclerView.Adapter<DateAdapter.ViewHolder>() {
 
-    var datelist: ArrayList<Date> = itemList
+    var datelist: ArrayList<DataX> = itemList
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -18,11 +19,14 @@ class DateAdapter(itemList: ArrayList<Date>) :
 
     inner class ViewHolder(itemViewBinding: ItemDateBinding)
         : RecyclerView.ViewHolder(itemViewBinding.root){
-        val layout = itemViewBinding.layoutDailyCheck
-        val tvNumber = itemViewBinding.tvNumber
-        val tvAchievement = itemViewBinding.tvAchievement
-        val tv_4 = itemViewBinding.tv4
-        val iv_4 = itemViewBinding.iv4
+        val binding = FragmentDetailWorkshopBinding.bind(itemView)
+        var layout = itemViewBinding.layoutDailyCheck
+        var category = binding.iconCategory
+        var dday = binding.tvDDay
+        var powder = binding.tvStoneDustGram
+        var startDate = binding.tvStartDate
+        var stoneGoal = binding.tvGoal
+
     }
 
     override fun onCreateViewHolder(
@@ -53,12 +57,11 @@ class DateAdapter(itemList: ArrayList<Date>) :
     override fun getItemCount(): Int = datelist.size
 
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
-        holder.tvAchievement.text = datelist[position].tv_achievement
-        holder.iv_4.setImageResource(datelist[position].iv_4 )
-        holder.tv_4.text = datelist[position].tv_4
-        holder.tvNumber.text = datelist[position].tv_number
-
-
+        holder.category.text = datelist[position].category
+        holder.dday.text = datelist[position].dday
+        holder.powder.text = datelist[position].powder.toString()
+        holder.startDate.text = datelist[position].startDate
+        holder.stoneGoal.text = datelist[position].stoneGoal
 
         holder.layout.setOnClickListener {
             onItemClickListener?.onItemClick(position)
