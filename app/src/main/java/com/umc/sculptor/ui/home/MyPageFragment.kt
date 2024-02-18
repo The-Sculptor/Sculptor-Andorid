@@ -115,6 +115,32 @@ class MyPageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_myp
             })
         }
 
+        binding.withdraw.setOnClickListener {
+            val call: Call<LogoutDto> = loginService.delete("JSESSIONID="+LocalDataSource.getAccessToken().toString())
+
+            // 비동기적으로 요청 수행
+            call.enqueue(object : Callback<LogoutDto> {
+                override fun onResponse(call: Call<LogoutDto>, response: Response<LogoutDto>) {
+                    if (response.isSuccessful) {
+                        Log.d("탈퇴",response.message())
+                        (activity as MainActivity).finish()
+                        // 현재 액티비티를 종료하고 다시 시작
+                        val intent = Intent(requireContext(), LoginActivity::class.java)
+                        requireActivity().finish()
+                        startActivity(intent)
+
+                    } else {
+                        // 서버에서 오류 응답을 받은 경우 처리
+                        Log.d("탈퇴","서버통신 오류")
+                    }
+                }
+
+                override fun onFailure(call: Call<LogoutDto>, t: Throwable) {
+                    // 통신 실패 처리
+                    Log.d("탈퇴",t.message.toString())
+                }
+            })
+        }
     }
 
     private fun changePrivate(isPrivate : Boolean){
