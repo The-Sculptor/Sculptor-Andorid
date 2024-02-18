@@ -1,7 +1,11 @@
 package com.umc.sculptor.ui.workshop
 
 import android.annotation.SuppressLint
+import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.umc.sculptor.R
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.Category
@@ -23,7 +27,7 @@ class TodaycheckFragment : BaseFragment<FragmentTodaycheckBinding>(R.layout.frag
 
     }
 
-
+    var clickedButtonId = 0
     override fun initAfterBinding() {
         super.initAfterBinding()
 
@@ -33,69 +37,36 @@ class TodaycheckFragment : BaseFragment<FragmentTodaycheckBinding>(R.layout.frag
         binding.okButton.setOnClickListener {
             navController.navigate(R.id.action_todaycheckFragment_to_stonepowderFragment)
         }
-
-
-        binding.iconNone.setOnClickListener {
-            if (currentIndex == 3)
-                currentIndex = 0
-            else
-                currentIndex = 3
-            setCategoryBackground()
-        }
-
         binding.iconAll.setOnClickListener {
-            if (currentIndex == 1)
-                currentIndex = 0
-            else
-                currentIndex = 1
+            clickedButtonId = R.id.icon_all
             setCategoryBackground()
         }
 
         binding.iconMid.setOnClickListener {
-            if (currentIndex == 2)
-                currentIndex = 0
-            else
-                currentIndex = 2
+            clickedButtonId = R.id.icon_mid
             setCategoryBackground()
         }
+
+        binding.iconNone.setOnClickListener {
+            clickedButtonId = R.id.icon_none
+            setCategoryBackground()
+        }
+
 
     }
 
 
 
+
     @SuppressLint("ResourceAsColor")
     private fun setCategoryBackground() {
-        when (currentIndex) {
-            1 -> {
-                iconTodaycheck = IconTodaycheck.All
-                binding.iconAll.setBackgroundResource(R.drawable.gray)
-            }
+        binding.iconAll.setBackgroundResource(if (clickedButtonId == R.id.icon_all) R.drawable.gray else R.drawable.round_4_rectangle_todaycheck)
+        binding.iconMid.setBackgroundResource(if (clickedButtonId == R.id.icon_mid) R.drawable.gray else R.drawable.round_4_rectangle_todaycheck)
+        binding.iconNone.setBackgroundResource(if (clickedButtonId == R.id.icon_none) R.drawable.gray else R.drawable.round_4_rectangle_todaycheck)
 
-            2 -> {
-                iconTodaycheck = IconTodaycheck.Mid
-                binding.iconMid.setBackgroundResource(R.drawable.gray)
-            }
-
-            3 -> {
-                iconTodaycheck = IconTodaycheck.None
-                binding.iconNone.setBackgroundResource(R.drawable.gray)
-            }
-
-            else -> {
-                binding.iconAll.setBackgroundResource(R.drawable.round_4_rectangle_todaycheck)
-                binding.iconMid.setBackgroundResource(R.drawable.round_4_rectangle_todaycheck)
-                binding.iconNone.setBackgroundResource(R.drawable.round_4_rectangle_todaycheck)
-            }
-        }
-        if (currentIndex > 0) {
-            binding.okButton.isEnabled = true
-            binding.okButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-        } else {
-            binding.okButton.isEnabled = false
-            binding.okButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_908F90))
-        }
-
-
+        val textColor = if (clickedButtonId != 0) R.color.black else R.color.gray_908F90
+        binding.okButton.isEnabled = clickedButtonId != 0
+        binding.okButton.setTextColor(ContextCompat.getColor(requireContext(), textColor))
 
 
     }
