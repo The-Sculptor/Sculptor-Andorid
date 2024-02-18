@@ -4,14 +4,14 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.umc.sculptor.api.DataX
+import com.umc.sculptor.data.model.remote.DataX
 import com.umc.sculptor.databinding.FragmentDetailWorkshopBinding
 import com.umc.sculptor.databinding.ItemDateBinding
 
 class DateAdapter(itemList: List<DataX>) :
     RecyclerView.Adapter<DateAdapter.ViewHolder>() {
 
-    var datelist: ArrayList<DataX> = itemList
+    var datelist: List<DataX> = itemList
         set(value) {
             field = value
             notifyDataSetChanged()

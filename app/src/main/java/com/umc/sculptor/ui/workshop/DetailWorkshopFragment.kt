@@ -11,6 +11,8 @@ import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
+import com.umc.sculptor.data.model.remote.DataX
+import com.umc.sculptor.data.model.remote.getOneStone
 import com.umc.sculptor.databinding.FragmentDetailWorkshopBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call

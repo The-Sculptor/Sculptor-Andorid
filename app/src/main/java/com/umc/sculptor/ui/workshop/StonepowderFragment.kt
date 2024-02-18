@@ -1,29 +1,16 @@
 package com.umc.sculptor.ui.workshop
 
-import android.os.Bundle
 import android.util.Log
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
-import com.capjjang.rightnow.api.WorkshopService
 import com.umc.sculptor.R
-import com.umc.sculptor.api.AchievementCounts
-import com.umc.sculptor.api.DataX
-import com.umc.sculptor.api.DataXX
-import com.umc.sculptor.api.getAllAchieves
-import com.umc.sculptor.api.getOneStone
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
-import com.umc.sculptor.data.model.dto.CreateStoneRequestDto
-import com.umc.sculptor.data.model.dto.CreateStoneResponseDto
-import com.umc.sculptor.data.model.dto.Data
-import com.umc.sculptor.data.model.remote.home.MyPageResonseDto
+import com.umc.sculptor.data.model.remote.AchievementCounts
+import com.umc.sculptor.data.model.remote.getAllAchieves
 import com.umc.sculptor.databinding.FragmentStonepowderBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.UUID
 
 
 class StonepowderFragment : BaseFragment<FragmentStonepowderBinding>(R.layout.fragment_stonepowder) {
