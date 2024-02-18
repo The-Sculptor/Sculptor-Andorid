@@ -1,13 +1,17 @@
 package com.capjjang.rightnow.api
 
+import com.umc.sculptor.data.model.remote.FollowingStoneDetail
+import com.umc.sculptor.data.model.remote.store.Basket
 import com.umc.sculptor.data.model.remote.store.StoreItems
+import com.umc.sculptor.data.model.remote.store.UpdateWornItems
 import com.umc.sculptor.data.model.remote.store.UserMoney
 import com.umc.sculptor.data.model.remote.store.UserStones
+import com.umc.sculptor.data.model.remote.store.WornItems
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.PATCH
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 
 interface StoreService {
@@ -21,10 +25,17 @@ interface StoreService {
     @GET("/store/users/money")//돈 조회
     fun getMoney(@Header("Cookie") accessToken: String): Call<UserMoney>
 
-
     @PATCH("/store/stones/{stoneId}/items")//물건 착용
-    fun updateItemWear()
-                //(@Header("Cookie") accessToken: String, @Query("stoneId") id: String): Call<ItemWearResponseDto>
+    fun updateWornItem(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<UpdateWornItems>
+
+
+    @GET("store/stones/{stoneId}")//착용중 상품 조회
+    fun getWornItems(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<WornItems>
+
+
+    @GET("/store/basket")//구매할 아이템 조회
+    fun getbasket(@Header("Cookie") accessToken: String): Call<Basket>
+
 
 //    @GET("/home")
 //    fun test(): Call<>

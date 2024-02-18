@@ -1,4 +1,6 @@
 package com.umc.sculptor.data.model.remote.store
+
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -8,6 +10,10 @@ data class Stone(
     val id: String,
     @SerialName("name")
     val name: String,
+    @SerialName("category")
+    val category: String,
     @SerialName("powder")
-    val powder: Int
+    val powder: Int,
+
+    var isSelected: Boolean = false
 )

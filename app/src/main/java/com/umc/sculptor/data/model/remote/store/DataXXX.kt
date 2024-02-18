@@ -5,7 +5,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Data(
-    @SerialName("stones")
-    val stones: List<Stone>
+data class DataXXX(
+    @SerialName("stoneId")
+    val stoneId: String,
+    @SerialName("stoneItems")
+    val stoneItems: List<StoneItem>
 )

@@ -16,6 +16,8 @@
 
         <!-- Bottom Navigation Bar 관련 속성 -->
         <item name="bottomNavigationStyle">@style/Widget.MyApp.BottomNavigationView</item>
+        <!-- DatePicker의 스타일 설정 -->
+        <item name="android:datePickerDialogTheme">@style/MyDatePickerDialogTheme</item>
     </style>
 
     <style name="Widget.MyApp.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
@@ -24,6 +26,14 @@
         <item name="itemIconTint">@color/white</item>
         <item name="itemTextColor">@color/white</item>
         <item name="itemBackground">@drawable/menu_selected_color</item>
+    </style>
+
+    <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <!-- 원하는 색 설정 -->
+        <item name="android:colorAccent">@color/main_back_black</item>
+
+        <!-- No need to override 'datePickerStyle' -->
+        <!-- <item name="android:datePickerStyle">@style/MyDatePickerStyle</item> -->
     </style>
 
 </resources>

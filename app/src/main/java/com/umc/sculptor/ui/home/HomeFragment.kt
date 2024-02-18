@@ -6,13 +6,16 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
+import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.apiManager.ServicePool.homeService
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.FriendStoneViewModel
 import com.umc.sculptor.data.model.remote.home.Data
 import com.umc.sculptor.data.model.remote.home.FollowingsStone
+import com.umc.sculptor.data.model.remote.home.MyPageResonseDto
 import com.umc.sculptor.data.model.remote.home.MyRepresentStone
 import com.umc.sculptor.databinding.FragmentHomeBinding
 import com.umc.sculptor.login.LocalDataSource
@@ -90,6 +93,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             override fun onFailure(call: Call<FollowingsStone>, t: Throwable) {
                 // 통신 실패 처리
                 Log.d("홈 서버",t.message.toString())
+            }
+        })
+
+        // 서버 통신 요청
+        val call: Call<MyPageResonseDto> = ServicePool.homeService.getMypage("JSESSIONID="+ LocalDataSource.getAccessToken().toString())
+
+        // 비동기적으로 요청 수행
+        call.enqueue(object : Callback<MyPageResonseDto> {
+            override fun onResponse(call: Call<MyPageResonseDto>, response: Response<MyPageResonseDto>) {
+                if (response.isSuccessful) {
+                    val data = response.body()?.data
+                    Log.d("마이페이지 서버",data.toString())
+                    binding.tvMainText.text =data?.userName+"님의 인생을\n멋지게 조각해보세요!"
+
+                } else {
+                    // 서버에서 오류 응답을 받은 경우 처리
+                    Log.d("마이페이지 서버","서버통신 오류")
+                }
+            }
+
+            override fun onFailure(call: Call<MyPageResonseDto>, t: Throwable) {
+                // 통신 실패 처리
+                Log.d("마이페이지 서버",t.message.toString())
             }
         })
 

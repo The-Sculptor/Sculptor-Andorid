@@ -7,20 +7,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.capjjang.rightnow.api.StoreService
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool.storeService
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.remote.store.DataXX
+import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.data.model.remote.store.UserMoney
-import com.umc.sculptor.data.model.remote.store.UserStones
 import com.umc.sculptor.databinding.FragmentStoreBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call
@@ -32,9 +31,10 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
     private lateinit var viewModel: StoreViewModel
     private lateinit var itemRVAdapter: ItemRVAdapter
 
-    private  val information = arrayListOf("나의 조각상", "착용중인 상품", "구매한 상품")
+    private  val information1 = arrayListOf("MY", "원석", "상품", "테마")
+    private  val information2 = arrayListOf("나의 조각상", "착용중인 상품", "구매한 상품")
 
-    //    // StoreFragment에서 사용할 인터페이스
+    // StoreFragment에서 사용할 인터페이스
     interface OnItemSelectListener {
         fun onItemSelected(item: Item)
     }
@@ -72,10 +72,6 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
             }
         })
 
-
-
-
-
     }
 
     override fun initAfterBinding() {
@@ -95,6 +91,16 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
     }
 
 
+    fun changeImg(stone: Stone): Int {
+        val resourceId = when (stone.category) {
+            "WORKOUT" -> R.drawable.stone_workoutimg
+            "STUDY" -> R.drawable.stone_studyimg
+            "DAILY" -> R.drawable.stone_dailyimg
+            else -> R.drawable.statue //기본 이미지
+        }
+        Log.d("ChangeImg", "Category: ${stone.category}, Resource ID: $resourceId")
+        return resourceId
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -105,28 +111,26 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
         onSaveBtn()
 
+        val sharedViewPager = binding.ItemsContentVp
+
         val storeTabAdapter = StorePagerAdapter(this)
-        binding.ItemsContentVp.adapter = storeTabAdapter
+        val storeTabAdapter2 = StorePagerAdapter2(this)
 
+        sharedViewPager.adapter = storeTabAdapter
+        // TabLayout1 설정
+        TabLayoutMediator(binding.tabLayout1, sharedViewPager) { tab, position ->
+            tab.text = information1[position]
+            Log.d("tab", "${tab.text}")
+        }.attach()
 
-//
-//        // tabLayout2 설정
-//        TabLayoutMediator(binding.tabLayout2, binding.ItemsContentVp){
-//                tab, position ->
-//            tab.text = information[position]
+//        sharedViewPager.adapter = storeTabAdapter2
+//        // TabLayout2 설정
+//        TabLayoutMediator(binding.tabLayout2, sharedViewPager) { tab, position ->
+//            tab.text = information2[position]
+//            Log.d("tab", "${tab.text}")
 //        }.attach()
 
-
-//        // tabLayout1 설정
-//        TabLayoutMediator(binding.tabLayout1, binding.ItemsContentVp) {
-//                tab, position ->
-//            tab.text = information[position]
-//            tab.view.setOnClickListener {
-//                val adapterPosition = if (position == 2) position + 3 else position
-//                binding.ItemsContentVp.setCurrentItem(adapterPosition, true)
-//            }
-//        }.attach()
-
+//탭레이아웃전환 수정필요...
 
 
 
@@ -146,25 +150,23 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
+
         viewModel.selectedStatue.observe(viewLifecycleOwner, Observer { selectedStatue -> // 뷰모델의 selectedItem을 observe하여 선택된 아이템이 변경되었을 때 호출되는 콜백 설정
-            binding.statueIv.setImageResource(selectedStatue.statueImg ?: R.drawable.statue) // 선택된 아이템의 이미지를 statueiv에 설정
+            Log.d("selected", "name + ${selectedStatue.name}")
+           binding.statueIv.setImageResource(changeImg(selectedStatue)) // 선택된 아이템의 이미지를 statueiv에 설정
 
         })
 
         viewModel.selectedItem.observe(viewLifecycleOwner, Observer { selectedItem -> // 뷰모델의 selectedItem을 observe하여 선택된 아이템이 변경되었을 때 호출되는 콜백 설정
-            if(selectedItem.buy == true) {
+            if(selectedItem.isSelected == true) {
                 binding.saveBtnText.text = "구매"
                 binding.SaveBtn.setBackgroundResource(R.drawable.store_btn_clicked)
             } else {
                 binding.saveBtnText.text = "저장"
                 binding.SaveBtn.setBackgroundResource(R.drawable.store_savebtn)
             }
-
         })
-
         return binding.root
     }
-
-
 
 }

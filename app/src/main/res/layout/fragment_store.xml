@@ -129,6 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="테마" />
+
         </com.google.android.material.tabs.TabLayout>
 
         <com.google.android.material.tabs.TabLayout
@@ -144,7 +145,6 @@
             app:tabSelectedTextColor="#D2D2D2"
             app:tabTextColor="@color/gray_606060"
             >
-
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/myStatue"
                 android:layout_width="wrap_content"

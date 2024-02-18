@@ -1,15 +1,15 @@
-package com.umc.sculptor.data.model.remote.store
+package com.umc.sculptor.api
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserStones(
+data class getAllAchieves(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val `data`: Data,
+    val `data`: DataXX,
     @SerialName("message")
     val message: String
 )

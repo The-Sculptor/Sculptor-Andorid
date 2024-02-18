@@ -5,11 +5,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserStones(
+data class WornItems(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val `data`: Data,
+    val `data`: DataXXXX,
     @SerialName("message")
     val message: String
 )

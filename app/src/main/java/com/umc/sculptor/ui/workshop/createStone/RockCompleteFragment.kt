@@ -100,7 +100,6 @@ class RockCompleteFragment : BaseFragment<FragmentCreateRockCompleteBinding>(R.l
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity as MainActivity).hideIconAndShowBack(false)
 
     }
 }

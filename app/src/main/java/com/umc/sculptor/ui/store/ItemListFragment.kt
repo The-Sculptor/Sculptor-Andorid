@@ -12,11 +12,13 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
+import com.umc.sculptor.data.model.remote.store.Stone
+import com.umc.sculptor.data.model.remote.store.WornItems
 import com.umc.sculptor.databinding.FragmentStoreItemWearinglistBinding
 
 class ItemListFragment : Fragment(){
     lateinit var binding: FragmentStoreItemWearinglistBinding
-    private var itemDatas = ArrayList<Item_WB>()
+    private var itemDatas: List<WornItems> = emptyList()
     private lateinit var itemListRVAdapter: ItemListRVAdapter
     private lateinit var viewModel: StoreViewModel
 
@@ -40,11 +42,7 @@ class ItemListFragment : Fragment(){
         (activity as MainActivity).hideBottomNav(true)
         (activity as MainActivity).hideIconAndShowBack(true)
 
-        itemDatas.apply {
-            add(Item_WB("item1", R.drawable.bell,  R.drawable.store_wearingitem_r, 1, true))
-            add(Item_WB("item2", R.drawable.person,  R.drawable.store_wearingitem_r, 2, true))
 
-        }
 
 
         var isAllItemsSelected = false
@@ -52,7 +50,7 @@ class ItemListFragment : Fragment(){
 
         itemListRVAdapter = ItemListRVAdapter(itemDatas) { position, isSelected ->
             val item = itemDatas[position]
-            item.isSelected = isSelected
+            //item.isSelected = isSelected
 
 
             // 선택된 아이템 수 업데이트
@@ -78,7 +76,7 @@ class ItemListFragment : Fragment(){
                 selectedItemCount = 0 // 전체 선택 해제 시 선택된 아이템 수 초기화
             }
             // 전체 아이템 선택 상태 업데이트
-            itemDatas.forEach { it.isSelected = isAllItemsSelected }
+            //itemDatas.forEach { it.isSelected = isAllItemsSelected }
 
             // 선택된 아이템 수 업데이트
             selectedItemCount = if (isAllItemsSelected) itemDatas.size else 0
@@ -89,11 +87,6 @@ class ItemListFragment : Fragment(){
         }
 
 
-        var haveCeck = false
-        binding.havecheckIv.setOnClickListener(){
-            haveCeck = !haveCeck
-            toggleCheckIcon(binding.havecheckIv,haveCeck)
-        }
 
 
         binding.storeBtn.setOnClickListener(){ //구매 스낵바
@@ -102,7 +95,7 @@ class ItemListFragment : Fragment(){
                 "구매가 완료되었습니다!",
                 Snackbar.LENGTH_SHORT
             )
-            snackbar.anchorView = binding.havecheckIv
+            snackbar.anchorView = binding.totalcheckIv
             snackbar.show()
         }
 

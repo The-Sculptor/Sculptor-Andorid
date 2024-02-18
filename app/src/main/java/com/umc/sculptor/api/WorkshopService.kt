@@ -1,5 +1,6 @@
 package com.capjjang.rightnow.api
 
+import com.umc.sculptor.api.getAllAchieves
 import com.umc.sculptor.api.getOneStone
 import com.umc.sculptor.api.getStones
 import com.umc.sculptor.data.model.dto.CreateStoneRequestDto
@@ -20,11 +21,11 @@ interface WorkshopService {
         @Header("Cookie") accessToken: String ,
         @Body createStoneRequestDto: CreateStoneRequestDto
     ): Call<CreateStoneResponseDto>
+
     @GET("/stones")
     fun getStones(
     @Query("category") category: String,
-    @Header("cookie") accessToken: String,
-    @Header("Content-Type") contentType: String
+    @Header("Cookie") accessToken: String
     ): Call<getStones>
 
     @GET("/stones/{stoneId}")
@@ -33,6 +34,13 @@ interface WorkshopService {
         @Header("Content-Type") contentType: String ,
         @Header("Cookie") accessToken: String
     ): Call<getOneStone>
+
+    @GET("/workplace/stones/{stoneId}/achieves")
+    fun getAllAchieves(
+        @Path("stoneId") stoneId: UUID ,
+        @Header("Content-Type") contentType: String ,
+        @Header("Cookie") accessToken: String
+    ): Call<getAllAchieves>
 
 }
 
