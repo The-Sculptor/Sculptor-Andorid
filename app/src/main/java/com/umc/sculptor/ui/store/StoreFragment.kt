@@ -20,7 +20,9 @@ import com.umc.sculptor.data.model.remote.store.Basket
 import com.umc.sculptor.data.model.remote.store.DataXX
 import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.ItemX
+import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.data.model.remote.store.Stone
+import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.data.model.remote.store.UserMoney
 import com.umc.sculptor.databinding.FragmentStoreBinding
 import com.umc.sculptor.login.LocalDataSource
@@ -32,8 +34,8 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
     private lateinit var viewModel: StoreViewModel
     private lateinit var itemRVAdapter: ItemRVAdapter
-    var userMoney : List<DataXX> =ArrayList<DataXX>()
-    var userItem : List<ItemX> = ArrayList<ItemX>()
+    var userItem : List<UserItem> = ArrayList<UserItem>()
+    var wantedItems :List<ItemX>  = ArrayList<ItemX>()
 
 
     private  val information1 = arrayListOf("MY", "원석", "상품", "테마")
@@ -76,12 +78,12 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         })
 
 
-        val call2: Call<Basket> = storeService.getBasket("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString())
+        val call2: Call<PurchasedItems> = storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString())
 
-        call2.enqueue(object : Callback<Basket> {
-            override fun onResponse(call: Call<Basket>, response: Response<Basket>) {
+        call2.enqueue(object : Callback<PurchasedItems> {
+            override fun onResponse(call: Call<PurchasedItems>, response: Response<PurchasedItems>) {
                 if (response.isSuccessful) {
-                    userItem = response.body()?.data?.items!!
+                    userItem = response.body()?.data!!.userItems
                     if (userItem != null) {
 
                         Log.d("상점 서버", userItem.toString())
@@ -94,7 +96,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
                     Log.d("상점 서버", "서버 통신 오류")
                 }
             }
-            override fun onFailure(call2: Call<Basket>, t: Throwable) {
+            override fun onFailure(call2: Call<PurchasedItems>, t: Throwable) {
                 // 통신 실패 처리
                 Log.d("상점 서버 통신 실패 처리", t.message.toString())
             }
@@ -116,7 +118,6 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
             Log.d("saveBtn", "clicked")
         }
     }
-
 
     fun changeImg(stone: Stone): Int {
         val resourceId = when (stone.category) {
@@ -175,7 +176,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
 
 
-        viewModel = ViewModelProvider(this).get(StoreViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
 
         viewModel.selectedStatue.observe(viewLifecycleOwner, Observer { selectedStatue ->
@@ -188,27 +189,19 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
             var itemIdToCheck = selectedItem.itemId
 
-            // userItem에서 itemIdToCheck를 가진 ItemX를 찾음
-            var matchingItem = userItem.find { it.id == itemIdToCheck }
+            // userItem에서 itemIdToCheck를 가진 UserItem 찾음
+            var matchingItem = userItem.find { it.itemId == itemIdToCheck }
 
             if (matchingItem != null) {
-                Log.d("Observer", "${matchingItem.id}")
-
-                if (!matchingItem.isPurchased) {
-                    binding.saveBtnText.text = "구매"
-                    binding.SaveBtn.setBackgroundResource(R.drawable.store_btn_clicked)
-                } else {
-                    binding.saveBtnText.text = "저장"
-                    binding.SaveBtn.setBackgroundResource(R.drawable.store_savebtn)
-                }
+                Log.d("Observer", "${matchingItem.itemId}")
+                binding.saveBtnText.text = "저장"
+                binding.SaveBtn.setBackgroundResource(R.drawable.store_savebtn)
             } else {
-                // matchingItem이 null인 경우 처리
-                Log.d("Observer", "matchingItem is null")
+                binding.saveBtnText.text = "구매"
+                binding.SaveBtn.setBackgroundResource(R.drawable.store_btn_clicked)
+                Log.d("Observer", "구매 안 한 거 선택함")
             }
         })
-
-
-
         return binding.root
     }
 

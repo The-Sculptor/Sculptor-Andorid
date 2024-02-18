@@ -2,6 +2,7 @@ package com.umc.sculptor.ui.store
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
 import com.umc.sculptor.data.model.remote.store.Item
@@ -47,9 +48,14 @@ class ItemWearingRVAdapter(itemList: List<StoneItemX>): RecyclerView.Adapter<Ite
     override fun getItemCount(): Int = itemList.size
     inner class ViewHolder(val binding: StoreItemWearingBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: StoneItemX){
-            binding.itemUsingbgImg.setImageResource(R.drawable.store_wearingitem_r)
-            binding.howmuchTv.setText("${item.itemPrice}")
-            //binding.itemUsingitemImg.setImageResource(item.ItemImg!!)
+            if (item.isSelected==true) {
+                binding.itemUsingbgImg.setImageResource(R.drawable.store_wearing_item_r_selected)
+            } else {
+                binding.itemUsingbgImg.setImageResource(R.drawable.store_wearingitem_r)
+            }
+            binding.itemUsingbgCircle.setImageResource(R.drawable.store_checkimg)
+            binding.howmuchTv.isInvisible
+            binding.itemUsingitemImg.setImageResource(R.drawable.bell)
         }
     }
 }

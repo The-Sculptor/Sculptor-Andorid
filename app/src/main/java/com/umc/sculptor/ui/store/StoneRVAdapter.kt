@@ -55,7 +55,7 @@ class StoneRVAdapter(itemList: List<Item>): RecyclerView.Adapter<StoneRVAdapter.
                 binding.itemUsingbgImg.setImageResource(R.drawable.store_wearingitem_r)
             }
             binding.howmuchTv.setText("${item.itemPrice}")
-            item.isSelected = true
+            item.isSelected = false
             binding.itemUsingitemImg.setImageResource(R.drawable.bell)
 
             //binding.howmuchTv.isInvisible
