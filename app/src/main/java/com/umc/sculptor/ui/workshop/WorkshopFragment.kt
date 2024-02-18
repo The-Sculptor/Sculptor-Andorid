@@ -7,6 +7,7 @@ import com.umc.sculptor.R
 import com.umc.sculptor.api.Data
 import com.umc.sculptor.api.getStones
 import com.umc.sculptor.apiManager.ServicePool
+import com.umc.sculptor.apiManager.ServicePool.workshopService
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.databinding.FragmentWorkshopBinding
 import com.umc.sculptor.login.LocalDataSource
@@ -14,7 +15,7 @@ import retrofit2.Response
 
 class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_workshop) {
 
-    private var itemDatas = ArrayList<Box>()
+    private var itemDatas = ArrayList<Data>()
     private lateinit var boxAdapter: BoxAdapter
 
 
@@ -24,26 +25,26 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 
     override fun initDataBinding() {
         super.initDataBinding()
 
-        var itemList : List<Box> =ArrayList<Box>()
+        var itemList : List<Data> =ArrayList<Data>()
 
         // 서버 통신 요청
-        val call: retrofit2.Call<getStones> = ServicePool.workshopService.getStones(
-             category = "EXERCISE",
-            "JSESSIONID="+LocalDataSource.getAccessToken().toString(),
-            contentType ="application/json"
+        val call: retrofit2.Call<getStones> = workshopService.getStones(
+             category = "WORKOUT",
+            "JSESSIONID="+LocalDataSource.getAccessToken().toString()
         )
 
         // 비동기적으로 요청 수행
         call.enqueue(object : retrofit2.Callback<getStones> {
             override fun onResponse(call: retrofit2.Call<getStones> , response: Response<getStones>) {
                 if (response.isSuccessful) {
-                    itemList = (response.body()?.data ?: ArrayList<Data>()) as List<Box>
-                    boxAdapter.boxlist= itemList as ArrayList<Box>
+                    itemList = (response.body()?.data ?: ArrayList<Data>())
+                    boxAdapter.boxlist= itemList as ArrayList<Data>
                     boxAdapter.notifyDataSetChanged()
 
                     Log.d("홈 서버",itemList.toString())
@@ -60,9 +61,9 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
         })
 
 
-        itemDatas.add(Box("D- 66","UX리서치","2024.01.04"))
-        itemDatas.add(Box("D- 66","조깅하기","2024.01.04"))
-        itemDatas.add(Box("D- 66","UX리서치","2024.01.04"))
+//        itemDatas.add(Box("D- 66","UX리서치","2024.01.04"))
+//        itemDatas.add(Box("D- 66","조깅하기","2024.01.04"))
+//        itemDatas.add(Box("D- 66","UX리서치","2024.01.04"))
 
 
         boxAdapter =  BoxAdapter(itemDatas)

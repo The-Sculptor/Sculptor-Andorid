@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
+import com.umc.sculptor.api.Data
 import com.umc.sculptor.databinding.ItemBoxBinding
 
 
-class BoxAdapter(itemList: ArrayList<Box>) :
+class BoxAdapter(itemList: ArrayList<Data>) :
     RecyclerView.Adapter<BoxAdapter.ViewHolder>() {
 
-    var boxlist: ArrayList<Box> = itemList
+    var boxlist: ArrayList<Data> = itemList
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -64,9 +65,9 @@ class BoxAdapter(itemList: ArrayList<Box>) :
         holder: ViewHolder ,
         @SuppressLint("RecyclerView") position: Int
     ) {
-        holder.dday.text = boxlist[position].tv_d_day
-        holder.dday2.text = boxlist[position].tv_d_day2
-        holder.dateitem.text = boxlist[position].tv_date_item
+        holder.dday.text = boxlist[position].dday
+        holder.dday2.text = boxlist[position].stoneName
+        holder.dateitem.text = boxlist[position].startDate
 
         holder.layout.setOnClickListener {
             onItemClickListener?.onItemClick(position)

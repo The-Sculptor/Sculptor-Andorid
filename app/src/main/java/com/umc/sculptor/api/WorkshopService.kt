@@ -23,8 +23,7 @@ interface WorkshopService {
     @GET("/stones")
     fun getStones(
     @Query("category") category: String,
-    @Header("cookie") accessToken: String,
-    @Header("Content-Type") contentType: String
+    @Header("Cookie") accessToken: String
     ): Call<getStones>
 
     @GET("/stones/{stoneId}")
