@@ -30,14 +30,14 @@ interface WorkshopService {
 
     @GET("/stones/{stoneId}")
     fun getOneStone(
-        @Header("Content-Type") contentType: String ,
-        @Header("Cookie") accessToken: String
+        @Header("Cookie") accessToken: String,
+        @Path("stoneId") stoneId: String,
     ): Call<getOneStone>
 
     @GET("/workplace/stones/{stoneId}/achieves")
     fun getAllAchieves(
-        @Header("Content-Type") contentType: String ,
-        @Header("Cookie") accessToken: String
+        @Header("Cookie") accessToken: String,
+        @Path("stoneId") stoneId: String,
     ): Call<getAllAchieves>
 
 }

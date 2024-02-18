@@ -1,6 +1,7 @@
 package com.umc.sculptor.ui.workshop
 
 import android.util.Log
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
@@ -11,11 +12,17 @@ import com.umc.sculptor.data.model.remote.DataXXX
 import com.umc.sculptor.data.model.remote.getStones
 import com.umc.sculptor.apiManager.ServicePool.workshopService
 import com.umc.sculptor.base.BaseFragment
+import com.umc.sculptor.data.model.dto.FriendStoneViewModel
+import com.umc.sculptor.data.model.dto.WorkshopDetailViewModel
 import com.umc.sculptor.databinding.FragmentWorkshopBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Response
 
 class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_workshop) {
+    val viewModel: WorkshopDetailViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(WorkshopDetailViewModel::class.java)
+    }
+
     private  lateinit var tabLayout: TabLayout
     private lateinit var recyclerView: RecyclerView
 
@@ -46,7 +53,8 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
 
         // 아이템 클릭 리스너 설정
         boxAdapter.setOnItemClickListener(object : BoxAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(id: String) {
+                viewModel.id.value = id
                 navController.navigate(R.id.action_workshopFragment_to_detailWorkshopFragment)
             }
         })
@@ -89,6 +97,7 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
                 // 이미 선택된 탭을 다시 선택할 때의 처리
             }
         })
+
 
 
     }

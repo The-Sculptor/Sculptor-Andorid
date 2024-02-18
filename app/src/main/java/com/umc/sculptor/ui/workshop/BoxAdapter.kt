@@ -47,7 +47,7 @@ class BoxAdapter(itemList: List<DataXXX>) :
 
     // 아이템 클릭 리스너 인터페이스
     interface OnItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(id: String)
     }
 
     private var onItemClickListener: OnItemClickListener? = null
@@ -95,6 +95,10 @@ class BoxAdapter(itemList: List<DataXXX>) :
             holder.startDateTextView.setTextColor(textColor)
             holder.stoneGoalTextView.setTextColor(textColor)
 
+        }
+
+        holder.goalcardLayout.setOnClickListener {
+            onItemClickListener?.onItemClick(datalist[position].stoneId)
         }
 
 
