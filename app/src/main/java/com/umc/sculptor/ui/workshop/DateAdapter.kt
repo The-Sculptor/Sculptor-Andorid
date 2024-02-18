@@ -11,7 +11,7 @@ import com.umc.sculptor.databinding.ItemDateBinding
 class DateAdapter(itemList: List<DataX>) :
     RecyclerView.Adapter<DateAdapter.ViewHolder>() {
 
-    var datelist: ArrayList<DataX> = itemList
+    var datelist: List<DataX> = itemList
         set(value) {
             field = value
             notifyDataSetChanged()
