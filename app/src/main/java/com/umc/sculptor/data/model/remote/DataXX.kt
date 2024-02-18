@@ -1,4 +1,4 @@
-package com.umc.sculptor.api
+package com.umc.sculptor.data.model.remote
 
 
 import kotlinx.serialization.SerialName

@@ -1,8 +1,8 @@
 package com.capjjang.rightnow.api
 
-import com.umc.sculptor.api.getAllAchieves
-import com.umc.sculptor.api.getOneStone
-import com.umc.sculptor.api.getStones
+import com.umc.sculptor.data.model.remote.getAllAchieves
+import com.umc.sculptor.data.model.remote.getOneStone
+import com.umc.sculptor.data.model.remote.getStones
 import com.umc.sculptor.data.model.dto.CreateStoneRequestDto
 import com.umc.sculptor.data.model.dto.CreateStoneResponseDto
 import retrofit2.Call

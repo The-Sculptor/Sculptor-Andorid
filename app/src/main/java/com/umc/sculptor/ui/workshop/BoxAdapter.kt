@@ -7,17 +7,15 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
-import com.umc.sculptor.api.Data
-import com.umc.sculptor.api.getStones
+import com.umc.sculptor.data.model.remote.DataXXX
 import com.umc.sculptor.databinding.ItemBoxBinding
-import com.umc.sculptor.ui.museum.Comment
 
 
-class BoxAdapter(itemList: List<Data>) :
+class BoxAdapter(itemList: List<DataXXX>) :
     RecyclerView.Adapter<BoxAdapter.ViewHolder>() {
 
 
-    var datalist: List<Data> = itemList
+    var datalist: List<DataXXX> = itemList
         set(value) {
             field = value
             notifyDataSetChanged()

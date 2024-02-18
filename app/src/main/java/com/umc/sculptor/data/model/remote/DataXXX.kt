@@ -1,21 +1,15 @@
-package com.umc.sculptor.api
+package com.umc.sculptor.data.model.remote
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DataX(
-    @SerialName("achRate")
-    val achRate: Int,
+data class DataXXX(
     @SerialName("category")
     val category: String,
     @SerialName("dday")
     val dday: String,
-    @SerialName("likes")
-    val likes: Int,
-    @SerialName("powder")
-    val powder: Int,
     @SerialName("startDate")
     val startDate: String,
     @SerialName("stoneGoal")
@@ -24,6 +18,6 @@ data class DataX(
     val stoneId: String,
     @SerialName("stoneName")
     val stoneName: String,
-    @SerialName("stoneStatus")
-    val stoneStatus: String
+    @SerialName("userId")
+    val userId: String
 )

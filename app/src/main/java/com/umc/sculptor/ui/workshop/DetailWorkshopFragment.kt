@@ -1,25 +1,15 @@
 package com.umc.sculptor.ui.workshop
 
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
-import com.umc.sculptor.api.Data
-import com.umc.sculptor.api.DataX
-import com.umc.sculptor.api.DataXX
-import com.umc.sculptor.api.getAllAchieves
-import com.umc.sculptor.api.getOneStone
-import com.umc.sculptor.api.getStones
+import com.umc.sculptor.data.model.remote.DataX
+import com.umc.sculptor.data.model.remote.getOneStone
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.databinding.FragmentDetailWorkshopBinding
 import com.umc.sculptor.login.LocalDataSource
-import okhttp3.Cookie
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,7 +44,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
 
         // 비동기적으로 요청 수행
         call.enqueue(object : Callback<getOneStone> {
-            override fun onResponse(call: Call<getOneStone> , response: Response<getOneStone>) {
+            override fun onResponse(call: Call<getOneStone>, response: Response<getOneStone>) {
                 if (response.isSuccessful) {
                     itemList = (response.body()?.data ?: ArrayList<DataX>()) as List<DataX>
                     dateAdapter.datelist = itemList as ArrayList<Date>
@@ -66,7 +56,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
                 }
             }
 
-            override fun onFailure(call: Call<getOneStone> , t: Throwable) {
+            override fun onFailure(call: Call<getOneStone>, t: Throwable) {
                 // 통신 실패 처리
                 Log.d("홈 서버",t.message.toString())
             }
