@@ -28,26 +28,7 @@
         app:layout_constraintStart_toEndOf="@+id/totalcheck_iv"
         app:layout_constraintTop_toTopOf="@+id/totalcheck_iv" />
 
-    <ImageView
-        android:id="@+id/havecheck_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/icon_outline_check"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/totalcheck_iv" />
 
-    <TextView
-        android:id="@+id/havecheckCount_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="보유중인 항목 선택(0)"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/havecheck_iv"
-        app:layout_constraintTop_toTopOf="@+id/havecheck_iv" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -72,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/havecheckCount_tv"
+        app:layout_constraintTop_toBottomOf="@+id/totalcheckCount_tv"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView

@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
+import com.umc.sculptor.data.model.remote.store.WornItems
 import com.umc.sculptor.databinding.StoreWearinglistItemBinding
 
-class ItemListRVAdapter(private val itemList: List<Item_WB>, private val onCheckChangeListener: (Int, Boolean) -> Unit) : RecyclerView.Adapter<ItemListRVAdapter.ViewHolder>() {
+class ItemListRVAdapter(private val itemList: List<WornItems>, private val onCheckChangeListener: (Int, Boolean) -> Unit) : RecyclerView.Adapter<ItemListRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ItemListRVAdapter.ViewHolder {
         val binding = StoreWearinglistItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -20,19 +21,19 @@ class ItemListRVAdapter(private val itemList: List<Item_WB>, private val onCheck
 
     override fun getItemCount(): Int = itemList.size
     inner class ViewHolder(val binding: StoreWearinglistItemBinding, private val onCheckChangeListener: (Int, Boolean) -> Unit) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Item_WB) {
-            binding.wearingListItemImg.setImageResource(item.ItemImg!!)
-            binding.wearingListItemGTv.text = "${item.price}g"
+        fun bind(item: WornItems) {
+            //binding.wearingListItemImg.setImageResource(item.ItemImg!!)
+            binding.wearingListItemGTv.text = "${item.data.stoneItems}g"
             binding.wearingListCheckbtn.setOnClickListener {
                 val newPosition = adapterPosition
-                val newSelectedState = !item.isSelected
-                onCheckChangeListener(newPosition, newSelectedState)
+                //val newSelectedState = !item.isSelected
+                //onCheckChangeListener(newPosition, newSelectedState)
             }
-            if (item.isSelected) {
-                binding.wearingListCheckbtn.setImageResource(R.drawable.icon_solid_check)
-            } else {
-                binding.wearingListCheckbtn.setImageResource(R.drawable.icon_outline_check)
-            }
+//            if (item.isSelected) {
+//                binding.wearingListCheckbtn.setImageResource(R.drawable.icon_solid_check)
+//            } else {
+//                binding.wearingListCheckbtn.setImageResource(R.drawable.icon_outline_check)
+//            }
         }
     }
 }

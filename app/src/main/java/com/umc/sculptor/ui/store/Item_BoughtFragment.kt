@@ -37,7 +37,7 @@ class Item_BoughtFragment: Fragment() {
 
 
 
-        val itemWearingRVAdapter = ItemWearingRVAdapter(itemDatas)
+        //val itemWearingRVAdapter = ItemWearingRVAdapter(itemDatas)
         binding.BoughtItemRv.adapter = itemWearingRVAdapter
 
         itemWearingRVAdapter.setMyItemClickListener(object : ItemWearingRVAdapter.MyItemClickListener {

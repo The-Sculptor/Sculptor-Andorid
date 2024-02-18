@@ -10,6 +10,7 @@ import com.umc.sculptor.databinding.StoreItemStatueBinding
 
 class ItemRVAdapter(itemList: List<Stone>):RecyclerView.Adapter<ItemRVAdapter.ViewHolder>() {
 
+    private lateinit var viewModel: StoreViewModel
     var itemList: List<Stone> = itemList
         set(value) {
             field = value
@@ -46,9 +47,21 @@ class ItemRVAdapter(itemList: List<Stone>):RecyclerView.Adapter<ItemRVAdapter.Vi
             binding.statueNameTv.text = stone.name
             if (stone.isSelected==true) {
                 binding.itemStatueBackImg.setImageResource(R.drawable.store_space_picked)
+                //viewModel.updateSelectedStatue(stone)
             } else {
                 binding.itemStatueBackImg.setImageResource(R.drawable.store_space)
+                //viewModel.updatereleasedStatue(stone)
             }
+            binding.itemStatueImg.setImageResource(changeImg(stone))
+        }
+    }
+
+    fun changeImg(stone: Stone): Int {
+        return when (stone.category) {
+            "WORKOUT" -> R.drawable.stone_workoutimg
+            "STUDY" -> R.drawable.stone_studyimg
+            "DAILY" -> R.drawable.stone_dailyimg
+            else -> R.drawable.statue //기본 이미지
         }
     }
 

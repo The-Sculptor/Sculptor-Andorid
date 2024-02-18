@@ -10,6 +10,8 @@ data class Stone(
     val id: String,
     @SerialName("name")
     val name: String,
+    @SerialName("category")
+    val category: String,
     @SerialName("powder")
     val powder: Int,
 

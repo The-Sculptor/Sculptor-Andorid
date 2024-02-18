@@ -19,7 +19,7 @@ import retrofit2.Response
 class Item_StoneFragment: Fragment() {
     lateinit var binding: FragmentItemwearingBinding
     private var itemDatas: List<Item> = emptyList()
-    private lateinit var itemWearingRVAdapter: ItemWearingRVAdapter
+    private lateinit var stoneRVAdapter: StoneRVAdapter
 
     private lateinit var viewModel: StoreViewModel
 
@@ -41,8 +41,8 @@ class Item_StoneFragment: Fragment() {
                     if (itemDatas != null) {
 
                         // itemDatas를 사용하여 아이템으로 처리
-                        itemWearingRVAdapter.itemList = itemDatas
-                        itemWearingRVAdapter.notifyDataSetChanged()
+                        stoneRVAdapter.itemList = itemDatas
+                        stoneRVAdapter.notifyDataSetChanged()
                         Log.d("상점 서버", itemDatas.toString())
                     } else {
                         // 서버 응답에 오류가 있을 경우 처리
@@ -60,11 +60,11 @@ class Item_StoneFragment: Fragment() {
         })
 
 
-        itemWearingRVAdapter = ItemWearingRVAdapter(itemDatas)
-        binding.itemwearingRv.adapter = itemWearingRVAdapter
+        stoneRVAdapter = StoneRVAdapter(itemDatas)
+        binding.itemwearingRv.adapter = stoneRVAdapter
 
 
-        itemWearingRVAdapter.setMyItemClickListener(object : ItemWearingRVAdapter.MyItemClickListener {
+        stoneRVAdapter.setMyItemClickListener(object : StoneRVAdapter.MyItemClickListener {
             override fun onItemCLick(position: Int) {
                 for (i in itemDatas.indices) {
                     val item = itemDatas[i]
@@ -77,7 +77,7 @@ class Item_StoneFragment: Fragment() {
                     //item.backImg = R.drawable.store_wearingitem_r
                     }
                 }
-                itemWearingRVAdapter.notifyDataSetChanged()
+                stoneRVAdapter.notifyDataSetChanged()
             }
         })
 
