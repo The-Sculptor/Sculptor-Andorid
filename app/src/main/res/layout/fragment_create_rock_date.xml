@@ -69,43 +69,42 @@
 
 
     <LinearLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/iv_stone"
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        app:layout_constraintBottom_toTopOf="@id/iv_stone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="조깅"
-        android:background="@drawable/round_4_rectangle"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="6dp"
-        android:fontFamily="@font/pretendard_medium"
-        />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_4_rectangle"
+            android:fontFamily="@font/pretendard_medium"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:text="조깅"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_category_health"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="운동"
-        android:layout_marginStart="15dp"
-        android:textSize="14sp"
-        android:fontFamily="@font/roboto_medium"
-        android:textColor="@color/purple_E8DEF8"
-        android:background="@drawable/round_4_rectangle"
-        android:drawableStart="@drawable/icon_category"
-        android:paddingVertical="6dp"
-        android:drawablePadding="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="12dp"/>
-
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_category_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/round_4_rectangle"
+            android:drawableStart="@drawable/icon_category"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:paddingVertical="6dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="12dp"
+            android:text="운동"
+            android:textColor="@color/purple_E8DEF8"
+            android:textSize="14sp" />
 
 
     </LinearLayout>

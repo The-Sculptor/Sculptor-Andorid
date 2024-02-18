@@ -24,6 +24,7 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 
     override fun initDataBinding() {
