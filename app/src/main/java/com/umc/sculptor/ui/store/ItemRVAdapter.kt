@@ -4,10 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
+import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.databinding.StoreItemStatueBinding
 
 
-class ItemRVAdapter(private val itemList: ArrayList<Item>):RecyclerView.Adapter<ItemRVAdapter.ViewHolder>() {
+class ItemRVAdapter(itemList: List<Stone>):RecyclerView.Adapter<ItemRVAdapter.ViewHolder>() {
+
+    private lateinit var viewModel: StoreViewModel
+    var itemList: List<Stone> = itemList
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     interface MyItemClickListener{
         fun onItemCLick(position: Int)
@@ -17,7 +25,7 @@ class ItemRVAdapter(private val itemList: ArrayList<Item>):RecyclerView.Adapter<
         myItemClickListener = itemClickListener
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ItemRVAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding: StoreItemStatueBinding =
             StoreItemStatueBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup,false)
 
@@ -25,20 +33,36 @@ class ItemRVAdapter(private val itemList: ArrayList<Item>):RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: ItemRVAdapter.ViewHolder, position: Int) {
+        val stone = itemList[position]
+        holder.bind(stone)
 
-        holder.bind(itemList[position])
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             myItemClickListener.onItemCLick(position)
-            notifyDataSetChanged()
         }
     }
 
     override fun getItemCount(): Int = itemList.size
     inner class ViewHolder(val binding: StoreItemStatueBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: Item){
-            binding.statueNameTv.text = item.name
-            binding.itemStatueImg.setImageResource(item.statueImg!!)
-            binding.itemStatueBackImg.setImageResource(item.backImg!!)
+        fun bind(stone: Stone){
+            binding.statueNameTv.text = stone.name
+            if (stone.isSelected==true) {
+                binding.itemStatueBackImg.setImageResource(R.drawable.store_space_picked)
+                //viewModel.updateSelectedStatue(stone)
+            } else {
+                binding.itemStatueBackImg.setImageResource(R.drawable.store_space)
+                //viewModel.updatereleasedStatue(stone)
+            }
+            binding.itemStatueImg.setImageResource(changeImg(stone))
         }
     }
+
+    fun changeImg(stone: Stone): Int {
+        return when (stone.category) {
+            "WORKOUT" -> R.drawable.stone_workoutimg
+            "STUDY" -> R.drawable.stone_studyimg
+            "DAILY" -> R.drawable.stone_dailyimg
+            else -> R.drawable.statue //기본 이미지
+        }
+    }
+
 }

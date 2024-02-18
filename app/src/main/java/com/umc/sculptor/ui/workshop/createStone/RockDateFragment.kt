@@ -1,5 +1,6 @@
 package com.umc.sculptor.ui.workshop.createStone
 
+import android.app.DatePickerDialog
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -15,6 +16,7 @@ import com.umc.sculptor.databinding.FragmentWorkshopBinding
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Calendar
 import java.util.regex.Pattern
 
 class RockDateFragment : BaseFragment<FragmentCreateRockDateBinding>(R.layout.fragment_create_rock_date) {
@@ -28,8 +30,17 @@ class RockDateFragment : BaseFragment<FragmentCreateRockDateBinding>(R.layout.fr
         (activity as MainActivity).hideIconAndShowBack(true)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun initDataBinding() {
         super.initDataBinding()
+
+        // 현재 날짜 가져오기
+        val currentDate = LocalDate.now()
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
+        val formattedDate = currentDate.format(formatter)
+
+        binding.etStoneDate.text = "시작일   |   "+formattedDate
 
     }
 
@@ -38,9 +49,19 @@ class RockDateFragment : BaseFragment<FragmentCreateRockDateBinding>(R.layout.fr
     override fun initAfterBinding() {
         super.initAfterBinding()
 
-//        binding.etStoneDate.setOnClickListener {
-//
-//        }
+        binding.etStoneDate.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            context?.let { it1 ->
+                DatePickerDialog(it1, { _, year, month, day ->
+                    run {
+                        binding.etStoneDate.setText("시작일   |   "+year.toString() + "." + String.format("%02d", month + 1) + "." + day.toString())
+                    }
+                }, year, month, day)
+            }?.show()
+        }
 
         binding.btnComplete.setOnClickListener {
             viewModel.setNewStoneDate(getDate(binding.etStoneDate.text.toString()))

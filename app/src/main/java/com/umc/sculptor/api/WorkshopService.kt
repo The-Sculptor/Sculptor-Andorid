@@ -23,7 +23,10 @@ interface WorkshopService {
     ): Call<CreateStoneResponseDto>
 
     @GET("/stones")
-    fun getStones(@Header("Cookie") accessToken: String) : Call<getStones>
+    fun getStones(
+    @Query("category") category: String,
+    @Header("Cookie") accessToken: String
+    ): Call<getStones>
 
     @GET("/stones/{stoneId}")
     fun getOneStone(

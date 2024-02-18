@@ -4,12 +4,18 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kakao.sdk.auth.model.OAuthToken
+import com.umc.sculptor.apiManager.ServicePool
+import com.umc.sculptor.data.model.remote.home.MyRepresentStone
+import com.umc.sculptor.data.model.remote.login.LoginDto
 import com.umc.sculptor.login.KakaoLoginCallback
 import com.umc.sculptor.login.KakaoLoginService
 import com.umc.sculptor.login.LocalDataSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import timber.log.Timber
 
 class LoginViewModel(private val kakaoLoginService: KakaoLoginService) : ViewModel() {
@@ -18,12 +24,28 @@ class LoginViewModel(private val kakaoLoginService: KakaoLoginService) : ViewMod
 
     val kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         KakaoLoginCallback {
-            _isKakaoLogin.value = true
             Timber.d("토큰!!!! $token")
             Log.d("소셜로그인", token.toString())
-            if (token != null) {
-                LocalDataSource.setAccessToken(token.accessToken)
-            }
+            val call: Call<LoginDto> = ServicePool.loginService.kakaoLogin("Bearer "+ (token?.accessToken
+                ?: ""))
+
+            // 비동기적으로 요청 수행
+            call.enqueue(object : Callback<LoginDto> {
+                override fun onResponse(call: Call<LoginDto>, response: Response<LoginDto>) {
+                    if (response.isSuccessful) {
+                        response.body()?.data?.let { it1 -> LocalDataSource.setAccessToken(it1.sessionId) }
+                        response.body()?.data?.let { it1 -> LocalDataSource.setUserId(it1.userId) }
+                        _isKakaoLogin.value = true
+                    } else {
+                        Log.d("로그인 서버","서버통신 오류")
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginDto>, t: Throwable) {
+                    // 통신 실패 처리
+                    Log.d("로그인 서버",t.message.toString())
+                }
+            })
         }.handleResult(token, error)
     }
 

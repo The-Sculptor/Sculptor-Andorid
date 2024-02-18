@@ -62,8 +62,14 @@ class BoxAdapter(itemList: List<Data>) :
 
     override fun getItemCount(): Int = datalist.size
 
-    override fun onBindViewHolder(holder: ViewHolder , @SuppressLint("RecyclerView") position: Int) {
-        val currentItem = datalist[position]
+    override fun onBindViewHolder(
+        holder: ViewHolder ,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
+        holder.dday.text = boxlist[position].dday
+        holder.dday2.text = boxlist[position].stoneName
+        holder.dateitem.text = boxlist[position].startDate
+
 
         if (selectedCategory.isEmpty() || currentItem.category == selectedCategory){
             holder.ddayTextView.text = datalist[position].dday

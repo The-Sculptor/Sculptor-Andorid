@@ -58,13 +58,26 @@
         android:textColor="#333333"
         />
     <ImageView
+        android:id="@+id/museum_comment_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/img_museum_sculptor_heart"
+        android:src="@drawable/icon_heart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginEnd="16dp"
+        android:visibility="visible"/>
+    <!--<ImageView
+        android:id="@+id/museum_comment_like_fill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_heart_fill"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

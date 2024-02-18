@@ -106,24 +106,26 @@
                 android:layout_marginTop="51dp"
                 android:layout_marginStart="24dp"
                 />
+
             <EditText
                 android:id="@+id/museum_edit_profile_intro_box"
                 android:layout_width="match_parent"
                 android:layout_height="104dp"
-                android:text="매일 건강한 습관 만들기 박물관입니다:)"
-                android:textSize="16sp"
-                android:fontFamily="@font/roboto_regular"
-                android:textColor="#E6E0E9"
-                android:background="@drawable/museum_edittext_rounded_corner_recrangle"
-                android:padding="18dp"
-                android:gravity="top"
-                app:layout_constraintTop_toBottomOf="@+id/museum_edit_intro"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
-                />
+                android:background="@drawable/museum_edittext_rounded_corner_recrangle"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="top"
+                android:padding="18dp"
+                android:text="매일 건강한 습관 만들기 박물관입니다:)"
+                android:textColor="#E6E0E9"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/museum_edit_intro" />
+
             <TextView
                 android:id="@+id/museum_edit_sculptor"
                 android:layout_width="wrap_content"

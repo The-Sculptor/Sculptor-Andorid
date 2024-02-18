@@ -32,14 +32,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
+            android:id="@+id/howmuch_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@id/howmuch_iv"
-            app:layout_constraintStart_toStartOf="@+id/howmuch_iv"
+            app:layout_constraintEnd_toEndOf="@+id/howmuch_iv"
             app:layout_constraintBottom_toBottomOf="@id/howmuch_iv"
-            android:layout_marginStart="24dp"
+            android:layout_marginEnd="22dp"
             android:textColor="@color/white"
-            android:text="1234"
+            android:text="12"
             />
 
 
@@ -111,22 +112,24 @@
                 android:text="MY" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/Item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="상품" />
-
-            <com.google.android.material.tabs.TabItem
                 android:id="@+id/Stone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="원석" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/Item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="상품" />
+
+
+            <com.google.android.material.tabs.TabItem
                 android:id="@+id/Them"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="테마" />
+
         </com.google.android.material.tabs.TabLayout>
 
         <com.google.android.material.tabs.TabLayout
@@ -142,7 +145,6 @@
             app:tabSelectedTextColor="#D2D2D2"
             app:tabTextColor="@color/gray_606060"
             >
-
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/myStatue"
                 android:layout_width="wrap_content"
@@ -187,6 +189,19 @@
             android:clickable="true"
             app:layout_constraintBottom_toTopOf="@+id/tabLayout1"
             app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/saveBtn_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저장"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="#2B2B2F"
+            app:layout_constraintTop_toTopOf="@+id/SaveBtn"
+            app:layout_constraintStart_toStartOf="@+id/SaveBtn"
+            app:layout_constraintEnd_toEndOf="@+id/SaveBtn"
+            app:layout_constraintBottom_toBottomOf="@+id/SaveBtn"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

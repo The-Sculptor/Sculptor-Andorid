@@ -24,6 +24,8 @@ import retrofit2.Response
 class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_workshop) {
     private  lateinit var tabLayout: TabLayout
     private lateinit var recyclerView: RecyclerView
+
+    private var itemDatas = ArrayList<Data>()
     private lateinit var boxAdapter: BoxAdapter
 
     var currentIndex : Int = 0
@@ -34,6 +36,7 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
     override fun initStartView() {
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
+        (activity as MainActivity).hideIconAndShowBack(false)
     }
 
     override fun initDataBinding() {
@@ -45,7 +48,7 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
         val call: retrofit2.Call<getStones> =
             workshopService.getStones(
                 accessToken = "JSESSIONID="+LocalDataSource.getAccessToken().toString()
-        )
+
 
         // 비동기적으로 요청 수행
         call.enqueue(object : retrofit2.Callback<getStones> {
@@ -66,7 +69,6 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
                 Log.d("공방 서버",t.message.toString())
             }
         })
-
 
         boxAdapter =  BoxAdapter(itemList)
         binding.recyclerview.adapter = boxAdapter

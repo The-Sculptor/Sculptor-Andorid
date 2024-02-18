@@ -1,59 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit_layout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
     <ImageView
         android:id="@+id/museum_edit_sculptor_box"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/img_museum_edit_sculptor"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="64dp"
+        android:src="@drawable/museum_edit_box"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/edit_day_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/museum_round_rectangle_daybox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="D+66"
-        android:textColor="#FF5935"
-        android:textSize="16dp"
-        android:fontFamily="@font/pretendard_medium"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
+            android:id="@+id/edit_day_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/museum_round_rectangle_daybox"
+            app:layout_constraintEnd_toStartOf="@+id/edit_title_txt"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="D+66"
+            android:textColor="#FF5935"
+            android:textSize="16dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
 
-        android:layout_marginTop="18dp"
-        android:layout_marginStart="28dp"
-        />
-    <TextView
-        android:id="@+id/edit_title_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UX리서치"
-        android:textColor="#E6E0E9"
-        android:textSize="16sp"
-        android:fontFamily="@font/roboto_regular"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="19dp"
-        />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_museum_edit_3line"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="2dp"
-        android:layout_marginTop="8dp"
-        />
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            />
+        <TextView
+            android:id="@+id/edit_title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UX리서치"
+            android:textColor="#E6E0E9"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/museum_edit_3line"
+            android:layout_marginEnd="200dp"
+            android:layout_marginTop="19dp"
+            />
+        <ImageView
+            android:id="@+id/museum_edit_3line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_museum_edit_3line"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/museum_edit_delete"
+            android:layout_marginEnd="2dp"
+            android:layout_marginTop="8dp"
+            />
+
+        <ImageView
+            android:id="@+id/museum_edit_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_museum_edit_delete2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

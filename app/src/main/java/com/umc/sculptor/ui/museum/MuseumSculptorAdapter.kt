@@ -1,20 +1,27 @@
 package com.umc.sculptor.ui.museum
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.umc.sculptor.databinding.FragmentMuseumSculptorBinding
+import com.umc.sculptor.data.model.remote.museum.Stone
 import com.umc.sculptor.databinding.ItemMuseumProfileBinding
 
-class MuseumSculptorRVAdapter(private val sculptorList: ArrayList<Sculptor>):
-    RecyclerView.Adapter<MuseumSculptorRVAdapter.ViewHolder>() {
-        interface MyItemClickListener{
-            fun onItemClick(sculptor: Sculptor)
+class MuseumSculptorAdapter(itemList: List<Stone>):
+    RecyclerView.Adapter<MuseumSculptorAdapter.ViewHolder>() {
 
+    var sculptorList: List<Stone> = itemList
+        set(value) {
+            field = value
+            notifyDataSetChanged()
         }
-    private lateinit var myItemClickListener: MyItemClickListener
+    interface MyItemClickListener{
+        fun onItemClick(position: Int)
+
+    }
+    private var myItemClickListener: MyItemClickListener?=null
     fun setMyItemClickListener(itemClickListener: MyItemClickListener){
-        myItemClickListener=itemClickListener
+        this.myItemClickListener=itemClickListener
     }
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,13 +42,13 @@ class MuseumSculptorRVAdapter(private val sculptorList: ArrayList<Sculptor>):
         val sculptorDate=binding.museumSculptorDate
         val sculptorImage=binding.museumSculptorImg
     }
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.sculptorDay.text = sculptorList[position].day
-        holder.sculptorTitle.text = sculptorList[position].title
-        holder.sculptorDate.text = sculptorList[position].date
-        holder.sculptorImage.setImageResource(sculptorList[position].sculptorImg!!)
+    override fun onBindViewHolder(holder: MuseumSculptorAdapter.ViewHolder, @SuppressLint("RecyclerView") position: Int) {
+        holder.sculptorDay.text = sculptorList[position].dDay
+        holder.sculptorTitle.text = sculptorList[position].name
+        holder.sculptorDate.text = sculptorList[position].startDate
+        //holder.sculptorImage.setImageResource(sculptorList[position].id!!)
         holder.itemView.setOnClickListener{
-            myItemClickListener.onItemClick(sculptorList[position])
+            myItemClickListener?.onItemClick(position)
         }
     }
 

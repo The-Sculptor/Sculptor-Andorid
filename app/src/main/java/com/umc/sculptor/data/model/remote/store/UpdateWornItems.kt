@@ -1,15 +1,15 @@
-package com.umc.sculptor.data.model.remote.home
+package com.umc.sculptor.data.model.remote.store
 
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class FollowingsStones(
+data class UpdateWornItems(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val `data`: List<Data>,
+    val `data`: DataXXX,
     @SerialName("message")
     val message: String
 )

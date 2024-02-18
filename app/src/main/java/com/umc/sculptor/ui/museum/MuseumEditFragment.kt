@@ -1,5 +1,7 @@
 package com.umc.sculptor.ui.museum
 
+import android.content.Intent
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.sculptor.MainActivity
@@ -25,6 +27,8 @@ class MuseumEditFragment : BaseFragment<FragmentMuseumEditBinding>(R.layout.frag
         museumEditRVAdapter= MuseumEditRVAdapter(dumy)
         binding.museumSculptorCommentRv.adapter=museumEditRVAdapter
         binding.museumSculptorCommentRv.layoutManager=LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+
+
 
     }
 
