@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.umc.sculptor.data.model.remote.museum.Data
 import com.umc.sculptor.data.model.remote.museum.Stone
 import com.umc.sculptor.databinding.ItemMuseumProfileBinding
 
