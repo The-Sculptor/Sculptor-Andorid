@@ -1,5 +1,6 @@
 package com.umc.sculptor.ui.store
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +26,7 @@ class StoreViewModel : ViewModel() {
     fun updateSelectedItem_item(item:Item){//선택된 아이템(원석) 업데이트
         _selectedItem.value = item
         item.isSelected = true
+        Log.d("viewModel", " ${item.itemName}-> ${item.isSelected}")
     }
 
     fun updatereleasedItem_item(item:Item) {// 선택된 조각상 업데이트

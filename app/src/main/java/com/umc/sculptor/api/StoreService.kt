@@ -21,9 +21,10 @@ interface StoreService {
     @GET("/store/items")//상점 물건 조회
     fun getStoreItems(@Header("Cookie") accessToken: String): Call<StoreItems>
 
-
     @GET("/store/users/money")//돈 조회
     fun getMoney(@Header("Cookie") accessToken: String): Call<UserMoney>
+
+
 
     @PATCH("/store/stones/{stoneId}/items")//물건 착용
     fun updateWornItem(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<UpdateWornItems>
@@ -32,9 +33,10 @@ interface StoreService {
     @GET("store/stones/{stoneId}")//착용중 상품 조회
     fun getWornItems(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<WornItems>
 
+    @GET("/store/stones/{stoneId}/basket")//구매할 아이템 조회
+    fun getBasket(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<Basket>
 
-    @GET("/store/basket")//구매할 아이템 조회
-    fun getbasket(@Header("Cookie") accessToken: String): Call<Basket>
+
 
 
 //    @GET("/home")
