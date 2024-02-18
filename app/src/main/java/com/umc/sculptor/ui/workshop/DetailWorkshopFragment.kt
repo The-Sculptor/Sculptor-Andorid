@@ -17,7 +17,6 @@ import com.umc.sculptor.api.getOneStone
 import com.umc.sculptor.api.getStones
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
-import com.umc.sculptor.data.model.remote.home.FollowingsStones
 import com.umc.sculptor.databinding.FragmentDetailWorkshopBinding
 import com.umc.sculptor.login.LocalDataSource
 import okhttp3.Cookie

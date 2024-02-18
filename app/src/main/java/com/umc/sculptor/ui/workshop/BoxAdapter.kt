@@ -11,7 +11,6 @@ import com.umc.sculptor.api.Data
 import com.umc.sculptor.api.getStones
 import com.umc.sculptor.databinding.ItemBoxBinding
 import com.umc.sculptor.ui.museum.Comment
-import com.umc.sculptor.ui.store.Item
 
 
 class BoxAdapter(itemList: List<Data>) :
@@ -66,10 +65,7 @@ class BoxAdapter(itemList: List<Data>) :
         holder: ViewHolder ,
         @SuppressLint("RecyclerView") position: Int
     ) {
-        holder.dday.text = boxlist[position].dday
-        holder.dday2.text = boxlist[position].stoneName
-        holder.dateitem.text = boxlist[position].startDate
-
+        val currentItem = datalist[position]
 
         if (selectedCategory.isEmpty() || currentItem.category == selectedCategory){
             holder.ddayTextView.text = datalist[position].dday
