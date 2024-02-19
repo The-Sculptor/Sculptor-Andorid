@@ -85,6 +85,8 @@ class MuseumProfileOtherFragment : BaseFragment<FragmentMuseumProfileOtherBindin
                 }
             })
         }
+
+
     }
 
     override fun onDestroyView() {
