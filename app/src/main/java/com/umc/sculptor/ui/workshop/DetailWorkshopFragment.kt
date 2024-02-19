@@ -1,10 +1,6 @@
 package com.umc.sculptor.ui.workshop
 
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +10,6 @@ import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.WorkshopDetailViewModel
 import com.umc.sculptor.data.model.remote.Achieve
-import com.umc.sculptor.data.model.remote.AchievementCounts
-import com.umc.sculptor.data.model.remote.DataX
 import com.umc.sculptor.data.model.remote.getAllAchieves
 import com.umc.sculptor.data.model.remote.getOneStone
 import com.umc.sculptor.databinding.FragmentDetailWorkshopBinding
@@ -74,10 +68,10 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
                     val data = response.body()?.data
 
                     binding.tvName.text = data?.stoneName
-                    binding.tvAchievementRate.inputType = data?.achRate?:0
+                    binding.tvStoneDustGram.text = data?.powder.toString()
                     binding.iconCategory.text = data?.category
                     binding.tvDDay.text = data?.dday
-                    binding.tvStoneDustGram.inputType= data?.powder?:0
+                    binding.tvAchievementRate.text = data?.achRate.toString()
                     binding.tvStartDate.text = data?.startDate
                     binding.tvGoal.text = data?.stoneGoal
                     binding.ivStone.setImageResource(R.drawable.example_stone)
@@ -106,33 +100,14 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             override fun onResponse(call: Call<getAllAchieves>, response: Response<getAllAchieves>) {
                 if (response.isSuccessful) {
                     val itemList = response.body()?.data?.achieves
-
-                    // Calculate num_all, num_mid, num_none based on AchievementCounts
-                    var numAll = 0
-                    var numMid = 0
-                    var numNone = 0
-                    itemList?.forEach { achieve ->
-                        when (achieve.achieveStatus) {
-                            // Assuming `achieveType` is the property that determines the type of achievement
-                            "A" -> numAll++
-                            "B" -> numMid++
-                            "C" -> numNone++
-                        }
+                    itemList?.let {
+                        dateAdapter.datelist = it
+                        dateAdapter.notifyDataSetChanged()
+                        Log.d("공방 달성현황 서버",itemList.toString())
                     }
-
-                    // Set the text accordingly
                     binding.numAll.text = response.body()?.data?.achievementCounts?.a.toString()
-                    binding.numMid.text = numMid.toString()
-                    binding.numNone.text = numNone.toString()
-                } else {
-                    // Handle unsuccessful response
-
-                }
-                     if (itemList != null) {
-                        dateAdapter.datelist = itemList
-
-                    dateAdapter.notifyDataSetChanged()
-                    Log.d("공방 달성현황 서버",itemList.toString())
+                    binding.numMid.text = response.body()?.data?.achievementCounts?.b.toString()
+                    binding.numNone.text = response.body()?.data?.achievementCounts?.c.toString()
 
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
@@ -158,7 +133,6 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
 
     }
 
-
     override fun initAfterBinding() {
         super.initAfterBinding()
 
@@ -168,8 +142,6 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
 
 
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
