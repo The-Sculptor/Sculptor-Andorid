@@ -8,14 +8,13 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.umc.sculptor.R
-import com.umc.sculptor.api.Data
-import com.umc.sculptor.api.DataX
 import com.umc.sculptor.api.DataXXX
-import com.umc.sculptor.api.getStones
 import com.umc.sculptor.api.sculptStone
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.Category
+import com.umc.sculptor.data.model.remote.Achieve
+import com.umc.sculptor.data.model.remote.AchievementCounts
 import com.umc.sculptor.databinding.FragmentTodaycheckBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call
@@ -48,7 +47,7 @@ class TodaycheckFragment : BaseFragment<FragmentTodaycheckBinding>(R.layout.frag
             override fun onResponse(call: retrofit2.Call<sculptStone> , response: Response<sculptStone>) {
                 if (response.isSuccessful) {
                     val itemList = (response.body()?.data ?: ArrayList<DataXXX>())
-                    dateAdapter.datelist= itemList as List<DataX>
+                    dateAdapter.datelist= itemList as List<Achieve>
                     dateAdapter.notifyDataSetChanged()
                     Log.d("공방 조각하기 서버",itemList.toString())
                 } else {
@@ -92,8 +91,6 @@ class TodaycheckFragment : BaseFragment<FragmentTodaycheckBinding>(R.layout.frag
 
 
     }
-
-
 
     @SuppressLint("ResourceAsColor")
     private fun setCategoryBackground() {

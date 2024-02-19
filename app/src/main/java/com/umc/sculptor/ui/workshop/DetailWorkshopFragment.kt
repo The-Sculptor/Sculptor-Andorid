@@ -14,6 +14,7 @@ import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.WorkshopDetailViewModel
 import com.umc.sculptor.data.model.remote.Achieve
+import com.umc.sculptor.data.model.remote.AchievementCounts
 import com.umc.sculptor.data.model.remote.DataX
 import com.umc.sculptor.data.model.remote.getAllAchieves
 import com.umc.sculptor.data.model.remote.getOneStone
@@ -29,18 +30,18 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
         ViewModelProvider(requireActivity()).get(WorkshopDetailViewModel::class.java)
     }
 
-    private var itemDatas = ArrayList<Date>()
+    private var itemDatas = ArrayList<java.util.Date>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var dateAdapter: DateAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater , container: ViewGroup? ,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_detail_workshop, container, false)
-        recyclerView = view.findViewById(R.id.rv_friend_statue)
-        return view
-    }
+//    override fun onCreateView(
+//        inflater: LayoutInflater , container: ViewGroup? ,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        val view = inflater.inflate(R.layout.fragment_detail_workshop, container, false)
+//        recyclerView = view.findViewById(R.id.rv_friend_statue)
+//        return view
+//    }
 
 
     override fun initStartView() {
@@ -52,7 +53,13 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
     override fun initDataBinding() {
         super.initDataBinding()
 
-        var itemList: List<Achieve> = ArrayList<Achieve>()
+        val itemList: List<Achieve> = ArrayList<Achieve>()
+
+        dateAdapter= DateAdapter(itemList)
+        binding.rvFriendStatue.adapter = dateAdapter
+
+        recyclerView = binding.rvFriendStatue
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
         // 서버 통신 요청
         val call: Call<getOneStone> = ServicePool.workshopService.getOneStone(
@@ -66,6 +73,14 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
                 if (response.isSuccessful) {
                     val data = response.body()?.data
                     binding.tvName.text = data?.stoneName
+                    binding.tvAchievementRate.inputType = data?.achRate?:0
+                    binding.iconCategory.text = data?.category
+                    binding.tvDDay.text = data?.dday
+                    binding.tvStoneDustGram.inputType= data?.powder?:0
+                    binding.tvStartDate.text = data?.startDate
+                    binding.tvGoal.text = data?.stoneGoal
+                    binding.ivStone.setImageResource(R.drawable.example_stone)
+
                     Log.d(" 공방 돌 하나 서버",itemList.toString())
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
@@ -75,7 +90,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
 
             override fun onFailure(call: Call<getOneStone> , t: Throwable) {
                 // 통신 실패 처리
-                Log.d("홈 서버",t.message.toString())
+                Log.d("공방 돌 하나 서버",t.message.toString())
             }
         })
 
@@ -90,15 +105,37 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             override fun onResponse(call: Call<getAllAchieves>, response: Response<getAllAchieves>) {
                 if (response.isSuccessful) {
                     val itemList = response.body()?.data?.achieves
-                    if (itemList != null) {
-                        dateAdapter.datelist = itemList
+
+                    // Calculate num_all, num_mid, num_none based on AchievementCounts
+                    var numAll = 0
+                    var numMid = 0
+                    var numNone = 0
+                    itemList?.forEach { achieve ->
+                        when (achieve.achieveStatus) {
+                            // Assuming `achieveType` is the property that determines the type of achievement
+                            "A" -> numAll++
+                            "B" -> numMid++
+                            "C" -> numNone++
+                        }
                     }
+
+                    // Set the text accordingly
+                    binding.numAll.text = numAll.toString()
+                    binding.numMid.text = numMid.toString()
+                    binding.numNone.text = numNone.toString()
+                } else {
+                    // Handle unsuccessful response
+
+                }
+                     if (itemList != null) {
+                        dateAdapter.datelist = itemList
+
                     dateAdapter.notifyDataSetChanged()
                     Log.d("공방 달성현황 서버",itemList.toString())
 
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
-                    Log.d("공방 달성현황 서버","서버통신 오류")
+                    Log.d("공방 달성현황 서버" , "서버통신 오류")
                 }
             }
 
@@ -108,9 +145,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             }
         })
 
-        dateAdapter= DateAdapter(itemList)
-        binding.rvFriendStatue.adapter = dateAdapter
-        binding.rvFriendStatue.layoutManager = LinearLayoutManager(context)
+
 
         // 아이템 클릭 리스너 설정
         dateAdapter.setOnItemClickListener(object : DateAdapter.OnItemClickListener {
@@ -132,46 +167,6 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
 
 
     }
-
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        // TodaycheckFragment에서 전달된 아이콘 정보 받기
-//        val iconType = arguments?.getString("iconType") ?: ""
-//
-//        // RecyclerView에 아이콘 정보에 따라 데이터 설정
-//        val adapter = DateAdapter(getDataBasedOnIconType(iconType))
-//        recyclerView.adapter = adapter
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//    }
-//
-//    private fun getDataBasedOnIconType(iconType: String): List<DataXXX> {
-//        // 아이콘 타입에 따라 데이터 생성 및 반환
-//        return when (iconType) {
-//            "None" -> getNoneData()
-//            "All" -> getAllData()
-//            "Mid" -> getMidData()
-//            else -> emptyList() // 기본값은 빈 리스트
-//        }
-//    }
-//
-//    // 아이콘 타입에 따른 데이터 생성 메서드들
-//    private fun getNoneData(): List<DataXXX> {
-//        // 아이콘 "None"에 대한 데이터 생성 및 반환
-//
-//    }
-//
-//    private fun getAllData(): List<DataXXX> {
-//        // 아이콘 "All"에 대한 데이터 생성 및 반환
-//    }
-//
-//    private fun getMidData(): List<DataXXX> {
-//        // 아이콘 "Mid"에 대한 데이터 생성 및 반환
-//    }
-
-
-
 
 
 
