@@ -167,6 +167,10 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
         }
 
 
+        binding.btnDelete.setOnClickListener {
+            DeleteDialog().show(requireActivity().supportFragmentManager,"dialog")
+        }
+
     }
 
 
