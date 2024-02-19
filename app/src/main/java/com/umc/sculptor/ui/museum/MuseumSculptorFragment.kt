@@ -54,7 +54,7 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
                         binding.museumStartDayString.text=data.startDate
                         binding.museumCategoryText.text=data.category
 
-                        binding.museumSculptorInclude2.museumIncludeCommentText.text=data.oneComment.toString()
+                        binding.museumSculptorInclude2.museumIncludeCommentText.text=data.oneComment ?: ""
                         binding.museumSculptorInclude2.museumGoalDayInclude.text=data.dDay
                         binding.museumSculptorInclude2.museumGoalRateInclude.text=data.achievementRate.toString()+"%"
                         binding.museumSculptorInclude2.museumGramInclude.text=data.powder.toString()+"g"
