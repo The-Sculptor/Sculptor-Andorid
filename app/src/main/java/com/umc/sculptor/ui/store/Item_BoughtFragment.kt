@@ -13,6 +13,7 @@ import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.data.model.remote.store.StoreItems
+import com.umc.sculptor.data.model.remote.store.UpdateWornItems
 import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.databinding.FragmentItemboughtBinding
 import com.umc.sculptor.login.LocalDataSource
@@ -68,24 +69,42 @@ class Item_BoughtFragment: Fragment() {
         })
 
 
-
-
-
         itemBoughtRVAdapter = ItemBoughtRVAdapter(itemDatas)
         binding.BoughtItemRv.adapter = itemBoughtRVAdapter
 
+
+
+
         itemBoughtRVAdapter.setMyItemClickListener(object : ItemBoughtRVAdapter.MyItemClickListener {
             override fun onItemCLick(position: Int) {
-                for (i in itemDatas.indices) {
-                    val item = itemDatas[i]
-                    if (i == position) {
-                        //item.backImg = R.drawable.store_wearing_item_r_selected
+                val clickedItemId = itemDatas[position].itemId
 
+                val call: Call<UpdateWornItems> = ServicePool.storeService.updateWornItem("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(),clickedItemId)
 
-                    } else {
-                        //item.backImg = R.drawable.store_wearingitem_r
+                call.enqueue(object : Callback<UpdateWornItems> {
+                    override fun onResponse(call: Call<UpdateWornItems>, response: Response<UpdateWornItems>) {
+                        if (response.isSuccessful) {
+                            val updatedData = response.body()?.data?.stoneItems
+                            if (updatedData != null) {
+
+                                itemBoughtRVAdapter.notifyDataSetChanged()
+
+                                Log.d("상점 서버", itemDatas.toString())
+                            } else {
+                                // 서버 응답에 오류가 있을 경우 처리
+                                Log.d("상점 서버", "서버 응답 오류")
+                            }
+                        } else {
+                            // 서버에서 오류 응답을 받은 경우 처리
+                            Log.d("상점 서버", "서버 통신 오류")
+                        }
                     }
-                }
+
+                    override fun onFailure(call: Call<UpdateWornItems>, t: Throwable) {
+                        // 통신 실패 처리
+                        Log.d("상점 서버",t.message.toString())
+                    }
+                })
                 itemBoughtRVAdapter.notifyDataSetChanged()
             }
         })

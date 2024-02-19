@@ -117,11 +117,12 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
     }
 
     fun changeImg(stone: Stone): Int {
+
         val resourceId = when (stone.category) {
-            "WORKOUT" -> R.drawable.stone_workoutimg
-            "STUDY" -> R.drawable.stone_studyimg
-            "DAILY" -> R.drawable.stone_dailyimg
-            else -> R.drawable.statue //기본 이미지
+            "WORKOUT" -> R.drawable.work_b
+            "STUDY" -> R.drawable.study_b
+            "DAILY" -> R.drawable.daily_b
+            else -> R.drawable.work_b //기본 이미지
         }
         Log.d("ChangeImg", "Category: ${stone.category}, Resource ID: $resourceId")
         return resourceId
@@ -140,20 +141,20 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
         val storeTabAdapter = StorePagerAdapter(this)
         val storeTabAdapter2 = StorePagerAdapter2(this)
-//
-//        sharedViewPager.adapter = storeTabAdapter
-//        // TabLayout1 설정
-//        TabLayoutMediator(binding.tabLayout1, sharedViewPager) { tab, position ->
-//            tab.text = information1[position]
-//            Log.d("tab", "${tab.text}")
-//        }.attach()
 
-        sharedViewPager.adapter = storeTabAdapter2
-        // TabLayout2 설정
-        TabLayoutMediator(binding.tabLayout2, sharedViewPager) { tab, position ->
-            tab.text = information2[position]
+        sharedViewPager.adapter = storeTabAdapter
+        // TabLayout1 설정
+        TabLayoutMediator(binding.tabLayout1, sharedViewPager) { tab, position ->
+            tab.text = information1[position]
             Log.d("tab", "${tab.text}")
         }.attach()
+
+//        sharedViewPager.adapter = storeTabAdapter2
+//        // TabLayout2 설정
+//        TabLayoutMediator(binding.tabLayout2, sharedViewPager) { tab, position ->
+//            tab.text = information2[position]
+//            Log.d("tab", "${tab.text}")
+//        }.attach()
 
 //탭레이아웃전환 수정필요...
 

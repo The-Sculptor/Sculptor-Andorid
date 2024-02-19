@@ -58,10 +58,10 @@ class ItemRVAdapter(itemList: List<Stone>):RecyclerView.Adapter<ItemRVAdapter.Vi
 
     fun changeImg(stone: Stone): Int {
         return when (stone.category) {
-            "WORKOUT" -> R.drawable.stone_workoutimg
-            "STUDY" -> R.drawable.stone_studyimg
-            "DAILY" -> R.drawable.stone_dailyimg
-            else -> R.drawable.statue //기본 이미지
+            "WORKOUT" -> R.drawable.work_b
+            "STUDY" -> R.drawable.study_b
+            "DAILY" -> R.drawable.daily_b
+            else -> R.drawable.work_b //기본 이미지
         }
     }
 

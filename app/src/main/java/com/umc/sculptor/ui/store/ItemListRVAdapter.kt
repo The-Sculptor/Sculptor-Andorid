@@ -1,8 +1,10 @@
 package com.umc.sculptor.ui.store
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
 import com.umc.sculptor.data.model.remote.store.Item
@@ -45,7 +47,13 @@ class ItemListRVAdapter(itemList: List<ItemX>) : RecyclerView.Adapter<ItemListRV
     inner class ViewHolder(val binding: StoreWearinglistItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemX) {
             //binding.wearingListItemImg.setImageResource(item.ItemImg!!)
-            binding.wearingListItemGTv.text = "${item.price}g"
+
+            Log.d("ispurchased", "${item.isPurchased}")
+            if(item.isPurchased==true){
+                binding.wearingListItemGTv.text = "보유중"
+            }else{
+                binding.wearingListItemGTv.text = "${item.price}g"
+            }
             if(item.isChecked==true){
                 binding.wearingListCheckbtn.setImageResource(R.drawable.icon_solid_check)
             }else{
