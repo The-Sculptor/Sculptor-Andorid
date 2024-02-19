@@ -78,7 +78,7 @@ class Item_StoneFragment: Fragment() {
                     // 새로운 아이템을 선택한 경우, 선택 추가
                     clickedItem.isSelected = true
                 }
-                Log.d("itemswichList", "${viewModel._selectedItemsList.value}")
+                Log.d("itemswishList", "${viewModel._selectedItemsList.value}")
 
 // 현재 선택된 상태의 반대로 변경
 //                item.isSelected = !item.isSelected

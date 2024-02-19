@@ -2,44 +2,56 @@ package com.umc.sculptor.ui.store
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
 import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.ItemX
 import com.umc.sculptor.databinding.StoreWearinglistItemBinding
 
-class ItemListRVAdapter(itemList: List<ItemX>, private val onCheckChangeListener: (Int, Boolean) -> Unit) : RecyclerView.Adapter<ItemListRVAdapter.ViewHolder>() {
+class ItemListRVAdapter(itemList: List<ItemX>) : RecyclerView.Adapter<ItemListRVAdapter.ViewHolder>() {
 
     var itemList: List<ItemX> = itemList
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+    interface MyItemClickListener{
+        fun onItemCLick(position: Int)
+    }
+    private lateinit var myItemClickListener: MyItemClickListener
+    fun setMyItemClickListener(itemClickListener : MyItemClickListener){
+        myItemClickListener = itemClickListener
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ItemListRVAdapter.ViewHolder {
         val binding = StoreWearinglistItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
-        return ViewHolder(binding, onCheckChangeListener)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ItemListRVAdapter.ViewHolder, position: Int) {
-        holder.bind(itemList[position])
+        val item = itemList[position]
+        holder.bind(item)
+        holder.itemView.setOnClickListener {
+            myItemClickListener.onItemCLick(position)
+            notifyDataSetChanged()
+            // 클릭에 따라 아이콘 업데이트
+            //item.isChecked = !item.isChecked
+        }
     }
 
+
     override fun getItemCount(): Int = itemList.size
-    inner class ViewHolder(val binding: StoreWearinglistItemBinding, private val onCheckChangeListener: (Int, Boolean) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: StoreWearinglistItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemX) {
             //binding.wearingListItemImg.setImageResource(item.ItemImg!!)
             binding.wearingListItemGTv.text = "${item.price}g"
-            binding.wearingListCheckbtn.setOnClickListener {
-                val newPosition = adapterPosition
-                val newSelectedState = !item.isChecked
-                onCheckChangeListener(newPosition, newSelectedState)
-            }
-            if (item.isChecked) {
+            if(item.isChecked==true){
                 binding.wearingListCheckbtn.setImageResource(R.drawable.icon_solid_check)
-            } else {
+            }else{
                 binding.wearingListCheckbtn.setImageResource(R.drawable.icon_outline_check)
             }
         }
+
     }
 }

@@ -1,5 +1,8 @@
 package com.capjjang.rightnow.api
 
+
+
+import com.umc.sculptor.api.sculptStone
 import com.umc.sculptor.data.model.remote.getAllAchieves
 import com.umc.sculptor.data.model.remote.getOneStone
 import com.umc.sculptor.data.model.remote.getStones
@@ -39,6 +42,12 @@ interface WorkshopService {
         @Header("Cookie") accessToken: String,
         @Path("stoneId") stoneId: String,
     ): Call<getAllAchieves>
+
+    @POST("/stones/{stoneId}/sculpt")
+    fun sculptStone(
+        @Header("Content-Type") contentType: String ,
+        @Header("Cookie") accessToken: String
+    ): Call<sculptStone>
 
 }
 
