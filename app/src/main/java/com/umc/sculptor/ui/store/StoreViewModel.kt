@@ -49,11 +49,9 @@ class StoreViewModel : ViewModel() {
 
     fun updateSelectedStatue(stone: Stone) {// 선택된 조각상 업데이트
         _selectedStatue.value = stone
-        stone.isSelected = true
     }
     fun updatereleasedStatue(stone: Stone) {// 선택 안 된 조각상 업데이트
         _selectedStatue.value = stone
-        stone.isSelected = false
     }
 
     fun updateSelectedItem_item(item:Item){//선택된 아이템(원석) 업데이트

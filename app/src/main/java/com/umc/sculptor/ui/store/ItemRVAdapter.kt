@@ -47,10 +47,8 @@ class ItemRVAdapter(itemList: List<Stone>):RecyclerView.Adapter<ItemRVAdapter.Vi
             binding.statueNameTv.text = stone.name
             if (stone.isSelected==true) {
                 binding.itemStatueBackImg.setImageResource(R.drawable.store_space_picked)
-                //viewModel.updateSelectedStatue(stone)
             } else {
                 binding.itemStatueBackImg.setImageResource(R.drawable.store_space)
-                //viewModel.updatereleasedStatue(stone)
             }
             binding.itemStatueImg.setImageResource(changeImg(stone))
         }

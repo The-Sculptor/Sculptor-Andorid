@@ -49,15 +49,15 @@ class StoneRVAdapter(itemList: List<Item>): RecyclerView.Adapter<StoneRVAdapter.
     override fun getItemCount(): Int = itemList.size
     inner class ViewHolder(val binding: StoreItemWearingBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Item){
-            when(item.itemName){//stone이미지
-                    "Item1" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_basic)
-                    "Item2" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_ruby)
-                    "Item3" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_sapphire)
-                    "Item4" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_emerald)
-                "Item5" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_metal)
-                "Item6" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_gold)
-                "Item7" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_silver)
-                "Item8" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_bronze)
+            when(item.itemId){//stone이미지
+                    "1e5b03b8-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_basic)
+                    "39e97a1b-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_ruby)
+                    "39f48564-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_sapphire)
+                    "39ff7844-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_emerald)
+                "3a09c2a1-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_metal)
+                "3a144606-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_gold)
+                "3a1f3498-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_silver)
+                "3a2a4295-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_bronze)
                 else -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_basic)
             }
             if (item.isSelected==true) {
