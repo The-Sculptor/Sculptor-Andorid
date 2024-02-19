@@ -17,7 +17,7 @@ class MuseumSculptorAdapter(itemList: List<Stone>):
             notifyDataSetChanged()
         }
     interface MyItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(id:String)
 
     }
     private var myItemClickListener: MyItemClickListener?=null
@@ -42,6 +42,7 @@ class MuseumSculptorAdapter(itemList: List<Stone>):
         val sculptorTitle=binding.museumSculptorTitle
         val sculptorDate=binding.museumSculptorDate
         val sculptorImage=binding.museumSculptorImg
+
     }
     override fun onBindViewHolder(holder: MuseumSculptorAdapter.ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.sculptorDay.text = sculptorList[position].dDay
@@ -49,7 +50,8 @@ class MuseumSculptorAdapter(itemList: List<Stone>):
         holder.sculptorDate.text = sculptorList[position].startDate
         //holder.sculptorImage.setImageResource(sculptorList[position].id!!)
         holder.itemView.setOnClickListener{
-            myItemClickListener?.onItemClick(position)
+            myItemClickListener?.onItemClick(sculptorList[position].id)
+
         }
     }
 

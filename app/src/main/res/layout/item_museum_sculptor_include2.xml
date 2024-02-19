@@ -37,6 +37,7 @@
 
         />
     <TextView
+        android:id="@+id/museum_include_comment_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="이거 조각하느라 진짜 힘들었다..."
@@ -69,6 +70,7 @@
         android:layout_marginEnd="24dp"
         />
     <TextView
+        android:id="@+id/museum_all_achieve_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10"
@@ -127,6 +129,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginEnd="24dp"/>
     <TextView
+        android:id="@+id/museum_middle_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5"
@@ -186,6 +189,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginEnd="24dp"/>
     <TextView
+        android:id="@+id/museum_not_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2"

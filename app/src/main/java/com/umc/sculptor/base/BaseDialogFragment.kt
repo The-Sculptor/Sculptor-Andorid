@@ -1,17 +1,23 @@
 package com.umc.sculptor.base
 
+import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
+import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 abstract class BaseDialogFragment <B: ViewDataBinding> (@LayoutRes private  val layoutResourceId: Int) :
     DialogFragment() {
@@ -26,7 +32,10 @@ abstract class BaseDialogFragment <B: ViewDataBinding> (@LayoutRes private  val 
     protected open fun initDataBinding() {}
     // * 바인딩 이후에 할 일을 여기에 구현. * 그 외에 설정할 것이 있으면 이곳에서 설정. * 클릭 리스너도 이곳에서 설정.
     protected open fun initAfterBinding() {}
-
+    override fun onResume() {
+        super.onResume()
+        resizeDialog()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +43,7 @@ abstract class BaseDialogFragment <B: ViewDataBinding> (@LayoutRes private  val 
 
         // false : 화면 밖 터치 혹은 뒤로가기 버튼 누를 시 dismiss 안됨
         isCancelable = false
+
     }
 
     override fun onCreateView(
@@ -56,5 +66,18 @@ abstract class BaseDialogFragment <B: ViewDataBinding> (@LayoutRes private  val 
         initStartView()
         initDataBinding()
         initAfterBinding()
+    }
+
+    fun resizeDialog() {
+        val windowManager = requireActivity().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val params: ViewGroup.LayoutParams? = dialog?.window?.attributes
+        val deviceWidth = size.x
+        val deviceHeight = size.y
+        params?.width = (deviceWidth * 0.8).toInt()
+        params?.height = (deviceHeight * 0.26).toInt()
+        dialog?.window?.attributes = params as WindowManager.LayoutParams
     }
 }

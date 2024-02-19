@@ -84,7 +84,7 @@ abstract class BaseBottomDialogFragment <B: ViewDataBinding> (@LayoutRes private
     }
 //
     private fun getBottomSheetDialogDefaultHeight(): Int {
-        return getWindowHeight() * 30 / 100
+        return getWindowHeight() * 25 / 100
     }
 
     private fun getWindowHeight(): Int {

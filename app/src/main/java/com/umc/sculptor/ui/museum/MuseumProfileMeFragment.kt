@@ -1,11 +1,14 @@
 package com.umc.sculptor.ui.museum
 
 import android.util.Log
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
+import com.umc.sculptor.data.model.dto.MuseumDetailViewModel
+import com.umc.sculptor.data.model.dto.WorkshopDetailViewModel
 import com.umc.sculptor.data.model.remote.museum.Data
 import com.umc.sculptor.data.model.remote.museum.Museum
 import com.umc.sculptor.data.model.remote.museum.Stone
@@ -16,6 +19,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MuseumProfileMeFragment : BaseFragment<FragmentMuseumProfileMeBinding>(R.layout.fragment_museum_profile_me) {
+
+    val viewModel: MuseumDetailViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(MuseumDetailViewModel::class.java)
+    }
 
     private lateinit var museumSculptorRVAdapter: MuseumSculptorAdapter
     override fun initStartView() {
@@ -72,7 +79,9 @@ class MuseumProfileMeFragment : BaseFragment<FragmentMuseumProfileMeBinding>(R.l
 
 
         museumSculptorRVAdapter.setMyItemClickListener(object: MuseumSculptorAdapter.MyItemClickListener{
-            override fun onItemClick(position:Int) {
+
+            override fun onItemClick(id:String) {
+                viewModel.stoneid.value = id
                 navController.navigate(R.id.action_museumProfileMeFragment_to_museumSculptorFragment)
             }
 

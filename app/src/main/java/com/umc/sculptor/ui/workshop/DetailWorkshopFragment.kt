@@ -3,13 +3,13 @@ package com.umc.sculptor.ui.workshop
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.WorkshopDetailViewModel
 import com.umc.sculptor.data.model.remote.Achieve
-import com.umc.sculptor.data.model.remote.DataX
 import com.umc.sculptor.data.model.remote.getAllAchieves
 import com.umc.sculptor.data.model.remote.getOneStone
 import com.umc.sculptor.databinding.FragmentDetailWorkshopBinding
@@ -24,10 +24,18 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
         ViewModelProvider(requireActivity()).get(WorkshopDetailViewModel::class.java)
     }
 
-    private var itemDatas = ArrayList<Date>()
-
+    private var itemDatas = ArrayList<java.util.Date>()
+    private lateinit var recyclerView: RecyclerView
     private lateinit var dateAdapter: DateAdapter
 
+//    override fun onCreateView(
+//        inflater: LayoutInflater , container: ViewGroup? ,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        val view = inflater.inflate(R.layout.fragment_detail_workshop, container, false)
+//        recyclerView = view.findViewById(R.id.rv_friend_statue)
+//        return view
+//    }
 
 
     override fun initStartView() {
@@ -39,7 +47,13 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
     override fun initDataBinding() {
         super.initDataBinding()
 
-        var itemList: List<Achieve> = ArrayList<Achieve>()
+        val itemList: List<Achieve> = ArrayList<Achieve>()
+
+        dateAdapter= DateAdapter(itemList)
+        binding.rvFriendStatue.adapter = dateAdapter
+
+        recyclerView = binding.rvFriendStatue
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
         // 서버 통신 요청
         val call: Call<getOneStone> = ServicePool.workshopService.getOneStone(
@@ -52,7 +66,16 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             override fun onResponse(call: Call<getOneStone> , response: Response<getOneStone>) {
                 if (response.isSuccessful) {
                     val data = response.body()?.data
+
                     binding.tvName.text = data?.stoneName
+                    binding.tvStoneDustGram.text = data?.powder.toString()
+                    binding.iconCategory.text = data?.category
+                    binding.tvDDay.text = data?.dday
+                    binding.tvAchievementRate.text = data?.achRate.toString()
+                    binding.tvStartDate.text = data?.startDate
+                    binding.tvGoal.text = data?.stoneGoal
+                    binding.ivStone.setImageResource(R.drawable.example_stone)
+
                     Log.d(" 공방 돌 하나 서버",itemList.toString())
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
@@ -62,7 +85,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
 
             override fun onFailure(call: Call<getOneStone> , t: Throwable) {
                 // 통신 실패 처리
-                Log.d("홈 서버",t.message.toString())
+                Log.d("공방 돌 하나 서버",t.message.toString())
             }
         })
 
@@ -77,15 +100,18 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             override fun onResponse(call: Call<getAllAchieves>, response: Response<getAllAchieves>) {
                 if (response.isSuccessful) {
                     val itemList = response.body()?.data?.achieves
-                    if (itemList != null) {
-                        dateAdapter.datelist = itemList
+                    itemList?.let {
+                        dateAdapter.datelist = it
+                        dateAdapter.notifyDataSetChanged()
+                        Log.d("공방 달성현황 서버",itemList.toString())
                     }
-                    dateAdapter.notifyDataSetChanged()
-                    Log.d("공방 달성현황 서버",itemList.toString())
+                    binding.numAll.text = response.body()?.data?.achievementCounts?.a.toString()
+                    binding.numMid.text = response.body()?.data?.achievementCounts?.b.toString()
+                    binding.numNone.text = response.body()?.data?.achievementCounts?.c.toString()
 
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
-                    Log.d("공방 달성현황 서버","서버통신 오류")
+                    Log.d("공방 달성현황 서버" , "서버통신 오류")
                 }
             }
 
@@ -95,9 +121,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             }
         })
 
-        dateAdapter= DateAdapter(itemList)
-        binding.rvFriendStatue.adapter = dateAdapter
-        binding.rvFriendStatue.layoutManager = LinearLayoutManager(context)
+
 
         // 아이템 클릭 리스너 설정
         dateAdapter.setOnItemClickListener(object : DateAdapter.OnItemClickListener {
@@ -109,7 +133,6 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
 
     }
 
-
     override fun initAfterBinding() {
         super.initAfterBinding()
 
@@ -118,7 +141,12 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
         }
 
 
+        binding.btnDelete.setOnClickListener {
+            DeleteDialog().show(requireActivity().supportFragmentManager,"dialog")
+        }
+
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         (activity as MainActivity).hideIconAndShowBack(false)
