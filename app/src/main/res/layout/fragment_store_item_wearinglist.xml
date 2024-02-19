@@ -34,7 +34,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/store_wearingitems_rv"
         android:layout_width="match_parent"
-        android:layout_height="388dp"
+        android:layout_height="480dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -81,8 +81,7 @@
         android:layout_height="214dp"
         android:elevation="-1dp"
         android:src="@drawable/store_total_stone_powder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/stonepowder_g"

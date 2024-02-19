@@ -140,20 +140,20 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
         val storeTabAdapter = StorePagerAdapter(this)
         val storeTabAdapter2 = StorePagerAdapter2(this)
-
-        sharedViewPager.adapter = storeTabAdapter
-        // TabLayout1 설정
-        TabLayoutMediator(binding.tabLayout1, sharedViewPager) { tab, position ->
-            tab.text = information1[position]
-            Log.d("tab", "${tab.text}")
-        }.attach()
-
-//        sharedViewPager.adapter = storeTabAdapter2
-//        // TabLayout2 설정
-//        TabLayoutMediator(binding.tabLayout2, sharedViewPager) { tab, position ->
-//            tab.text = information2[position]
+//
+//        sharedViewPager.adapter = storeTabAdapter
+//        // TabLayout1 설정
+//        TabLayoutMediator(binding.tabLayout1, sharedViewPager) { tab, position ->
+//            tab.text = information1[position]
 //            Log.d("tab", "${tab.text}")
 //        }.attach()
+
+        sharedViewPager.adapter = storeTabAdapter2
+        // TabLayout2 설정
+        TabLayoutMediator(binding.tabLayout2, sharedViewPager) { tab, position ->
+            tab.text = information2[position]
+            Log.d("tab", "${tab.text}")
+        }.attach()
 
 //탭레이아웃전환 수정필요...
 

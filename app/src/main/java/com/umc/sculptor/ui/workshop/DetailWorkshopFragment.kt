@@ -66,6 +66,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             override fun onResponse(call: Call<getOneStone> , response: Response<getOneStone>) {
                 if (response.isSuccessful) {
                     val data = response.body()?.data
+
                     binding.tvName.text = data?.stoneName
                     binding.tvStoneDustGram.text = data?.powder.toString()
                     binding.iconCategory.text = data?.category
@@ -107,7 +108,6 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
                     binding.numAll.text = response.body()?.data?.achievementCounts?.a.toString()
                     binding.numMid.text = response.body()?.data?.achievementCounts?.b.toString()
                     binding.numNone.text = response.body()?.data?.achievementCounts?.c.toString()
-
 
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리

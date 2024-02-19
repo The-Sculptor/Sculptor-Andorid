@@ -33,6 +33,7 @@ class LoginViewModel(private val kakaoLoginService: KakaoLoginService) : ViewMod
             call.enqueue(object : Callback<LoginDto> {
                 override fun onResponse(call: Call<LoginDto>, response: Response<LoginDto>) {
                     if (response.isSuccessful) {
+                        Log.d("로그인 서버",response.body()?.data.toString())
                         response.body()?.data?.let { it1 -> LocalDataSource.setAccessToken(it1.sessionId) }
                         response.body()?.data?.let { it1 -> LocalDataSource.setUserId(it1.userId) }
                         _isKakaoLogin.value = true

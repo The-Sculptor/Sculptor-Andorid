@@ -18,16 +18,15 @@
 
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/museum_sculptor_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ellipse"
         app:layout_constraintTop_toTopOf="@+id/museum_sculptor_comment_img"
         app:layout_constraintStart_toStartOf="@+id/museum_sculptor_comment_img"
         android:layout_marginStart="16dp"
         android:layout_marginTop="18dp"
-        android:src="@drawable/img_museum_sculptor_profile"
-
         />
 
 
@@ -57,6 +56,19 @@
         android:fontFamily="@font/roboto_regular"
         android:textColor="#333333"
         />
+
+    <TextView
+        android:id="@+id/comment_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="3시간 전"
+        android:textSize="12sp"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="#828282"/>
     <ImageView
         android:id="@+id/museum_comment_like"
         android:layout_width="wrap_content"

@@ -11,29 +11,38 @@ import com.umc.sculptor.data.model.remote.store.Stone
 class StoreViewModel : ViewModel() {
     private val _selectedStatue = MutableLiveData<Stone>()// 선택된 아이템을 저장_ LiveData
     private val _selectedItem = MutableLiveData<Item>()
+    private val _checkedListItem = MutableLiveData<ItemX>()
 
     // 여러 아이템을 저장할 리스트 추가
     var _selectedItemsList = MutableLiveData<MutableList<String>>()
-
+    var _checkedListItemsList = MutableLiveData<MutableList<String>>()//구매list 중 체크한 것들 리스트
     val selectedStatue: LiveData<Stone> get() = _selectedStatue
     val selectedItem: LiveData<Item> get() = _selectedItem
+    val selectedListItem: LiveData<ItemX> get() = _checkedListItem//구매list 중 체크한 것
 
     init {
         _selectedItemsList.value = mutableListOf()
     }
     val selectedItemsList: LiveData<MutableList<String>> get() = _selectedItemsList
-    // 변경된 부분: 선택된 아이템 아이디를 추가하는 메소드
     fun addSelectedItemId(itemId: String) {
         _selectedItemsList.value?.add(itemId)
         _selectedItemsList.value = _selectedItemsList.value // LiveData 업데이트를 위한 임시 변경
     }
-
-    // 변경된 부분: 선택된 아이템 아이디를 제거하는 메소드
     fun removeSelectedItemId(itemId: String) {
         _selectedItemsList.value?.remove(itemId)
         _selectedItemsList.value = _selectedItemsList.value // LiveData 업데이트를 위한 임시 변경
     }
 
+    ///
+    fun addCheckedListItemId(itemId: String) {
+        _checkedListItemsList.value?.add(itemId)
+        _checkedListItemsList.value = _checkedListItemsList.value // LiveData 업데이트를 위한 임시 변경
+    }
+    fun removeCheckedListItemId(itemId: String) {
+        _checkedListItemsList.value?.remove(itemId)
+        _checkedListItemsList.value =  _checkedListItemsList.value // LiveData 업데이트를 위한 임시 변경
+    }
+    
 
     fun updateSelectedStatue(stone: Stone) {// 선택된 조각상 업데이트
         _selectedStatue.value = stone
@@ -54,6 +63,8 @@ class StoreViewModel : ViewModel() {
         _selectedItem.value = item
         item.isSelected = false
     }
+
+
 
 
 
