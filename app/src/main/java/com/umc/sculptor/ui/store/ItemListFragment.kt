@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool.storeService
@@ -39,7 +41,14 @@ class ItemListFragment : Fragment(){
         imageView.setImageResource(newImage)
     }
     fun List<String>?.toJsonString(): String {
-        return Gson().toJson(this)
+        val jsonArray = JsonArray()
+        this?.forEach { itemId ->
+            jsonArray.add(itemId)
+        }
+        val jsonObject = JsonObject().apply {
+            add("itemIds", jsonArray)
+        }
+        return jsonObject.toString()
     }
 
     override fun onCreateView(
@@ -59,8 +68,10 @@ class ItemListFragment : Fragment(){
         // ViewModel 초기화
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
-        val itemIds = viewModel._selectedItemsList.value?: emptyList()
-        val call: Call<Basket> = storeService.getBasket("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(), itemIds)
+        val itemIds = viewModel._selectedItemsList.value?.toJsonString() ?: "[]"
+        val mediaType = "application/json".toMediaTypeOrNull()
+        val requestBody = RequestBody.create(mediaType, itemIds)
+        val call: Call<Basket> = storeService.getBasket("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(), requestBody)
 
         call.enqueue(object : Callback<Basket> {
             override fun onResponse(call: Call<Basket>, response: Response<Basket>) {

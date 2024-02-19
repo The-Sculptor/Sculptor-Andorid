@@ -13,6 +13,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.PATCH
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -36,10 +37,10 @@ interface StoreService {
     @GET("store/stones/{stoneId}")//착용중 상품 조회
     fun getWornItems(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<WornItems>
 
-    @GET("/store/stones/{stoneId}/basket")//구매할 아이템 조회
-    fun getBasket(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Query("itemIds") itemIds: List<String>): Call<Basket>
+    @POST("/store/stones/{stoneId}/basket")//구매할 아이템 조회
+    fun getBasket(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Body requestBody: RequestBody): Call<Basket>
 
-
+//@Query("itemIds") itemIds: List<String>
     @GET("/store/users/items")//구매한 아이템 조회
     fun getPurchasedItems(@Header("Cookie") accessToken: String): Call<PurchasedItems>
 
