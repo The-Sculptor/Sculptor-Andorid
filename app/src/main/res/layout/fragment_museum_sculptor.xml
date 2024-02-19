@@ -104,7 +104,7 @@
                 app:layout_constraintTop_toTopOf="@+id/museum_habit_string" />
 
             <ImageView
-                android:id="@+id/img_exercise"
+                android:id="@+id/img_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -112,27 +112,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/museum_categories_bg"
                 app:layout_constraintStart_toStartOf="@+id/museum_categories_bg"
                 app:layout_constraintTop_toTopOf="@+id/museum_categories_bg"
-                android:visibility="gone"/>
-            <ImageView
-                android:id="@+id/img_routine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/img_routine_icon"
-                app:layout_constraintBottom_toBottomOf="@+id/museum_categories_bg"
-                app:layout_constraintStart_toStartOf="@+id/museum_categories_bg"
-                app:layout_constraintTop_toTopOf="@+id/museum_categories_bg"
-                android:visibility="gone"/>
-            <ImageView
-                android:id="@+id/img_study"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/img_study_icon"
-                app:layout_constraintBottom_toBottomOf="@+id/museum_categories_bg"
-                app:layout_constraintStart_toStartOf="@+id/museum_categories_bg"
-                app:layout_constraintTop_toTopOf="@+id/museum_categories_bg"
-                android:visibility="gone"/>
+                />
+
 
             <TextView
                 android:id="@+id/museum_category_text"

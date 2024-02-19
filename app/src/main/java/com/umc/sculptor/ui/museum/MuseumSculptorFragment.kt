@@ -61,6 +61,11 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
                         binding.museumGoalDayStringInput.text=data.goal
                         binding.museumStartDayString.text=data.startDate
                         binding.museumCategoryText.text=data.category
+                        when(data.category){
+                            "WORKOUT" -> binding.imgCategory.setImageResource(R.drawable.img_exercise_icon)
+                            "STUDY" -> binding.imgCategory.setImageResource(R.drawable.img_study_icon)
+                            "DAILY" -> binding.imgCategory.setImageResource(R.drawable.img_routine_icon)
+                        }
 
                         binding.museumSculptorInclude2.museumIncludeCommentText.text=data.oneComment
                         binding.museumSculptorInclude2.museumGoalDayInclude.text=data.dDay
