@@ -1,6 +1,7 @@
 package com.umc.sculptor.ui.museum
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.umc.sculptor.R
+import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.data.model.remote.museum.Comment
+import com.umc.sculptor.data.model.remote.museum.CommentLike
+import com.umc.sculptor.data.model.remote.museum.CommentLikeDto
+import com.umc.sculptor.data.model.remote.museum.EditReqeustDto
+import com.umc.sculptor.data.model.remote.museum.EditUserDto
 import com.umc.sculptor.data.model.remote.museum.Stone
 import com.umc.sculptor.databinding.ItemMuseumSculptorCommentBinding
+import com.umc.sculptor.login.LocalDataSource
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.sql.Connection
 
 
@@ -77,10 +87,63 @@ class MuseumCommentRVAdapter(itemList: List<Comment>):
             if (commentList[position].isLike==false) {
                 holder.commentHeartImage.setImageResource(R.drawable.icon_heart_fill)
 
+                val call: Call<CommentLike> = ServicePool.museumService.changeCommentLike(
+                    "JSESSIONID=" + LocalDataSource.getAccessToken().toString(), commentList[position].id
+                )
+
+                // 비동기적으로 요청 수행
+                call.enqueue(object : Callback<CommentLike> {
+                    override fun onResponse(
+                        call: Call<CommentLike>,
+                        response: Response<CommentLike>
+                    ) {
+                        if (response.isSuccessful) {
+                            commentList[position].isLike=true
+                            Log.d("방명록 서버", response.toString())
+
+
+                        } else {
+
+                            // 서버에서 오류 응답을 받은 경우 처리
+                            Log.d("방명록 서버", "서버통신 오류")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<CommentLike>, t: Throwable) {
+                        // 통신 실패 처리
+                        Log.d("방명록 서버", t.message.toString())
+                    }
+                })
             }
             else {
                 holder.commentHeartImage.setImageResource(R.drawable.icon_heart)
 
+                val call2: Call<CommentLike> = ServicePool.museumService.changeCommentLike(
+                    "JSESSIONID=" + LocalDataSource.getAccessToken().toString(), commentList[position].id
+                )
+
+                // 비동기적으로 요청 수행
+                call2.enqueue(object : Callback<CommentLike> {
+                    override fun onResponse(
+                        call: Call<CommentLike>,
+                        response: Response<CommentLike>
+                    ) {
+                        if (response.isSuccessful) {
+                            commentList[position].isLike=false
+                            Log.d("방명록 서버", response.toString())
+
+
+                        } else {
+                            // 서버에서 오류 응답을 받은 경우 처리
+                            Log.d("방명록 서버", "서버통신 오류")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<CommentLike>, t: Throwable) {
+                        // 통신 실패 처리
+                        Log.d("방명록 서버", t.message.toString())
+                    }
+                })
 
             }
         }

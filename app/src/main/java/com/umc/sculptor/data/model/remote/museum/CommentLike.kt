@@ -9,7 +9,7 @@ data class CommentLike(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val `data`: DataXXXXX,
+    val `data`: CommentLikeDto,
     @SerialName("message")
     val message: String
 )
