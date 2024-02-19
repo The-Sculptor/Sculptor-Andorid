@@ -49,14 +49,14 @@ class StonepowderFragment : BaseFragment<FragmentStonepowderBinding>(R.layout.fr
         super.initDataBinding()
 
         val achievementCounts = when(clickedButtonId){
-            R.id.icon_all -> AchievementCounts(a = 10, b = 5, c = 0)
-            R.id.icon_mid -> AchievementCounts(a = 5, b = 10, c = 0)
-            R.id.icon_none -> AchievementCounts(a = 0, b = 5, c = 10)
-            else -> AchievementCounts(a =0, b = 0, c = 0)
+            R.id.icon_all -> AchievementCountsStone.A
+            R.id.icon_mid -> AchievementCountsStone.B
+            R.id.icon_none -> AchievementCountsStone.C
+            else -> AchievementCountsStone.A
         }
 
-        binding.tvTitle.text = "축하합니다!\n"+ (achievementCounts.a)+"g의 돌가루를 모았어요!"
-        binding.gram.text = "+" + (achievementCounts.a)
+        binding.tvTitle.text = "축하합니다!\n"+ (achievementCounts.value)+"g의 돌가루를 모았어요!"
+        binding.gram.text = "+" + (achievementCounts.value)
 
     }
     override fun initAfterBinding() {
@@ -75,6 +75,7 @@ class StonepowderFragment : BaseFragment<FragmentStonepowderBinding>(R.layout.fr
         call.enqueue(object : retrofit2.Callback<getAllAchieves> {
             override fun onResponse(call: retrofit2.Call<getAllAchieves> , response: Response<getAllAchieves>) {
                 if (response.isSuccessful) {
+
                     Log.d("공방 달성현황조회 서버",itemList.toString())
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
