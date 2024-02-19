@@ -1,6 +1,5 @@
 package com.capjjang.rightnow.api
 
-import com.umc.sculptor.data.model.remote.FollowingStoneDetail
 import com.umc.sculptor.data.model.remote.store.Basket
 import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.data.model.remote.store.StoreItems
@@ -15,6 +14,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.PATCH
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface StoreService {
@@ -37,7 +37,7 @@ interface StoreService {
     fun getWornItems(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<WornItems>
 
     @GET("/store/stones/{stoneId}/basket")//구매할 아이템 조회
-    fun getBasket(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Body requestBody: RequestBody): Call<Basket>
+    fun getBasket(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Query("itemIds") itemIds: List<String>): Call<Basket>
 
 
     @GET("/store/users/items")//구매한 아이템 조회

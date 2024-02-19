@@ -88,7 +88,7 @@
         android:id="@+id/stonepowder_g"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1234g"
+        android:text="0g"
         android:textSize="30sp"
         android:textColor="#E6E0E9"
         android:textStyle="bold"

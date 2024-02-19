@@ -10,14 +10,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool.storeService
 import com.umc.sculptor.base.BaseFragment
-import com.umc.sculptor.data.model.remote.store.Basket
-import com.umc.sculptor.data.model.remote.store.DataXX
 import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.ItemX
 import com.umc.sculptor.data.model.remote.store.PurchasedItems

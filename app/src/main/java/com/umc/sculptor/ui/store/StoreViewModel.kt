@@ -11,14 +11,12 @@ import com.umc.sculptor.data.model.remote.store.Stone
 class StoreViewModel : ViewModel() {
     private val _selectedStatue = MutableLiveData<Stone>()// 선택된 아이템을 저장_ LiveData
     private val _selectedItem = MutableLiveData<Item>()
-    private val _wantedItem = MutableLiveData<ItemX>()
 
     // 여러 아이템을 저장할 리스트 추가
     var _selectedItemsList = MutableLiveData<MutableList<String>>()
 
     val selectedStatue: LiveData<Stone> get() = _selectedStatue
     val selectedItem: LiveData<Item> get() = _selectedItem
-    val wantedItem: LiveData<ItemX> get() = _wantedItem
 
     init {
         _selectedItemsList.value = mutableListOf()
@@ -57,10 +55,6 @@ class StoreViewModel : ViewModel() {
         item.isSelected = false
     }
 
-    fun updateWantedItem_item(item:ItemX){//선택된 아이템-> 구매목록으로 업데이트
-        _wantedItem.value = item
-        Log.d("viewModel", " ${item.id}")
-    }
 
 
 

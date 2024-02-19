@@ -2,7 +2,6 @@ package com.umc.sculptor.ui.store
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +38,9 @@ class ItemListFragment : Fragment(){
         }
         imageView.setImageResource(newImage)
     }
+    fun List<String>?.toJsonString(): String {
+        return Gson().toJson(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,17 +59,13 @@ class ItemListFragment : Fragment(){
         // ViewModel 초기화
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
-        val itemIds = viewModel._selectedItemsList.value
-        val gson = Gson()
-        val itemIdsJson = gson.toJson(itemIds)
-        val mediaType = "application/json".toMediaTypeOrNull()
-        val requestBody = RequestBody.create(mediaType, itemIdsJson)
-        val call: Call<Basket> = storeService.getBasket("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(), requestBody)
+        val itemIds = viewModel._selectedItemsList.value?: emptyList()
+        val call: Call<Basket> = storeService.getBasket("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(), itemIds)
 
         call.enqueue(object : Callback<Basket> {
             override fun onResponse(call: Call<Basket>, response: Response<Basket>) {
                 if (response.isSuccessful) {
-                    itemDatas = response.body()?.data!!.items
+                    itemDatas = response.body()?.data?.items!!
 
                     // itemDatas를 사용하여 아이템으로 처리
                     itemListRVAdapter.itemList = itemDatas
@@ -107,6 +105,7 @@ class ItemListFragment : Fragment(){
             itemListRVAdapter.notifyItemChanged(position)
         }
         binding.storeWearingitemsRv.adapter = itemListRVAdapter
+
 
 
         binding.totalcheckIv.setOnClickListener(){// 전체 선택 체크 버튼 처리
