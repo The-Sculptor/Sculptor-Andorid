@@ -16,7 +16,10 @@ import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool.storeService
 import com.umc.sculptor.data.model.remote.store.Basket
+import com.umc.sculptor.data.model.remote.store.ItemPurchase
 import com.umc.sculptor.data.model.remote.store.ItemX
+import com.umc.sculptor.data.model.remote.store.ItemXX
+import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.databinding.FragmentStoreItemWearinglistBinding
 import com.umc.sculptor.login.LocalDataSource
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -28,6 +31,7 @@ import retrofit2.Response
 class ItemListFragment : Fragment(){
     lateinit var binding: FragmentStoreItemWearinglistBinding
     private var itemDatas: List<ItemX> = emptyList()
+    private var purchaseItemDatas: List<ItemXX> = emptyList()
     private lateinit var itemListRVAdapter: ItemListRVAdapter
     private lateinit var viewModel: StoreViewModel
 
@@ -95,6 +99,13 @@ class ItemListFragment : Fragment(){
         })
 
 
+
+
+
+
+
+
+
         itemListRVAdapter = ItemListRVAdapter(itemDatas)
         binding.storeWearingitemsRv.adapter = itemListRVAdapter
         itemListRVAdapter.setMyItemClickListener(object : ItemListRVAdapter.MyItemClickListener {
@@ -157,14 +168,52 @@ class ItemListFragment : Fragment(){
 
 
 
-        binding.storeBtn.setOnClickListener(){ //구매 스낵바
-            val snackbar = Snackbar.make(
-                binding.root,
-                "구매가 완료되었습니다!",
-                Snackbar.LENGTH_SHORT
-            )
-            snackbar.anchorView = binding.totalcheckIv
-            snackbar.show()
+        binding.storeBtn.setOnClickListener(){ //구매하기 + 스낵바
+
+            val purchaseItemIds = viewModel._selectedItemsList.value?.toJsonString() ?: "[]"
+            val purchaseMediaType = "application/json".toMediaTypeOrNull()
+            val purchaseRequestBody = RequestBody.create(mediaType, itemIds)
+            val call2: Call<ItemPurchase> = storeService.purchase("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(), purchaseRequestBody)
+            var isPurchased = false
+
+
+            call2.enqueue(object : Callback<ItemPurchase> {
+                override fun onResponse(call: Call<ItemPurchase>, response: Response<ItemPurchase>) {
+                    if (response.isSuccessful) {
+                        purchaseItemDatas = response.body()?.data?.items!!
+
+                        // itemDatas를 사용하여 아이템으로 처리
+                        itemListRVAdapter.itemList = itemDatas
+                        itemListRVAdapter.notifyDataSetChanged()
+                        Log.d("상점 서버", itemDatas.toString())
+                        isPurchased = true
+
+                        // 구매가 완료되면 아이템 목록 초기화
+                        itemDatas = emptyList()
+                        purchaseItemDatas = emptyList()
+                        itemListRVAdapter.itemList = itemDatas
+                        itemListRVAdapter.notifyDataSetChanged()
+
+                    } else {
+                        // 서버 응답에 오류가 있을 경우 처리
+                        Log.d("상점 서버", "서버 응답 오류-${response.code()}")
+                    }
+                }
+                override fun onFailure(call: Call<ItemPurchase>, t: Throwable) {
+                    // 통신 실패 처리
+                    Log.d("상점 서버 통신 실패 처리", t.message.toString())
+                }
+            })
+            if(isPurchased==true){
+                val snackbar = Snackbar.make(
+                    binding.root,
+                    "구매가 완료되었습니다!",
+                    Snackbar.LENGTH_SHORT
+                )
+                snackbar.anchorView = binding.totalcheckIv
+                snackbar.show()
+            }
+
         }
 
         return binding.root
