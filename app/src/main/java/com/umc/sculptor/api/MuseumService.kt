@@ -1,7 +1,6 @@
 package com.capjjang.rightnow.api
 
 import com.umc.sculptor.data.model.dto.MuseumDetail
-import com.umc.sculptor.data.model.remote.login.LoginDto
 import com.umc.sculptor.data.model.remote.login.LogoutDto
 import com.umc.sculptor.data.model.remote.museum.CommentLike
 import com.umc.sculptor.data.model.remote.museum.Comments
@@ -10,7 +9,6 @@ import com.umc.sculptor.data.model.remote.museum.EditReqeustDto
 import com.umc.sculptor.data.model.remote.museum.EditStonesDto
 import com.umc.sculptor.data.model.remote.museum.EditUserDto
 import com.umc.sculptor.data.model.remote.museum.Museum
-import okhttp3.Cookie
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
