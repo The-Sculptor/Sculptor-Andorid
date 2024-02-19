@@ -6,9 +6,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class StoneX(
-
     @SerialName("achievementCounts")
-    val achievementCounts: AchievementCounts,
+    val achievementCounts: AchievementCountsX,
     @SerialName("achievementRate")
     val achievementRate: Int,
     @SerialName("category")
@@ -21,6 +20,8 @@ data class StoneX(
     val id: String,
     @SerialName("isLike")
     val isLike: Boolean,
+    @SerialName("isRepresent")
+    val isRepresent: Boolean,
     @SerialName("name")
     val name: String,
     @SerialName("oneComment")

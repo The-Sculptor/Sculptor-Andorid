@@ -1,26 +1,19 @@
 package com.umc.sculptor.ui.museum
 
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capjjang.rightnow.api.MuseumService
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
-import com.umc.sculptor.data.model.dto.Category
 import com.umc.sculptor.data.model.dto.MuseumDetail
 import com.umc.sculptor.data.model.dto.MuseumDetailViewModel
 import com.umc.sculptor.data.model.remote.museum.Comment
 import com.umc.sculptor.data.model.remote.museum.Comments
-import com.umc.sculptor.data.model.remote.museum.Museum
-import com.umc.sculptor.data.model.remote.museum.Stone
 import com.umc.sculptor.databinding.FragmentMuseumSculptorBinding
 import com.umc.sculptor.login.LocalDataSource
-import com.umc.sculptor.ui.home.FriendStatueAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,34 +49,33 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
                 if (response.isSuccessful) {
                     val data = response.body()?.data?.stone
                     if (data!=null){
-
                         binding.museumHabitString.text=data.name
                         binding.museumGoalDayStringInput.text=data.goal
                         binding.museumStartDayString.text=data.startDate
                         binding.museumCategoryText.text=data.category
 
-                        binding.museumSculptorInclude2.museumIncludeCommentText.text=data.oneComment
+                        binding.museumSculptorInclude2.museumIncludeCommentText.text=data.oneComment.toString()
                         binding.museumSculptorInclude2.museumGoalDayInclude.text=data.dDay
                         binding.museumSculptorInclude2.museumGoalRateInclude.text=data.achievementRate.toString()+"%"
                         binding.museumSculptorInclude2.museumGramInclude.text=data.powder.toString()+"g"
-                        binding.museumSculptorInclude2.museumAllAchieveNum.text=data.achievementCounts.A
-                        binding.museumSculptorInclude2.museumMiddleNum.text=data.achievementCounts.B
-                        binding.museumSculptorInclude2.museumNotNum.text=data.achievementCounts.C
+//                        binding.museumSculptorInclude2.museumAllAchieveNum.text=data.achievementCounts.A
+//                        binding.museumSculptorInclude2.museumMiddleNum.text=data.achievementCounts.B
+//                        binding.museumSculptorInclude2.museumNotNum.text=data.achievementCounts.C
 
 
                     }
 
-                    Log.d("박물관 서버",data.toString())
+                    Log.d("박물관 서버1",data.toString())
 
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
-                    Log.d("박물관 서버","서버통신 오류")
+                    Log.d("박물관 서버1","서버통신 오류")
                 }
             }
 
             override fun onFailure(call: Call<MuseumDetail>, t: Throwable) {
                 // 통신 실패 처리
-                Log.d("박물관 서버",t.message.toString())
+                Log.d("박물관 서버1",t.message.toString())
             }
         })
 
@@ -104,7 +96,7 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
                     }
                     museumCommentRVAdapter.notifyDataSetChanged()
 
-                    Log.d("박물관 서버",itemList.toString())
+                    Log.d("박물관 서버2",itemList.toString())
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
                     Log.d("박물관 서버","서버통신 오류")

@@ -72,6 +72,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             override fun onResponse(call: Call<getOneStone> , response: Response<getOneStone>) {
                 if (response.isSuccessful) {
                     val data = response.body()?.data
+
                     binding.tvName.text = data?.stoneName
                     binding.tvAchievementRate.inputType = data?.achRate?:0
                     binding.iconCategory.text = data?.category
@@ -120,7 +121,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
                     }
 
                     // Set the text accordingly
-                    binding.numAll.text = numAll.toString()
+                    binding.numAll.text = response.body()?.data?.achievementCounts?.a.toString()
                     binding.numMid.text = numMid.toString()
                     binding.numNone.text = numNone.toString()
                 } else {
