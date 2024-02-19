@@ -1,6 +1,7 @@
 package com.umc.sculptor.data.model.remote
 
 
+import com.umc.sculptor.ui.workshop.StoneStatus
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -25,5 +26,5 @@ data class DataX(
     @SerialName("stoneName")
     val stoneName: String,
     @SerialName("stoneStatus")
-    val stoneStatus: String
+    val stoneStatus: StoneStatus
 )

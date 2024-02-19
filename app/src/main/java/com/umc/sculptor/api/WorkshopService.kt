@@ -56,5 +56,17 @@ interface WorkshopService {
         @Header("Cookie") accessToken: String,
         @Path("stoneId") stoneId: String
     ): Call<LogoutDto>
+
+    @POST("/stones/{stoneId}/removeMoss")
+    fun removeMoss(
+        @Header("Cookie") accessToken: String,
+        @Path("stoneId") stoneId: String
+    ): Call<LogoutDto>
+
+    @POST("/stones/{stoneId}/repairCrack")
+    fun repairCrack(
+        @Header("Cookie") accessToken: String,
+        @Path("stoneId") stoneId: String
+    ): Call<LogoutDto>
 }
 
