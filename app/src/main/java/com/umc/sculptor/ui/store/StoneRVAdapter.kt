@@ -49,6 +49,17 @@ class StoneRVAdapter(itemList: List<Item>): RecyclerView.Adapter<StoneRVAdapter.
     override fun getItemCount(): Int = itemList.size
     inner class ViewHolder(val binding: StoreItemWearingBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Item){
+            when(item.itemName){//stone이미지
+                    "Item1" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_basic)
+                    "Item2" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_ruby)
+                    "Item3" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_sapphire)
+                    "Item4" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_emerald)
+                "Item5" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_metal)
+                "Item6" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_gold)
+                "Item7" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_silver)
+                "Item8" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_bronze)
+                else -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_basic)
+            }
             if (item.isSelected==true) {
                 binding.itemUsingbgImg.setImageResource(R.drawable.store_wearing_item_r_selected)
             } else {
@@ -56,7 +67,6 @@ class StoneRVAdapter(itemList: List<Item>): RecyclerView.Adapter<StoneRVAdapter.
             }
             binding.howmuchTv.setText("${item.itemPrice}")
             item.isSelected = false
-            binding.itemUsingitemImg.setImageResource(R.drawable.bell)
 
             //binding.howmuchTv.isInvisible
         }

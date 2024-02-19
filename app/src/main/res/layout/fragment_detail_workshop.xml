@@ -19,6 +19,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_option"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
 
             <ImageView
                 android:id="@+id/background_workshop_detail"
@@ -202,33 +213,30 @@
                 android:id="@+id/iv_icon1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:visibility="invisible"
                 android:src="@drawable/btn_workshop_detail_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/iv_stone"
-                android:layout_marginBottom="-12dp"
-                android:layout_marginEnd="28dp"/>
+                app:layout_constraintBottom_toTopOf="@+id/iv_detailworkshop_plus"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detailworkshop_plus" />
 
             <ImageView
                 android:id="@+id/iv_icon2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:visibility="invisible"
                 android:src="@drawable/btn_detail_workshop_2"
-                android:layout_marginTop="24dp"
-                app:layout_constraintStart_toStartOf="@id/iv_icon1"
-                app:layout_constraintTop_toBottomOf="@id/iv_icon1"
-                android:layout_marginBottom="-12dp"
-                android:layout_marginEnd="28dp"/>
+                app:layout_constraintBottom_toTopOf="@+id/iv_detailworkshop_plus"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detailworkshop_plus" />
 
             <ImageView
                 android:id="@+id/iv_detailworkshop_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
                 android:src="@drawable/btn_detail_workshop_plus"
-                android:layout_marginTop="24dp"
-                app:layout_constraintStart_toStartOf="@id/iv_icon2"
-                app:layout_constraintTop_toBottomOf="@id/iv_icon2"
-                android:layout_marginBottom="-12dp"
-                android:layout_marginEnd="28dp"/>
+                app:layout_constraintBottom_toBottomOf="@+id/tv_stone_dust_gram"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/tv_stone_dust"

@@ -171,10 +171,13 @@ class ItemListFragment : Fragment(){
         binding.storeBtn.setOnClickListener(){ //구매하기 + 스낵바
 
             val purchaseItemIds = viewModel._selectedItemsList.value?.toJsonString() ?: "[]"
-            val purchaseMediaType = "application/json".toMediaTypeOrNull()
-            val purchaseRequestBody = RequestBody.create(mediaType, itemIds)
+            //val purchaseMediaType = "application/json".toMediaTypeOrNull()
+            val purchaseRequestBody = RequestBody.create(mediaType, purchaseItemIds)
+            val id = viewModel.selectedStatue.value?.id.toString()
             val call2: Call<ItemPurchase> = storeService.purchase("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(), purchaseRequestBody)
             var isPurchased = false
+            Log.d("request", "$purchaseRequestBody, $purchaseItemIds")
+            Log.d("request2", "${id}")
 
 
             call2.enqueue(object : Callback<ItemPurchase> {

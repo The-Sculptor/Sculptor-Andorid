@@ -7,11 +7,14 @@ import androidx.lifecycle.ViewModel
 import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.ItemX
 import com.umc.sculptor.data.model.remote.store.Stone
+import com.umc.sculptor.data.model.remote.store.StoneItem
 
 class StoreViewModel : ViewModel() {
     private val _selectedStatue = MutableLiveData<Stone>()// 선택된 아이템을 저장_ LiveData
     private val _selectedItem = MutableLiveData<Item>()
     private val _checkedListItem = MutableLiveData<ItemX>()
+    private var _updateWornItem = MutableLiveData<StoneItem>()
+
 
     // 여러 아이템을 저장할 리스트 추가
     var _selectedItemsList = MutableLiveData<MutableList<String>>()

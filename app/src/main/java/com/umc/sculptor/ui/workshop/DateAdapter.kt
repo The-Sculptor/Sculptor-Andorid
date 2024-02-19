@@ -7,10 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
-import com.umc.sculptor.data.model.dto.WorkshopDetailViewModel
 import com.umc.sculptor.data.model.remote.Achieve
 import com.umc.sculptor.data.model.remote.AchievementCounts
-import com.umc.sculptor.data.model.remote.DataX
 import com.umc.sculptor.databinding.ItemDateBinding
 
 class DateAdapter(itemList: List<Achieve>) :

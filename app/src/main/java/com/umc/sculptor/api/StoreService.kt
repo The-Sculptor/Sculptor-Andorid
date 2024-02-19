@@ -31,7 +31,7 @@ interface StoreService {
 
 
     @PATCH("/store/stones/{stoneId}/items")//물건 착용
-    fun updateWornItem(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<UpdateWornItems>
+    fun updateWornItem(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Path("itemId") itemid: String): Call<UpdateWornItems>
 
 
     @GET("store/stones/{stoneId}")//착용중 상품 조회

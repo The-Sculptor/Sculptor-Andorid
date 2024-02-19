@@ -69,7 +69,6 @@ class Item_StoneFragment: Fragment() {
                 val clickedItem = itemDatas[position]
 
                 Log.d("itemitemitem", "${clickedItem.itemId}")
-                viewModel.addSelectedItemId(clickedItem.itemId)
                 if (clickedItem.isSelected) {
                     // 이미 선택된 아이템을 다시 클릭한 경우, 선택 해제
                     clickedItem.isSelected = false
@@ -77,6 +76,7 @@ class Item_StoneFragment: Fragment() {
                 } else {
                     // 새로운 아이템을 선택한 경우, 선택 추가
                     clickedItem.isSelected = true
+                    viewModel.addSelectedItemId(clickedItem.itemId)
                 }
                 Log.d("itemswishList", "${viewModel._selectedItemsList.value}")
 
