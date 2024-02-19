@@ -79,6 +79,7 @@
         android:id="@+id/totalstone_powder"
         android:layout_width="match_parent"
         android:layout_height="214dp"
+        android:layout_marginStart="24dp"
         android:elevation="-1dp"
         android:src="@drawable/store_total_stone_powder"
         app:layout_constraintBottom_toBottomOf="parent"

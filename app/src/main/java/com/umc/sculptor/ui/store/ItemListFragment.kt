@@ -63,6 +63,7 @@ class ItemListFragment : Fragment(){
 
         var isAllItemsSelected = false
         var selectedItemCount = 0
+        var selectedItemPowder = 0
 
 
         // ViewModel 초기화
@@ -94,27 +95,6 @@ class ItemListFragment : Fragment(){
         })
 
 
-//        itemListRVAdapter = ItemListRVAdapter(itemDatas) { position, isSelected ->
-//            val item = itemDatas[position]
-//            //item.isSelected = isSelected
-//
-//            // 선택된 아이템 수 업데이트
-//            if (isSelected) {
-//                selectedItemCount++
-//            } else{
-//                selectedItemCount--
-//            }
-//            isAllItemsSelected = selectedItemCount == itemDatas.size
-//
-//            binding.buyBtnTv.text = "구매하기 (${selectedItemCount})" //구매 버튼 내 선택된 아이템 수 UI 업데이트
-//
-//            binding.totalcheckCountTv.text = "전체 선택($selectedItemCount)" // 선택된 아이템 수 UI 업데이트
-//            toggleCheckIcon(binding.totalcheckIv, isAllItemsSelected)
-//            itemListRVAdapter.notifyItemChanged(position)
-//        }
-//        binding.storeWearingitemsRv.adapter = itemListRVAdapter
-/////////
-
         itemListRVAdapter = ItemListRVAdapter(itemDatas)
         binding.storeWearingitemsRv.adapter = itemListRVAdapter
         itemListRVAdapter.setMyItemClickListener(object : ItemListRVAdapter.MyItemClickListener {
@@ -127,11 +107,13 @@ class ItemListFragment : Fragment(){
                     clickedItem.isChecked = false
                     viewModel.removeCheckedListItemId(clickedItem.id)
                     selectedItemCount--
+                    selectedItemPowder -=clickedItem.price
                 } else {
                     // 새로운 아이템을 선택한 경우, 선택 추가
                     clickedItem.isChecked = true
                     viewModel.addCheckedListItemId(clickedItem.id)
                     selectedItemCount++
+                    selectedItemPowder +=clickedItem.price
                 }
                 Log.d("itemwishListChecked", "${viewModel._checkedListItemsList.value}")
 
@@ -139,6 +121,8 @@ class ItemListFragment : Fragment(){
                 binding.buyBtnTv.text = "구매하기 (${selectedItemCount})" //구매 버튼 내 선택된 아이템 수 UI 업데이트
 
                 binding.totalcheckCountTv.text = "전체 선택($selectedItemCount)" // 선택된 아이템 수 UI 업데이트
+                binding.stonepowderG.text = "${selectedItemPowder}g"
+
                 toggleCheckIcon(binding.totalcheckIv, isAllItemsSelected)
                 itemListRVAdapter.notifyDataSetChanged()
             }
@@ -149,13 +133,23 @@ class ItemListFragment : Fragment(){
             isAllItemsSelected = !isAllItemsSelected
             if (!isAllItemsSelected) {
                 selectedItemCount = 0 // 전체 선택 해제 시 선택된 아이템 수 초기화
+                selectedItemPowder = 0
             }
             // 전체 아이템 선택 상태 업데이트
-            itemDatas.forEach { it.isChecked = isAllItemsSelected }
+            itemDatas.forEach {
+                it.isChecked = isAllItemsSelected
+                if (isAllItemsSelected) {
+                    selectedItemPowder += it.price // 전체 선택 시 가격 누적
+                } else {
+                    selectedItemPowder = 0 // 전체 선택 해제 시 가격 초기화
+                }
+            }
 
             // 선택된 아이템 수 업데이트
             selectedItemCount = if (isAllItemsSelected) itemDatas.size else 0
             binding.totalcheckCountTv.text = "전체 선택($selectedItemCount)"
+            binding.buyBtnTv.text = "구매하기 (${selectedItemCount})" //구매 버튼 내 선택된 아이템 수 UI 업데이트
+            binding.stonepowderG.text = "${selectedItemPowder}g"
             toggleCheckIcon(binding.totalcheckIv, isAllItemsSelected)
 
             itemListRVAdapter.notifyDataSetChanged()// 아이템 어댑터에 변경사항 알림
