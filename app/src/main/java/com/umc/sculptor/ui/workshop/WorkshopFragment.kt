@@ -1,25 +1,32 @@
 package com.umc.sculptor.ui.workshop
 
 import android.util.Log
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
-import com.umc.sculptor.api.Data
-import com.umc.sculptor.api.getStones
+import com.umc.sculptor.data.model.remote.DataXXX
+import com.umc.sculptor.data.model.remote.getStones
 import com.umc.sculptor.apiManager.ServicePool.workshopService
 import com.umc.sculptor.base.BaseFragment
+import com.umc.sculptor.data.model.dto.FriendStoneViewModel
+import com.umc.sculptor.data.model.dto.WorkshopDetailViewModel
 import com.umc.sculptor.databinding.FragmentWorkshopBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Response
 
 class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_workshop) {
+    val viewModel: WorkshopDetailViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(WorkshopDetailViewModel::class.java)
+    }
+
     private  lateinit var tabLayout: TabLayout
     private lateinit var recyclerView: RecyclerView
 
-    private var itemDatas = ArrayList<Data>()
+    private var itemDatas = ArrayList<DataXXX>()
     private lateinit var boxAdapter: BoxAdapter
 
     var currentIndex : Int = 0
@@ -35,7 +42,7 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
     override fun initDataBinding() {
         super.initDataBinding()
 
-        var itemList : List<Data> =ArrayList<Data>()
+        var itemList : List<DataXXX> =ArrayList<DataXXX>()
 
         getList("")
 
@@ -46,7 +53,8 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
 
         // 아이템 클릭 리스너 설정
         boxAdapter.setOnItemClickListener(object : BoxAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(id: String) {
+                viewModel.id.value = id
                 navController.navigate(R.id.action_workshopFragment_to_detailWorkshopFragment)
             }
         })
@@ -91,6 +99,7 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
         })
 
 
+
     }
 
     private fun getList(category: String){
@@ -103,9 +112,9 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
 
         // 비동기적으로 요청 수행
         call.enqueue(object : retrofit2.Callback<getStones> {
-            override fun onResponse(call: retrofit2.Call<getStones> , response: Response<getStones>) {
+            override fun onResponse(call: retrofit2.Call<getStones>, response: Response<getStones>) {
                 if (response.isSuccessful) {
-                    val itemList = (response.body()?.data ?: ArrayList<Data>())
+                    val itemList = (response.body()?.data ?: ArrayList<DataXXX>())
                     boxAdapter.datalist= itemList
                     boxAdapter.notifyDataSetChanged()
                     Log.d("공방 서버",itemList.toString())
@@ -115,7 +124,7 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
                 }
             }
 
-            override fun onFailure(call: retrofit2.Call<getStones> , t: Throwable) {
+            override fun onFailure(call: retrofit2.Call<getStones>, t: Throwable) {
                 // 통신 실패 처리
                 Log.d("공방 서버",t.message.toString())
             }

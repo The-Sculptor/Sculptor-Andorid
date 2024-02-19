@@ -28,21 +28,28 @@ class MuseumProfileMeFragment : BaseFragment<FragmentMuseumProfileMeBinding>(R.l
 
     override fun initDataBinding() {
         super.initDataBinding()
-        /*val dumy : ArrayList<Sculptor> = ArrayList<Sculptor>()
-        dumy.add(Sculptor("D+66","조깅하기","2023.06.13",R.drawable.img_museum_sculptor))
-        dumy.add(Sculptor("D+33","아침먹기","2023.03.03",R.drawable.img_museum_sculptor))
-        dumy.add(Sculptor("D+12","일기쓰기","2023.10.20",R.drawable.img_museum_sculptor))*/
+
         var itemList : List<Stone> =ArrayList<Stone>()
         // 서버 통신 요청
-        val call: Call<Data> = ServicePool.museumService.getMuseum("JSESSIONID="+ LocalDataSource.getAccessToken().toString(), "48cc649d-74cf-4e1d-9bb6-0e1b36857c37")
+        val call: Call<Museum> = ServicePool.museumService.getMuseum("JSESSIONID="+ LocalDataSource.getAccessToken().toString(), LocalDataSource.getUserId().toString())
 
         // 비동기적으로 요청 수행
-        call.enqueue(object : Callback<Data> {
-            override fun onResponse(call: Call<Data>, response: Response<Data>) {
+        call.enqueue(object : Callback<Museum> {
+            override fun onResponse(call: Call<Museum>, response: Response<Museum>) {
                 if (response.isSuccessful) {
-                    itemList = response.body()?.stones?: ArrayList<Stone>()
-                    museumSculptorRVAdapter.sculptorList=itemList
+                    var itemList = response.body()?.data?.stones
+                    if (itemList != null) {
+                        museumSculptorRVAdapter.sculptorList=itemList
+                    }
                     museumSculptorRVAdapter.notifyDataSetChanged()
+                    val data=response.body()?.data
+                    if (data!=null){
+                        binding.museumSculptorNum.text=data.stoneCount.toString()
+                        binding.museumFollowNum.text=data.followerCount.toString()
+                        binding.museumFollowingNum.text=data.followingCount.toString()
+                        binding.museumIntroName.text=data.nickname
+                        binding.museumIntroText.text=data.introduction
+                    }
 
                     Log.d("박물관 서버",itemList.toString())
                 } else {
@@ -51,7 +58,7 @@ class MuseumProfileMeFragment : BaseFragment<FragmentMuseumProfileMeBinding>(R.l
                 }
             }
 
-            override fun onFailure(call: Call<Data>, t: Throwable) {
+            override fun onFailure(call: Call<Museum>, t: Throwable) {
                 // 통신 실패 처리
                 Log.d("박물관 서버",t.message.toString())
             }

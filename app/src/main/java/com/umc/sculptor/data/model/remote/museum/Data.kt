@@ -13,7 +13,7 @@ data class Data(
     @SerialName("id")
     val id: String,
     @SerialName("introduction")
-    val introduction: String,
+    val introduction: String?,
     @SerialName("isFollowing")
     val isFollowing: Boolean,
     @SerialName("isOwner")

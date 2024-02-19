@@ -11,5 +11,6 @@ data class ItemX(
     @SerialName("isPurchased")
     val isPurchased: Boolean,
     @SerialName("price")
-    val price: Int
+    val price: Int,
+    var isChecked:Boolean = false
 )

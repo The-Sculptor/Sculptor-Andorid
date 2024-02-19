@@ -43,16 +43,18 @@
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:src="@drawable/ellipse"
+                app:civ_border_width="2dp"
                 android:id="@+id/museum_edit_profile_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_museum_edit_profile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/museum_edit_text"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,6 +154,19 @@
                 tools:listitem="@layout/item_museum_edit_sculptor"
 
                 />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_complete"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:text="수정 완료"
+            android:textSize="16sp"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:gravity="center"
+            android:background="#908F90"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,23 +2,30 @@ package com.umc.sculptor.ui.store
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
-import com.umc.sculptor.data.model.remote.store.Stone
-import com.umc.sculptor.data.model.remote.store.WornItems
+import com.umc.sculptor.apiManager.ServicePool.storeService
+import com.umc.sculptor.data.model.remote.store.Basket
+import com.umc.sculptor.data.model.remote.store.ItemX
 import com.umc.sculptor.databinding.FragmentStoreItemWearinglistBinding
+import com.umc.sculptor.login.LocalDataSource
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ItemListFragment : Fragment(){
     lateinit var binding: FragmentStoreItemWearinglistBinding
-    private var itemDatas: List<WornItems> = emptyList()
+    private var itemDatas: List<ItemX> = emptyList()
     private lateinit var itemListRVAdapter: ItemListRVAdapter
     private lateinit var viewModel: StoreViewModel
 
@@ -31,6 +38,9 @@ class ItemListFragment : Fragment(){
         }
         imageView.setImageResource(newImage)
     }
+    fun List<String>?.toJsonString(): String {
+        return Gson().toJson(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,16 +52,43 @@ class ItemListFragment : Fragment(){
         (activity as MainActivity).hideBottomNav(true)
         (activity as MainActivity).hideIconAndShowBack(true)
 
-
-
-
         var isAllItemsSelected = false
         var selectedItemCount = 0
+
+
+        // ViewModel 초기화
+        viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
+
+        val itemIds = viewModel._selectedItemsList.value?: emptyList()
+        val call: Call<Basket> = storeService.getBasket("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(), itemIds)
+
+        call.enqueue(object : Callback<Basket> {
+            override fun onResponse(call: Call<Basket>, response: Response<Basket>) {
+                if (response.isSuccessful) {
+                    itemDatas = response.body()?.data?.items!!
+
+                    // itemDatas를 사용하여 아이템으로 처리
+                    itemListRVAdapter.itemList = itemDatas
+                    itemListRVAdapter.notifyDataSetChanged()
+                    Log.d("상점 서버", itemDatas.toString())
+                } else {
+                    // 서버 응답에 오류가 있을 경우 처리
+                    Log.d("상점 서버", "서버 응답 오류-${response.code()}")
+                }
+            }
+            override fun onFailure(call: Call<Basket>, t: Throwable) {
+                // 통신 실패 처리
+                Log.d("상점 서버 통신 실패 처리", t.message.toString())
+            }
+        })
+
+
+
+
 
         itemListRVAdapter = ItemListRVAdapter(itemDatas) { position, isSelected ->
             val item = itemDatas[position]
             //item.isSelected = isSelected
-
 
             // 선택된 아이템 수 업데이트
             if (isSelected) {
@@ -68,6 +105,7 @@ class ItemListFragment : Fragment(){
             itemListRVAdapter.notifyItemChanged(position)
         }
         binding.storeWearingitemsRv.adapter = itemListRVAdapter
+
 
 
         binding.totalcheckIv.setOnClickListener(){// 전체 선택 체크 버튼 처리

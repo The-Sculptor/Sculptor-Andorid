@@ -66,8 +66,10 @@ class Item_MyStatueFragment : Fragment() {
                     val item = itemDatas[i]
                     if (i == position) {
                         item.isSelected = true
+                        viewModel.updateSelectedStatue(item)
                     } else {
                         item.isSelected = false
+                        viewModel.updatereleasedStatue(item)
                     }
                 }
                 itemRVAdapter.notifyDataSetChanged()

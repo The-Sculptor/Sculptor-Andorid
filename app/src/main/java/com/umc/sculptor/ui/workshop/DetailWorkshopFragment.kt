@@ -5,14 +5,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
-import com.umc.sculptor.api.DataX
-import com.umc.sculptor.api.getOneStone
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
+import com.umc.sculptor.data.model.dto.WorkshopDetailViewModel
+import com.umc.sculptor.data.model.remote.Achieve
+import com.umc.sculptor.data.model.remote.DataX
+import com.umc.sculptor.data.model.remote.getAllAchieves
+import com.umc.sculptor.data.model.remote.getOneStone
 import com.umc.sculptor.databinding.FragmentDetailWorkshopBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call
@@ -21,6 +25,10 @@ import retrofit2.Response
 
 
 class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.layout.fragment_detail_workshop) {
+    val viewModel: WorkshopDetailViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(WorkshopDetailViewModel::class.java)
+    }
+
     private var itemDatas = ArrayList<Date>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var dateAdapter: DateAdapter
@@ -44,21 +52,20 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
     override fun initDataBinding() {
         super.initDataBinding()
 
-        var itemList: List<DataX> = ArrayList<DataX>()
+        var itemList: List<Achieve> = ArrayList<Achieve>()
 
         // 서버 통신 요청
         val call: Call<getOneStone> = ServicePool.workshopService.getOneStone(
-            contentType ="" ,
-            accessToken = "JSESSIONID="+LocalDataSource.getAccessToken().toString()
+            accessToken = "JSESSIONID="+LocalDataSource.getAccessToken().toString(),
+            stoneId = viewModel.id.value.toString()
         )
 
         // 비동기적으로 요청 수행
         call.enqueue(object : Callback<getOneStone> {
             override fun onResponse(call: Call<getOneStone> , response: Response<getOneStone>) {
                 if (response.isSuccessful) {
-                    val itemList = (response.body()?.data ?: ArrayList<DataX>())
-                    dateAdapter.datelist = itemList as ArrayList<DataX>
-                    dateAdapter.notifyDataSetChanged()
+                    val data = response.body()?.data
+                    binding.tvName.text = data?.stoneName
                     Log.d(" 공방 돌 하나 서버",itemList.toString())
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
@@ -69,6 +76,35 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             override fun onFailure(call: Call<getOneStone> , t: Throwable) {
                 // 통신 실패 처리
                 Log.d("홈 서버",t.message.toString())
+            }
+        })
+
+        // 서버 통신 요청
+
+        val call2: retrofit2.Call<getAllAchieves> = ServicePool.workshopService.getAllAchieves(
+            accessToken = "JSESSIONID="+ LocalDataSource.getAccessToken().toString(),
+            stoneId = viewModel.id.value.toString(),
+        )
+
+        call2.enqueue(object : Callback<getAllAchieves> {
+            override fun onResponse(call: Call<getAllAchieves>, response: Response<getAllAchieves>) {
+                if (response.isSuccessful) {
+                    val itemList = response.body()?.data?.achieves
+                    if (itemList != null) {
+                        dateAdapter.datelist = itemList
+                    }
+                    dateAdapter.notifyDataSetChanged()
+                    Log.d("공방 달성현황 서버",itemList.toString())
+
+                } else {
+                    // 서버에서 오류 응답을 받은 경우 처리
+                    Log.d("공방 달성현황 서버","서버통신 오류")
+                }
+            }
+
+            override fun onFailure(call: Call<getAllAchieves>, t: Throwable) {
+                // 통신 실패 처리
+                Log.d("공방 달성현황 서버",t.message.toString())
             }
         })
 

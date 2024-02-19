@@ -7,12 +7,20 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.umc.sculptor.data.model.remote.home.Data
+import com.umc.sculptor.data.model.remote.museum.StoneX
 import com.umc.sculptor.databinding.ItemMuseumEditSculptorBinding
 import com.umc.sculptor.databinding.ItemMuseumSculptorCommentBinding
 
-class MuseumEditRVAdapter(private val editList: ArrayList<Edit>):
+class MuseumEditRVAdapter(editList: ArrayList<StoneX>):
 
 RecyclerView.Adapter<MuseumEditRVAdapter.ViewHolder>() {
+
+    var editList: ArrayList<StoneX> = editList
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -26,6 +34,18 @@ RecyclerView.Adapter<MuseumEditRVAdapter.ViewHolder>() {
         )
     }
 
+    // 아이템 클릭 리스너 인터페이스
+    interface OnItemClickListener {
+        fun onItemClick(id: String)
+    }
+
+    private var onItemClickListener: OnItemClickListener? = null
+
+    // 클릭 리스너 설정 메서드
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.onItemClickListener = listener
+    }
+
     inner class ViewHolder(val binding: ItemMuseumEditSculptorBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val editDay = binding.editDayTxt
@@ -37,8 +57,8 @@ RecyclerView.Adapter<MuseumEditRVAdapter.ViewHolder>() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.editDay.text = editList[position].day
-        holder.editTitle.text = editList[position].title
+        holder.editDay.text = editList[position].dDay
+        holder.editTitle.text = editList[position].name
         var startX=0f
         holder.editLayout.setOnTouchListener { _, event ->
             when (event?.action) {
@@ -65,10 +85,14 @@ RecyclerView.Adapter<MuseumEditRVAdapter.ViewHolder>() {
 
         }
         holder.editDelete.setOnClickListener {
+            onItemClickListener?.onItemClick(editList[position].id)
+
             // 아이템 제거
             editList.removeAt(holder.adapterPosition)
             // 변경된 데이터를 Adapter에게 알림
             notifyItemRemoved(holder.adapterPosition)
+
+
         }
 
     }

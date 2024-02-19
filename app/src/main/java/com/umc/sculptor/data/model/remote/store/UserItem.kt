@@ -5,12 +5,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class StoneItemX(
+data class UserItem(
     @SerialName("itemId")
     val itemId: String,
     @SerialName("itemName")
     val itemName: String,
     @SerialName("itemPrice")
-    val itemPrice: Int,
-    var isSelected:Boolean = false
+    val itemPrice: Int
 )

@@ -1,4 +1,4 @@
-package com.umc.sculptor.api
+package com.umc.sculptor.data.model.remote
 
 
 import kotlinx.serialization.SerialName
@@ -9,7 +9,7 @@ data class getStones(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val `data`: List<Data>,
+    val `data`: List<DataXXX>,
     @SerialName("message")
     val message: String
 )

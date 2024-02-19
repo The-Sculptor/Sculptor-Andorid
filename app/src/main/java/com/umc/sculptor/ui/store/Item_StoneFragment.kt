@@ -38,6 +38,8 @@ class Item_StoneFragment: Fragment() {
             override fun onResponse(call: Call<StoreItems>, response: Response<StoreItems>) {
                 if (response.isSuccessful) {
                     itemDatas = response.body()?.data?.items!!
+
+
                     if (itemDatas != null) {
 
                         // itemDatas를 사용하여 아이템으로 처리
@@ -55,31 +57,47 @@ class Item_StoneFragment: Fragment() {
             }
 
             override fun onFailure(call: Call<StoreItems>, t: Throwable) {
-                TODO("Not yet implemented")
+                // 통신 실패 처리
+                Log.d("상점 서버",t.message.toString())
             }
         })
-
-
         stoneRVAdapter = StoneRVAdapter(itemDatas)
         binding.itemwearingRv.adapter = stoneRVAdapter
 
-
         stoneRVAdapter.setMyItemClickListener(object : StoneRVAdapter.MyItemClickListener {
             override fun onItemCLick(position: Int) {
-                for (i in itemDatas.indices) {
-                    val item = itemDatas[i]
-                    if (i == position) {
-                        item.isSelected = true
-                            //R.drawable.store_wearing_item_r_selected
-                        //viewModel.updateSelectedItem_item(item)
-                    } else {
-                        item.isSelected = false
-                    //item.backImg = R.drawable.store_wearingitem_r
-                    }
+                val clickedItem = itemDatas[position]
+
+                Log.d("itemitemitem", "${clickedItem.itemId}")
+                viewModel.addSelectedItemId(clickedItem.itemId)
+                if (clickedItem.isSelected) {
+                    // 이미 선택된 아이템을 다시 클릭한 경우, 선택 해제
+                    clickedItem.isSelected = false
+                    viewModel.removeSelectedItemId(clickedItem.itemId)
+                } else {
+                    // 새로운 아이템을 선택한 경우, 선택 추가
+                    clickedItem.isSelected = true
                 }
+                Log.d("itemswichList", "${viewModel._selectedItemsList.value}")
+
+// 현재 선택된 상태의 반대로 변경
+//                item.isSelected = !item.isSelected
+//
+//                // 업데이트 메소드 호출
+//                if (item.isSelected) {
+//                    viewModel.updateSelectedItem_item(item)
+//                    viewModel.addSelectedItem(item)
+//                } else {
+//                    viewModel.updatereleasedItem_item(item)
+//                    viewModel.removeSelectedItem(item)
+//                }
+//
+//                }
+
+
                 stoneRVAdapter.notifyDataSetChanged()
             }
-        })
+       })
 
         return binding.root
     }

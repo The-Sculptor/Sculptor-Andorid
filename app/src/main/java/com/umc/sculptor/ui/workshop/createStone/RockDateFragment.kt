@@ -57,7 +57,7 @@ class RockDateFragment : BaseFragment<FragmentCreateRockDateBinding>(R.layout.fr
             context?.let { it1 ->
                 DatePickerDialog(it1, { _, year, month, day ->
                     run {
-                        binding.etStoneDate.setText("시작일   |   "+year.toString() + "." + String.format("%02d", month + 1) + "." + day.toString())
+                        binding.etStoneDate.setText("시작일   |   "+year.toString() + "." + String.format("%02d", month + 1) + "." + String.format("%02d", day))
                     }
                 }, year, month, day)
             }?.show()
