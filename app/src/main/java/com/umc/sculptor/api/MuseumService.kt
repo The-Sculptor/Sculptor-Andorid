@@ -3,6 +3,7 @@ package com.capjjang.rightnow.api
 import com.umc.sculptor.data.model.dto.MuseumDetail
 import com.umc.sculptor.data.model.remote.login.LogoutDto
 import com.umc.sculptor.data.model.remote.museum.CommentLike
+import com.umc.sculptor.data.model.remote.museum.CommentLikeDto
 import com.umc.sculptor.data.model.remote.museum.Comments
 import com.umc.sculptor.data.model.remote.museum.EditProfileDto
 import com.umc.sculptor.data.model.remote.museum.EditReqeustDto
@@ -43,6 +44,6 @@ interface MuseumService {
     @GET("/museum/stones/{stoneId}/comments")
     fun getComments(@Header("Cookie") accessToken: String,@Path("stoneId") stoneId: String): Call<Comments>
 
-   /* @PATCH("/museum/comments{commentId}/like")
-    fun changeCommentLike(@Header("Cookie") accessToken: String,@Body like: CommentLike,@Path("commentId") commentId: String)*/
+    @PATCH("/museum/comments/{commentId}/like")
+    fun changeCommentLike(@Header("Cookie") accessToken: String,@Path("commentId") commentId: String) :Call<CommentLike>
 }

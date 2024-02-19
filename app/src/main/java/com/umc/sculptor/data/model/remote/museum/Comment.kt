@@ -11,7 +11,7 @@ data class Comment(
     @SerialName("id")
     val id: String,
     @SerialName("isLike")
-    val isLike: Boolean,
+    var isLike: Boolean,
     @SerialName("likeCount")
     val likeCount: Int,
     @SerialName("writeAt")
