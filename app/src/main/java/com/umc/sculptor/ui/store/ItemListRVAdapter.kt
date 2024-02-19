@@ -2,14 +2,19 @@ package com.umc.sculptor.ui.store
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
+import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.ItemX
-import com.umc.sculptor.data.model.remote.store.WornItems
 import com.umc.sculptor.databinding.StoreWearinglistItemBinding
 
-class ItemListRVAdapter(var itemList: List<ItemX>, private val onCheckChangeListener: (Int, Boolean) -> Unit) : RecyclerView.Adapter<ItemListRVAdapter.ViewHolder>() {
+class ItemListRVAdapter(itemList: List<ItemX>, private val onCheckChangeListener: (Int, Boolean) -> Unit) : RecyclerView.Adapter<ItemListRVAdapter.ViewHolder>() {
+
+    var itemList: List<ItemX> = itemList
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ItemListRVAdapter.ViewHolder {
         val binding = StoreWearinglistItemBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)

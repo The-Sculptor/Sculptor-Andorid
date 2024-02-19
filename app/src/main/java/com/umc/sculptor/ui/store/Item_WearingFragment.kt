@@ -34,6 +34,7 @@ class Item_WearingFragment: Fragment() {
         binding = FragmentItemwearingBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
+        itemDatas = emptyList()
 
         val call: Call<WornItems> = ServicePool.storeService.getWornItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString())
 
@@ -62,11 +63,6 @@ class Item_WearingFragment: Fragment() {
                 Log.d("상점 서버 통신 실패 처리", t.message.toString())
             }
         })
-
-
-
-
-
 
 
         itemWearingRVAdapter = ItemWearingRVAdapter(itemDatas)
