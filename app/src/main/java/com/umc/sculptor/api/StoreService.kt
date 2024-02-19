@@ -40,7 +40,6 @@ interface StoreService {
     @POST("/store/stones/{stoneId}/basket")//구매할 아이템 조회
     fun getBasket(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Body requestBody: RequestBody): Call<Basket>
 
-//@Query("itemIds") itemIds: List<String>
     @GET("/store/users/items")//구매한 아이템 조회
     fun getPurchasedItems(@Header("Cookie") accessToken: String): Call<PurchasedItems>
 

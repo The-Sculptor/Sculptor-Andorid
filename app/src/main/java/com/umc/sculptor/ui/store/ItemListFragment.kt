@@ -94,29 +94,55 @@ class ItemListFragment : Fragment(){
         })
 
 
+//        itemListRVAdapter = ItemListRVAdapter(itemDatas) { position, isSelected ->
+//            val item = itemDatas[position]
+//            //item.isSelected = isSelected
+//
+//            // 선택된 아이템 수 업데이트
+//            if (isSelected) {
+//                selectedItemCount++
+//            } else{
+//                selectedItemCount--
+//            }
+//            isAllItemsSelected = selectedItemCount == itemDatas.size
+//
+//            binding.buyBtnTv.text = "구매하기 (${selectedItemCount})" //구매 버튼 내 선택된 아이템 수 UI 업데이트
+//
+//            binding.totalcheckCountTv.text = "전체 선택($selectedItemCount)" // 선택된 아이템 수 UI 업데이트
+//            toggleCheckIcon(binding.totalcheckIv, isAllItemsSelected)
+//            itemListRVAdapter.notifyItemChanged(position)
+//        }
+//        binding.storeWearingitemsRv.adapter = itemListRVAdapter
+/////////
 
-
-
-        itemListRVAdapter = ItemListRVAdapter(itemDatas) { position, isSelected ->
-            val item = itemDatas[position]
-            //item.isSelected = isSelected
-
-            // 선택된 아이템 수 업데이트
-            if (isSelected) {
-                selectedItemCount++
-            } else{
-                selectedItemCount--
-            }
-            isAllItemsSelected = selectedItemCount == itemDatas.size
-
-            binding.buyBtnTv.text = "구매하기 (${selectedItemCount})" //구매 버튼 내 선택된 아이템 수 UI 업데이트
-
-            binding.totalcheckCountTv.text = "전체 선택($selectedItemCount)" // 선택된 아이템 수 UI 업데이트
-            toggleCheckIcon(binding.totalcheckIv, isAllItemsSelected)
-            itemListRVAdapter.notifyItemChanged(position)
-        }
+        itemListRVAdapter = ItemListRVAdapter(itemDatas)
         binding.storeWearingitemsRv.adapter = itemListRVAdapter
+        itemListRVAdapter.setMyItemClickListener(object : ItemListRVAdapter.MyItemClickListener {
+            override fun onItemCLick(position: Int) {
+                val clickedItem = itemDatas[position]
 
+                Log.d("listitemitemitem", "${clickedItem.id}")
+                if (clickedItem.isChecked) {
+                    // 이미 선택된 아이템을 다시 클릭한 경우, 선택 해제
+                    clickedItem.isChecked = false
+                    viewModel.removeCheckedListItemId(clickedItem.id)
+                    selectedItemCount--
+                } else {
+                    // 새로운 아이템을 선택한 경우, 선택 추가
+                    clickedItem.isChecked = true
+                    viewModel.addCheckedListItemId(clickedItem.id)
+                    selectedItemCount++
+                }
+                Log.d("itemwishListChecked", "${viewModel._checkedListItemsList.value}")
+
+                isAllItemsSelected = selectedItemCount == itemDatas.size
+                binding.buyBtnTv.text = "구매하기 (${selectedItemCount})" //구매 버튼 내 선택된 아이템 수 UI 업데이트
+
+                binding.totalcheckCountTv.text = "전체 선택($selectedItemCount)" // 선택된 아이템 수 UI 업데이트
+                toggleCheckIcon(binding.totalcheckIv, isAllItemsSelected)
+                itemListRVAdapter.notifyDataSetChanged()
+            }
+        })
 
 
         binding.totalcheckIv.setOnClickListener(){// 전체 선택 체크 버튼 처리
@@ -125,7 +151,7 @@ class ItemListFragment : Fragment(){
                 selectedItemCount = 0 // 전체 선택 해제 시 선택된 아이템 수 초기화
             }
             // 전체 아이템 선택 상태 업데이트
-            //itemDatas.forEach { it.isSelected = isAllItemsSelected }
+            itemDatas.forEach { it.isChecked = isAllItemsSelected }
 
             // 선택된 아이템 수 업데이트
             selectedItemCount = if (isAllItemsSelected) itemDatas.size else 0
@@ -134,7 +160,6 @@ class ItemListFragment : Fragment(){
 
             itemListRVAdapter.notifyDataSetChanged()// 아이템 어댑터에 변경사항 알림
         }
-
 
 
 
