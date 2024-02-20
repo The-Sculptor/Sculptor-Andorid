@@ -4,6 +4,7 @@ import com.umc.sculptor.data.model.dto.MuseumDetail
 import com.umc.sculptor.data.model.remote.login.LogoutDto
 import com.umc.sculptor.data.model.remote.museum.CommentLike
 import com.umc.sculptor.data.model.remote.museum.CommentLikeDto
+import com.umc.sculptor.data.model.remote.museum.CommentResponse
 import com.umc.sculptor.data.model.remote.museum.Comments
 import com.umc.sculptor.data.model.remote.museum.EditProfileDto
 import com.umc.sculptor.data.model.remote.museum.EditReqeustDto
@@ -17,6 +18,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.PATCH
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 
@@ -50,4 +52,7 @@ interface MuseumService {
 
     @PATCH("/museum/comments/{commentId}/like")
     fun changeCommentLike(@Header("Cookie") accessToken: String,@Path("commentId") commentId: String) :Call<CommentLike>
+
+    @POST("/museum/stones/{stoneId}/comments")
+    fun comment(@Header("Cookie") accessToken: String,@Path("stoneId") commentId: String, @Body content : String) :Call<CommentResponse>
 }

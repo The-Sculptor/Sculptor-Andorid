@@ -82,7 +82,7 @@ class CreateConfirmDialog : BaseDialogFragment<DialogCreateConfirmBinding>(R.lay
                     }
                 })
                 dismiss()
-                navController.navigate(R.id.action_rockCompleteFragment_to_homeFragment)
+                navController.navigate(R.id.action_rockCompleteFragment_to_workshopFragment)
             }
         }
 

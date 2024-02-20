@@ -142,6 +142,9 @@
         <action
             android:id="@+id/action_rockCompleteFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_rockCompleteFragment_to_workshopFragment"
+            app:destination="@id/workshopFragment" />
     </fragment>
     <fragment
         android:id="@+id/rockNameFragment"

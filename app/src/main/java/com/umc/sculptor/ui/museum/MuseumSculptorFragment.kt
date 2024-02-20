@@ -1,7 +1,11 @@
 package com.umc.sculptor.ui.museum
 
+import android.annotation.SuppressLint
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.sculptor.MainActivity
@@ -12,6 +16,7 @@ import com.umc.sculptor.data.model.dto.MuseumDetail
 import com.umc.sculptor.data.model.dto.MuseumDetailViewModel
 import com.umc.sculptor.data.model.remote.home.MyRepresentStone
 import com.umc.sculptor.data.model.remote.museum.Comment
+import com.umc.sculptor.data.model.remote.museum.CommentResponse
 import com.umc.sculptor.data.model.remote.museum.Comments
 import com.umc.sculptor.data.model.remote.museum.RepresentResponseDto
 import com.umc.sculptor.databinding.FragmentMuseumSculptorBinding
@@ -30,6 +35,7 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
     }
 
     private var isPresent : Boolean = false
+    private var canComment : Boolean = false
 
 
     override fun initStartView() {
@@ -40,6 +46,28 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
 
     override fun initDataBinding() {
         super.initDataBinding()
+
+        binding.addComment.etCommet.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // 텍스트 변화가 시작될 때
+            }
+
+            @SuppressLint("ResourceAsColor")
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // 텍스트에 변화가 있을 때
+                if (!binding.addComment.etCommet.text.isNullOrEmpty()) {
+                    canComment = true
+                    binding.addComment.upload.setImageResource(R.drawable.comment_upload)
+                } else {
+                    canComment = false
+                    binding.addComment.upload.setImageResource(R.drawable.upload_not)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // 텍스트 변화가 끝났을 때
+            }
+        })
 
         val call: Call<MuseumDetail> = ServicePool.museumService.getMuseumDetail(
             accessToken = "JSESSIONID="+LocalDataSource.getAccessToken().toString(),
@@ -166,6 +194,47 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
             binding.museumSculptorInclude2.root.visibility = View.GONE
             binding.museumSculptorInclude.root.visibility = View.VISIBLE
         }
+
+        binding.museumNewComment.setOnClickListener {
+            binding.addComment.root.visibility = View.VISIBLE
+        }
+
+        binding.addComment.cancel.setOnClickListener {
+            binding.addComment.root.visibility = View.GONE
+        }
+
+        binding.addComment.upload.setOnClickListener {
+            if(canComment){
+                // 서버 통신 요청
+                val presentStoneCall: Call<CommentResponse> = ServicePool.museumService.comment(
+                    "JSESSIONID="+LocalDataSource.getAccessToken().toString(),
+                    viewModel.stoneid.value.toString(),
+                    binding.addComment.etCommet.text.toString())
+
+                // 비동기적으로 요청 수행
+                presentStoneCall.enqueue(object : Callback<CommentResponse> {
+                    override fun onResponse(call: Call<CommentResponse>, response: Response<CommentResponse>) {
+                        if (response.isSuccessful) {
+                            Log.d("박물관 comment 서버", response.body().toString())
+                            binding.addComment.root.visibility = View.GONE
+                            canComment = false
+                            getComment()
+                        } else {
+                            // 서버에서 오류 응답을 받은 경우 처리
+                            Log.d("박물관 comment 서버","서버통신 오류")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<CommentResponse>, t: Throwable) {
+                        // 통신 실패 처리
+                        Log.d("박물관 comment 서버",t.message.toString())
+                    }
+                })
+            }
+        }
+
+
+
         binding.museumSculptorInclude.star.setOnClickListener {
             if(!isPresent){
                 // 서버 통신 요청
@@ -195,6 +264,32 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
 
     }
 
+    fun getComment(){
+        var itemList : List<Comment> =ArrayList<Comment>()
+        // 서버 통신 요청
+        val call2: Call<Comments> = ServicePool.museumService.getComments("JSESSIONID="+ LocalDataSource.getAccessToken().toString(), viewModel.stoneid.value.toString())
+        call2.enqueue(object : Callback<Comments> {
+            override fun onResponse(call: Call<Comments>, response: Response<Comments>) {
+                if (response.isSuccessful) {
+                    var itemList = response.body()?.data?.comments
+                    if (itemList != null) {
+                        museumCommentRVAdapter.commentList=itemList
+                    }
+                    museumCommentRVAdapter.notifyDataSetChanged()
+
+                    Log.d("박물관 서버2",itemList.toString())
+                } else {
+                    // 서버에서 오류 응답을 받은 경우 처리
+                    Log.d("박물관 서버","서버통신 오류")
+                }
+            }
+
+            override fun onFailure(call: Call<Comments>, t: Throwable) {
+                // 통신 실패 처리
+                Log.d("박물관 서버",t.message.toString())
+            }
+        })
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         (activity as MainActivity).hideIconAndShowBack(false)

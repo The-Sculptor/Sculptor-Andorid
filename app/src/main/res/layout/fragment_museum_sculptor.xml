@@ -62,7 +62,7 @@
                 android:layout_width="311dp"
                 android:layout_height="56dp"
                 android:src="@drawable/museum_dark_gray_rectangle"
-                app:layout_constraintTop_toBottomOf="@+id/museum_sculptor_comment_rv"
+                app:layout_constraintTop_toBottomOf="@+id/add_comment"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -214,13 +214,23 @@
             <include
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:id="@+id/museum_sculptor_include2"
                 android:visibility="gone"
                 layout="@layout/item_museum_sculptor_include2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/museum_start_day_string_input" />
+
+            <include
+                android:layout_width="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_height="272dp"
+                android:visibility="gone"
+                android:id="@+id/add_comment"
+                app:layout_constraintTop_toBottomOf="@id/museum_sculptor_comment_rv"
+                app:layout_constraintStart_toStartOf="@id/museum_sculptor_comment_rv"
+                app:layout_constraintEnd_toEndOf="@id/museum_sculptor_comment_rv"
+                layout="@layout/item_add_comment"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

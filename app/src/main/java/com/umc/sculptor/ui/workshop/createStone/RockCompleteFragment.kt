@@ -43,7 +43,10 @@ class RockCompleteFragment : BaseFragment<FragmentCreateRockCompleteBinding>(R.l
         binding.tvStoneGoal.text = "목표  |  "+ (viewModel.getNewStone().value?.goal ?: "")
         binding.tvStoneDate.text = "시작일  |  "+ (viewModel.getNewStone().value?.start_date?.substring(0, 10) ?: "")
         binding.tvStoneName.text = viewModel.getNewStone().value?.name ?: ""
-        binding.tvDDay.text = "D"+viewModel.getNewStone().value?.dday
+        if(viewModel.getNewStone().value?.dday?.get(0) == '-')
+            binding.tvDDay.text = "D"+viewModel.getNewStone().value?.dday
+        else
+            binding.tvDDay.text = "D+"+viewModel.getNewStone().value?.dday
 
         when(viewModel.getNewStone().value?.category){
             Category.WORKOUT ->{

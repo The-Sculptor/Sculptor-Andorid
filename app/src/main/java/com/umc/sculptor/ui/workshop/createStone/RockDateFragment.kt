@@ -93,7 +93,7 @@ class RockDateFragment : BaseFragment<FragmentCreateRockDateBinding>(R.layout.fr
 
                         // 두 날짜 간의 차이 계산
                         var daysUntilSpecificDate = ChronoUnit.DAYS.between(currentDate, specificDate)
-                        daysUntilSpecificDate = 65 +daysUntilSpecificDate
+                        daysUntilSpecificDate = 66 +daysUntilSpecificDate
                         daysUntilSpecificDate = -daysUntilSpecificDate
 
                         viewModel.setDDay(daysUntilSpecificDate.toString())
