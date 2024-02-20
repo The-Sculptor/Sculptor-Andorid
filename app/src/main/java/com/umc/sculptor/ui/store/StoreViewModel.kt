@@ -10,7 +10,7 @@ import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.data.model.remote.store.StoneItem
 
 class StoreViewModel : ViewModel() {
-    private val _selectedStatue = MutableLiveData<Stone>()// 선택된 아이템을 저장_ LiveData
+    var _selectedStatue = MutableLiveData<Stone>()// 선택된 아이템을 저장_ LiveData
     private val _selectedItem = MutableLiveData<Item>()
     private val _checkedListItem = MutableLiveData<ItemX>()
     private var _wornItem = MutableLiveData<StoneItem>()//착용중인 아이템

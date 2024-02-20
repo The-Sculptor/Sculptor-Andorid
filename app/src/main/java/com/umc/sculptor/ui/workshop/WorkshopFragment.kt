@@ -37,6 +37,9 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
         super.initStartView()
         (activity as MainActivity).hideBottomNav(false)
         (activity as MainActivity).hideIconAndShowBack(false)
+
+
+        getList("")
     }
 
     override fun initDataBinding() {
@@ -44,7 +47,6 @@ class WorkshopFragment: BaseFragment<FragmentWorkshopBinding>(R.layout.fragment_
 
         var itemList : List<DataXXX> =ArrayList<DataXXX>()
 
-        getList("")
 
         boxAdapter =  BoxAdapter(itemList)
         binding.recyclerview.adapter = boxAdapter

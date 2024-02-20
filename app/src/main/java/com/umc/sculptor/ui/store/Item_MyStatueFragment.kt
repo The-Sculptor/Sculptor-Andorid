@@ -37,6 +37,7 @@ class Item_MyStatueFragment : Fragment() {
                     itemDatas = response.body()?.data?.stones!!
                     if (itemDatas != null) {
 
+                        viewModel._selectedStatue.value = itemDatas.get(0)
                         // itemDatas를 사용하여 아이템으로 처리
                         itemRVAdapter.itemList = itemDatas
                         itemRVAdapter.notifyDataSetChanged()
