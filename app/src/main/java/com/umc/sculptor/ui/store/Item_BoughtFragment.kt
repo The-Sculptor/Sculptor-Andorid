@@ -13,6 +13,7 @@ import com.umc.sculptor.data.model.remote.store.UpdateWornItems
 import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.ItemXXX
 import com.umc.sculptor.data.model.remote.store.PurChasedItemsDto
+import com.umc.sculptor.data.model.remote.store.StoneItem
 import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.databinding.FragmentItemboughtBinding
 import com.umc.sculptor.login.LocalDataSource
@@ -85,11 +86,11 @@ class Item_BoughtFragment: Fragment() {
                     override fun onResponse(call: Call<UpdateWornItems>, response: Response<UpdateWornItems>) {
                         if (response.isSuccessful) {
                             Log.d("상점 아이템 착용 서버", response.toString())
-                            val updatedData = response.body()?.data?.stoneItems
+                            val updatedData = response.body()?.data
                             if (updatedData != null) {
                                 
-                                val firstUpdatedItem = updatedData.first() // 첫 번째 아이템을 가져옴
-                                viewModel.updateWornItem(firstUpdatedItem)
+                                val firstUpdatedItem = updatedData.typeId
+                                viewModel.updateWornItem(StoneItem(true, firstUpdatedItem))
 
                                 itemBoughtRVAdapter.notifyDataSetChanged()
 
@@ -169,11 +170,11 @@ class Item_BoughtFragment: Fragment() {
                     override fun onResponse(call: Call<UpdateWornItems>, response: Response<UpdateWornItems>) {
                         if (response.isSuccessful) {
                             Log.d("상점 아이템 착용 서버", response.toString())
-                            val updatedData = response.body()?.data?.stoneItems
+                            val updatedData = response.body()?.data
                             if (updatedData != null) {
 
-                                val firstUpdatedItem = updatedData.first() // 첫 번째 아이템을 가져옴
-                                viewModel.updateWornItem(firstUpdatedItem)
+                                val firstUpdatedItem = updatedData.typeId
+                                viewModel.updateWornItem(StoneItem(true, firstUpdatedItem))
 
                                 itemBoughtRVAdapter.notifyDataSetChanged()
 

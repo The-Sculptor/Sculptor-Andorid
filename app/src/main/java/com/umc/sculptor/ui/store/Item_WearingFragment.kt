@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.umc.sculptor.apiManager.ServicePool
+import com.umc.sculptor.data.model.remote.store.DataXXXX
 import com.umc.sculptor.data.model.remote.store.StoneItemX
 import com.umc.sculptor.data.model.remote.store.WornItems
 import com.umc.sculptor.databinding.FragmentItemwearingBinding
@@ -18,7 +19,7 @@ import retrofit2.Response
 
 class Item_WearingFragment: Fragment() {
     lateinit var binding: FragmentItemwearingBinding
-    private var itemDatas:List<StoneItemX> = emptyList()
+    private var itemDatas:ArrayList<DataXXXX> = ArrayList()
     private lateinit var itemWearingRVAdapter: ItemWearingRVAdapter
 
     private lateinit var viewModel: StoreViewModel
@@ -31,30 +32,24 @@ class Item_WearingFragment: Fragment() {
         binding = FragmentItemwearingBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
-        itemDatas = emptyList()
-
         val call: Call<WornItems> = ServicePool.storeService.getWornItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString())
 
         call.enqueue(object : Callback<WornItems> {
             override fun onResponse(call: Call<WornItems>, response: Response<WornItems>) {
                 if (response.isSuccessful) {
-                    itemDatas = response.body()?.data?.items!!
-                    if (itemDatas != null) {
 
-                        // itemDatas를 사용하여 아이템으로 처리
-                        itemWearingRVAdapter.itemList = itemDatas
-                        itemWearingRVAdapter.notifyDataSetChanged()
-                        Log.d("상점 서버", itemDatas.toString())
-                    } else {
-                        Log.d("상점 서버", response.body().toString())
-                        // 서버 응답에 오류가 있을 경우 처리
-                        Log.d("상점 서버", "서버 응답 오류")
-                    }
+                    response.body()?.data?.let { itemDatas.add(it) }
+                    // itemDatas를 사용하여 아이템으로 처리
+                    itemWearingRVAdapter.itemList = itemDatas
+                    itemWearingRVAdapter.notifyDataSetChanged()
+                    Log.d("상점 서버", itemDatas.toString())
+
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
                     Log.d("상점 서버", "서버 통신 오류")
                 }
             }
+
 
             override fun onFailure(call: Call<WornItems>, t: Throwable) {
                 // 통신 실패 처리
@@ -65,6 +60,7 @@ class Item_WearingFragment: Fragment() {
 
         itemWearingRVAdapter = ItemWearingRVAdapter(itemDatas)
         binding.itemwearingRv.adapter = itemWearingRVAdapter
+
 
 
         itemWearingRVAdapter.setMyItemClickListener(object : ItemWearingRVAdapter.MyItemClickListener {
@@ -90,29 +86,26 @@ class Item_WearingFragment: Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
-        itemDatas = emptyList()
+        itemDatas = ArrayList<DataXXXX>()
 
         val call: Call<WornItems> = ServicePool.storeService.getWornItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString())
 
         call.enqueue(object : Callback<WornItems> {
             override fun onResponse(call: Call<WornItems>, response: Response<WornItems>) {
                 if (response.isSuccessful) {
-                    itemDatas = response.body()?.data?.items!!
-                    if (itemDatas != null) {
 
-                        // itemDatas를 사용하여 아이템으로 처리
-                        itemWearingRVAdapter.itemList = itemDatas
-                        itemWearingRVAdapter.notifyDataSetChanged()
-                        Log.d("상점 서버", itemDatas.toString())
-                    } else {
-                        // 서버 응답에 오류가 있을 경우 처리
-                        Log.d("상점 서버", "서버 응답 오류")
-                    }
+                    response.body()?.data?.let { itemDatas.add(it) }
+                    // itemDatas를 사용하여 아이템으로 처리
+                    itemWearingRVAdapter.itemList = itemDatas
+                    itemWearingRVAdapter.notifyDataSetChanged()
+                    Log.d("상점 서버", itemDatas.toString())
+
                 } else {
                     // 서버에서 오류 응답을 받은 경우 처리
                     Log.d("상점 서버", "서버 통신 오류")
                 }
             }
+
 
             override fun onFailure(call: Call<WornItems>, t: Throwable) {
                 // 통신 실패 처리
