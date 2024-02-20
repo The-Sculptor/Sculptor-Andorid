@@ -75,13 +75,17 @@ class Item_BoughtFragment: Fragment() {
             override fun onItemCLick(position: Int) {
                 val clickedItemId = itemDatas[position].itemId
 
-                val call: Call<UpdateWornItems> = ServicePool.storeService.updateWornItem("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(),clickedItemId)
+                val call: Call<UpdateWornItems> = ServicePool.storeService.updateWornItem("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(), clickedItemId)
 
                 call.enqueue(object : Callback<UpdateWornItems> {
                     override fun onResponse(call: Call<UpdateWornItems>, response: Response<UpdateWornItems>) {
                         if (response.isSuccessful) {
+                            Log.d("상점 아이템 착용 서버", response.toString())
                             val updatedData = response.body()?.data?.stoneItems
                             if (updatedData != null) {
+                                
+                                val firstUpdatedItem = updatedData.first() // 첫 번째 아이템을 가져옴
+                                viewModel.updateWornItem(firstUpdatedItem)
 
                                 itemBoughtRVAdapter.notifyDataSetChanged()
 

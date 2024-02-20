@@ -64,8 +64,6 @@ class StoneRVAdapter(userItemList: List<UserItem>): RecyclerView.Adapter<StoneRV
             }
             binding.howmuchTv.setText("${userItem.itemPrice}")
             userItem.isSelected = false
-
-            //binding.howmuchTv.isInvisible
         }
     }
 }
