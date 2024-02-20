@@ -30,7 +30,7 @@ interface StoreService {
     fun getMoney(@Header("Cookie") accessToken: String): Call<UserMoney>
 
 
-    @PATCH("/store/stones/{stoneId}/type?id=")//물건 착용
+    @PATCH("/store/stones/{stoneId}/type")//물건 착용
     fun updateWornItem(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Query("id") itemid: String): Call<UpdateWornItems>
 
 

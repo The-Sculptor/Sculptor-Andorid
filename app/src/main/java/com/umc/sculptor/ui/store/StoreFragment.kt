@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
@@ -136,28 +137,55 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
         onSaveBtn()
 
-        val sharedViewPager = binding.ItemsContentVp
+        val viewPager1 = binding.ItemsContentVp
+        val viewPager2 = binding.ItemsContentVp22
 
         val storeTabAdapter = StorePagerAdapter(this)
         val storeTabAdapter2 = StorePagerAdapter2(this)
 
-//        sharedViewPager.adapter = storeTabAdapter
-//        // TabLayout1 설정
-//        TabLayoutMediator(binding.tabLayout1, sharedViewPager) { tab, position ->
-//            tab.text = information1[position]
-//            Log.d("tab", "${tab.text}")
-//        }.attach()
+        viewPager1.adapter = storeTabAdapter
+        // TabLayout1 설정
+        TabLayoutMediator(binding.tabLayout1, viewPager1) { tab, position ->
+            tab.text = information1[position]
+            Log.d("tab", "${tab.text}")
+        }.attach()
 
-        sharedViewPager.adapter = storeTabAdapter2
+        //22
+        viewPager2.adapter = storeTabAdapter2
         // TabLayout2 설정
-        TabLayoutMediator(binding.tabLayout2, sharedViewPager) { tab, position ->
+        TabLayoutMediator(binding.tabLayout2, viewPager2) { tab, position ->
             tab.text = information2[position]
             Log.d("tab", "${tab.text}")
         }.attach()
 
 //탭레이아웃전환 수정필요...
 
+// 탭 클릭에 따라서 ViewPager2의 가시성 조절
+        binding.tabLayout1.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                binding.ItemsContentVp.visibility = View.VISIBLE
+                binding.ItemsContentVp22.visibility = View.INVISIBLE
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                // 다른 탭이 선택되면 아무 작업 없음
+            }
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                // 다시 선택되면 아무 작업 없음
+            }
+        })
 
+        binding.tabLayout2.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                binding.ItemsContentVp.visibility = View.INVISIBLE
+                binding.ItemsContentVp22.visibility = View.VISIBLE
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                // 다른 탭이 선택되면 아무 작업 없음
+            }
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                // 다시 선택되면 아무 작업 없음
+            }
+        })
 
         binding.btnBeforeIv.setOnClickListener(){
             Log.d("BeforeBtn", "clicked")
@@ -176,8 +204,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
 
-        viewModel.selectedStatue.observe(viewLifecycleOwner, Observer { selectedStatue ->
-           binding.statueIv.setImageResource(changeImg(selectedStatue)) // 선택된 아이템의 이미지를 statueiv에 설정
+        viewModel.selectedStatue.observe(viewLifecycleOwner, Observer { selectedStatue -> binding.statueIv.setImageResource(changeImg(selectedStatue)) // 선택된 아이템의 이미지를 statueiv에 설정
 
         })
 
