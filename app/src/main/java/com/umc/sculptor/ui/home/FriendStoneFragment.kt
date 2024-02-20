@@ -55,11 +55,27 @@ class FriendStoneFragment : BaseFragment<FragmentHomeFriendStoneBinding>(R.layou
                             binding.btnFollowing.setBackgroundResource(R.drawable.btn_follow)
                         }
                         binding.tvNickname.text = data.nickname
-                        binding.tvDDay.text = data.stone.dDay
-                        binding.tvAchievementRate.text = data.stone.achievementRate.toString()+"%"
-                        binding.tvStatueName.text = data.stone.name
-                        binding.tvGoal.text=data.stone.goal
-                        binding.tvGoalDate.text = data.stone.startDate
+
+                        if (data.stone == null){
+                            binding.line.visibility=View.INVISIBLE
+                            binding.ivStatue.visibility = View.INVISIBLE
+                            binding.appCompatTextView.visibility = View.INVISIBLE
+                            binding.tvDdayExplain.visibility = View.INVISIBLE
+                            binding.tvDDay.visibility = View.INVISIBLE
+                            binding.tvAchievementRate.visibility = View.INVISIBLE
+                            binding.tvStatueName.visibility = View.INVISIBLE
+                            binding.tvGoal.visibility = View.INVISIBLE
+                            binding.tvGoalDate.visibility = View.INVISIBLE
+                            binding.notStone.visibility = View.VISIBLE
+
+                        }else{
+                            binding.tvDDay.text = data.stone.dDay
+                            binding.tvAchievementRate.text = data.stone.achievementRate.toString()+"%"
+                            binding.tvStatueName.text = data.stone.name
+                            binding.tvGoal.text=data.stone.goal
+                            binding.tvGoalDate.text = data.stone.startDate
+                            }
+
 
                     }
                     Log.d("친구 돌 서버",response.body()?.data.toString())

@@ -15,5 +15,5 @@ data class Data(
     @SerialName("profileImage")
     val profileImage: String,
     @SerialName("stone")
-    val stone: Stone
+    val stone: Stone?
 )

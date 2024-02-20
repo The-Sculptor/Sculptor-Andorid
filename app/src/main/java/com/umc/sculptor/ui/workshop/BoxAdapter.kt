@@ -68,7 +68,7 @@ class BoxAdapter(itemList: List<DataXXX>) :
         if (selectedCategory.isEmpty() || currentItem.category == selectedCategory){
             holder.ddayTextView.text = datalist[position].dday
             holder.startDateTextView.text = datalist[position].startDate.take(10)
-            holder.stoneGoalTextView.text =datalist[position].stoneGoal
+            holder.stoneGoalTextView.text =datalist[position].stoneName
 
             val context = holder.itemView.context
             val backgroundColorSpan: Int

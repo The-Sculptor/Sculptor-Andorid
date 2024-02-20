@@ -131,6 +131,21 @@
                 app:layout_constraintBottom_toBottomOf="@id/layout_friend_stone"/>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/not_stone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="친구의 대표 조각상이 없습니다."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/gray_6C6C6C"
+                android:visibility="invisible"
+                android:textSize="18sp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_statue_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
