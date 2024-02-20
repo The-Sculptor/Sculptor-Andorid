@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.data.model.remote.store.UpdateWornItems
+import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.databinding.FragmentItemboughtBinding
 import com.umc.sculptor.login.LocalDataSource

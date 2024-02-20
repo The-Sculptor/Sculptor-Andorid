@@ -16,10 +16,11 @@ import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool.storeService
 import com.umc.sculptor.base.BaseFragment
-import com.umc.sculptor.data.model.remote.store.UserItem
+import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.ItemX
 import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.data.model.remote.store.Stone
+import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.data.model.remote.store.UserMoney
 import com.umc.sculptor.databinding.FragmentStoreBinding
 import com.umc.sculptor.login.LocalDataSource
@@ -40,7 +41,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
     // StoreFragment에서 사용할 인터페이스
     interface OnItemSelectListener {
-        fun onItemSelected(userItem: UserItem)
+        fun onItemSelected(item: Item)
     }
 
 
@@ -208,7 +209,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
         })
 
-        viewModel.selectedUserItem.observe(viewLifecycleOwner, Observer { selectedItem ->
+        viewModel.selectedItem.observe(viewLifecycleOwner, Observer { selectedItem ->
             Log.d("Observer", "selectedItem observed: $selectedItem")
 
             var itemIdToCheck = selectedItem.itemId
