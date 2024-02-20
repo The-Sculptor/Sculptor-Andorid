@@ -57,24 +57,31 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
                             "WORKOUT" -> {
                                 binding.imgCategory.setImageResource(R.drawable.img_exercise_icon)
                                 binding.museumCategoryText.text="운동"
+                                binding.museumSculptorInclude.museumSculptorImg.setImageResource(R.drawable.stone_workoutimg)
                             }
                             "STUDY" -> {
                                 binding.imgCategory.setImageResource(R.drawable.img_study_icon)
+                                binding.museumSculptorInclude.museumSculptorImg.setImageResource(R.drawable.stone_studyimg)
                                 binding.museumCategoryText.text="공부"
                             }
                             "DAILY" -> {
                                 binding.imgCategory.setImageResource(R.drawable.img_routine_icon)
+                                binding.museumSculptorInclude.museumSculptorImg.setImageResource(R.drawable.stone_dailyimg)
                                 binding.museumCategoryText.text="일상"
                             }
                         }
+
+                        if(data.isRepresent)
+                            binding.museumSculptorInclude.star.setBackgroundResource(R.drawable.star_fill)
+
 
                         binding.museumSculptorInclude2.museumIncludeCommentText.text=data.oneComment ?: ""
                         binding.museumSculptorInclude2.museumGoalDayInclude.text=data.dDay
                         binding.museumSculptorInclude2.museumGoalRateInclude.text=data.achievementRate.toString()+"%"
                         binding.museumSculptorInclude2.museumGramInclude.text=data.powder.toString()+"g"
-//                        binding.museumSculptorInclude2.museumAllAchieveNum.text=data.achievementCounts.A
-//                        binding.museumSculptorInclude2.museumMiddleNum.text=data.achievementCounts.B
-//                        binding.museumSculptorInclude2.museumNotNum.text=data.achievementCounts.C
+                        binding.museumSculptorInclude2.museumAllAchieveNum.text=data.achievementCounts.A.toString()
+                        binding.museumSculptorInclude2.museumMiddleNum.text=data.achievementCounts.B.toString()
+                        binding.museumSculptorInclude2.museumNotNum.text=data.achievementCounts.C.toString()
 
 
                     }

@@ -121,7 +121,7 @@ class MuseumProfileOtherFragment : BaseFragment<FragmentMuseumProfileOtherBindin
 
             override fun onItemClick(id:String) {
                 viewModel2.stoneid.value = id
-                navController.navigate(R.id.action_museumProfileMeFragment_to_museumSculptorFragment)
+                navController.navigate(R.id.action_museumProfileOtherFragment_to_museumSculptorFragment)
             }
 
         })

@@ -69,7 +69,11 @@
     <fragment
         android:id="@+id/museumProfileOtherFragment"
         android:name="com.umc.sculptor.ui.museum.MuseumProfileOtherFragment"
-        android:label="MuseumProfileOtherFragment" />
+        android:label="MuseumProfileOtherFragment" >
+        <action
+            android:id="@+id/action_museumProfileOtherFragment_to_museumSculptorFragment"
+            app:destination="@id/museumSculptorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/museumEditFragment"
         android:name="com.umc.sculptor.ui.museum.MuseumEditFragment"

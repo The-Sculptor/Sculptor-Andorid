@@ -215,7 +215,9 @@ class MuseumEditFragment : BaseFragment<FragmentMuseumEditBinding>(R.layout.frag
                                 }else
                                     deleteStone(id, false)
                             }
-                            (activity as MainActivity).onBackPressed()
+                            if(deleteStones.size == 0){
+                                (activity as MainActivity).onBackPressed()
+                            }
 
                         } else {
                             // 서버에서 오류 응답을 받은 경우 처리

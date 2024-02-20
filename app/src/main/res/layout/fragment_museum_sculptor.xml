@@ -214,6 +214,7 @@
             <include
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:id="@+id/museum_sculptor_include2"
                 android:visibility="gone"
                 layout="@layout/item_museum_sculptor_include2"

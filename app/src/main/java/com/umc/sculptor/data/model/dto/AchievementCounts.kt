@@ -5,15 +5,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class AchievementCounts
-/*
-@Serializable
 data class AchievementCounts
 (
     @SerialName("A")
-    val A: String,
+    val A: Int,
     @SerialName("B")
-    val B: String,
+    val B: Int,
     @SerialName("C")
-    val C: String
-)*/
+    val C: Int
+)
