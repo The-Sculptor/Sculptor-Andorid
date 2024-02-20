@@ -7,11 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
-import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.StoneItemX
-import com.umc.sculptor.data.model.remote.store.UserStones
 import com.umc.sculptor.data.model.remote.store.WornItems
 import com.umc.sculptor.databinding.FragmentItemwearingBinding
 import com.umc.sculptor.login.LocalDataSource

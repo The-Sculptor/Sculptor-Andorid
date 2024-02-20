@@ -62,19 +62,34 @@ class Item_MyStatueFragment : Fragment() {
 
         itemRVAdapter.setMyItemClickListener(object : ItemRVAdapter.MyItemClickListener {
             override fun onItemCLick(position: Int) {
+                var clickedItem = itemDatas[position]
+                clickedItem.isSelected = !clickedItem.isSelected
+
+                // 다른 아이템들은 선택 해제
                 for (i in itemDatas.indices) {
-                    val item = itemDatas[i]
-                    if (i == position) {
-                        item.isSelected = true
-                        viewModel.updateSelectedStatue(item)
-                    } else {
-                        item.isSelected = false
-                        viewModel.updatereleasedStatue(item)
+                    if (i != position) {
+                        val unselectedItem = itemDatas[i]
+                        if (unselectedItem.isSelected) {
+                            unselectedItem.isSelected = false // 클릭해서 토글
+                            viewModel.updatereleasedStatue(unselectedItem)
+                        }
                     }
                 }
+                if (clickedItem.isSelected) {
+                    viewModel.updateSelectedStatue(clickedItem)
+                } else {
+                    viewModel.updatereleasedStatue(clickedItem)
+                }
+
+                // 클릭된 상태 확인
+                val check = viewModel.selectedStatue.value
+                Log.d("viewModelCheck", "$check")
+
+                // 어댑터에 변경사항 알림
                 itemRVAdapter.notifyDataSetChanged()
             }
         })
+
 
         return binding.root
     }

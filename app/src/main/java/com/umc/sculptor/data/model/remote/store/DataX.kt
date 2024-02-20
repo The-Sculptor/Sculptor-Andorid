@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class DataX(
     @SerialName("items")
-    val items: List<Item>
+    val userItems: List<UserItem>
 )

@@ -9,7 +9,6 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.umc.sculptor.MainActivity
@@ -19,7 +18,6 @@ import com.umc.sculptor.data.model.remote.store.Basket
 import com.umc.sculptor.data.model.remote.store.ItemPurchase
 import com.umc.sculptor.data.model.remote.store.ItemX
 import com.umc.sculptor.data.model.remote.store.ItemXX
-import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.databinding.FragmentStoreItemWearinglistBinding
 import com.umc.sculptor.login.LocalDataSource
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -97,10 +95,6 @@ class ItemListFragment : Fragment(){
                 Log.d("상점 서버 통신 실패 처리", t.message.toString())
             }
         })
-
-
-
-
 
 
 

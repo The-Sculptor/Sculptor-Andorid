@@ -30,8 +30,8 @@ interface StoreService {
     fun getMoney(@Header("Cookie") accessToken: String): Call<UserMoney>
 
 
-    @PATCH("/store/stones/{stoneId}/items")//물건 착용
-    fun updateWornItem(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Path("itemId") itemid: String): Call<UpdateWornItems>
+    @PATCH("/store/stones/{stoneId}/type")//물건 착용
+    fun updateWornItem(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Query("id") itemid: String): Call<UpdateWornItems>
 
 
     @GET("store/stones/{stoneId}")//착용중 상품 조회
@@ -40,8 +40,8 @@ interface StoreService {
     @POST("/store/stones/{stoneId}/basket")//구매할 아이템 조회
     fun getBasket(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Body requestBody: RequestBody): Call<Basket>
 
-    @GET("/store/users/items")//구매한 아이템 조회
-    fun getPurchasedItems(@Header("Cookie") accessToken: String): Call<PurchasedItems>
+    @GET("/store/stones/{stoneId}/items")//구매한 아이템 조회
+    fun getPurchasedItems(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<PurchasedItems>
 
     @POST("/store/stones/{stoneId}/purchase")
     fun purchase(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Body requestBody: RequestBody): Call<ItemPurchase>

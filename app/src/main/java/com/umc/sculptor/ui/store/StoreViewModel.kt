@@ -4,24 +4,25 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.umc.sculptor.data.model.remote.store.Item
+import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.data.model.remote.store.ItemX
 import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.data.model.remote.store.StoneItem
 
 class StoreViewModel : ViewModel() {
     private val _selectedStatue = MutableLiveData<Stone>()// 선택된 아이템을 저장_ LiveData
-    private val _selectedItem = MutableLiveData<Item>()
+    private val _selectedUserItem = MutableLiveData<UserItem>()
     private val _checkedListItem = MutableLiveData<ItemX>()
-    private var _updateWornItem = MutableLiveData<StoneItem>()
+    private var _wornItem = MutableLiveData<StoneItem>()//착용중인 아이템
 
 
     // 여러 아이템을 저장할 리스트 추가
     var _selectedItemsList = MutableLiveData<MutableList<String>>()
     var _checkedListItemsList = MutableLiveData<MutableList<String>>()//구매list 중 체크한 것들 리스트
     val selectedStatue: LiveData<Stone> get() = _selectedStatue
-    val selectedItem: LiveData<Item> get() = _selectedItem
+    val selectedUserItem: LiveData<UserItem> get() = _selectedUserItem
     val selectedListItem: LiveData<ItemX> get() = _checkedListItem//구매list 중 체크한 것
+
 
     init {
         _selectedItemsList.value = mutableListOf()
@@ -49,25 +50,28 @@ class StoreViewModel : ViewModel() {
 
     fun updateSelectedStatue(stone: Stone) {// 선택된 조각상 업데이트
         _selectedStatue.value = stone
-        stone.isSelected = true
     }
     fun updatereleasedStatue(stone: Stone) {// 선택 안 된 조각상 업데이트
         _selectedStatue.value = stone
-        stone.isSelected = false
     }
 
-    fun updateSelectedItem_item(item:Item){//선택된 아이템(원석) 업데이트
-        _selectedItem.value = item
-        item.isSelected = true
-        Log.d("viewModel", " ${item.itemName}-> ${item.isSelected}")
+    fun updateSelectedItem_item(userItem:UserItem){//선택된 아이템(원석) 업데이트
+        _selectedUserItem.value = userItem
+        userItem.isSelected = true
+        Log.d("viewModel", " ${userItem.itemName}-> ${userItem.isSelected}")
     }
 
-    fun updatereleasedItem_item(item:Item) {// 선택된 조각상 업데이트
-        _selectedItem.value = item
-        item.isSelected = false
+    fun updatereleasedItem_item(userItem:UserItem) {// 선택된 조각상 업데이트
+        _selectedUserItem.value = userItem
+        userItem.isSelected = false
     }
 
-
+    fun updateWornItem(item: StoneItem) {// 선택된 조각상 업데이트
+        _wornItem.value = item
+    }
+    fun releasedWornItem(item: StoneItem) {// 선택 안 된 조각상 업데이트
+        _wornItem.value = item
+    }
 
 
 
