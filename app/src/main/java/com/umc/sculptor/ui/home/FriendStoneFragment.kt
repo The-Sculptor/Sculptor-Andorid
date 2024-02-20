@@ -88,6 +88,7 @@ class FriendStoneFragment : BaseFragment<FragmentHomeFriendStoneBinding>(R.layou
         }
 
         binding.btnGoMuseum.setOnClickListener {
+            viewModel2.follow.value = isFollow
             viewModel2.message.value = viewModel.friendId.value.toString()
             navController.navigate(R.id.action_friendStoneFragment_to_museumProfileOtherFragment)
         }

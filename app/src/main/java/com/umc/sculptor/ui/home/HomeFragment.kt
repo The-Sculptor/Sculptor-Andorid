@@ -13,6 +13,7 @@ import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.apiManager.ServicePool.homeService
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.FriendStoneViewModel
+import com.umc.sculptor.data.model.dto.MuseumDetailViewModel
 import com.umc.sculptor.data.model.remote.home.Data
 import com.umc.sculptor.data.model.remote.home.FollowingsStone
 import com.umc.sculptor.data.model.remote.home.MyPageResonseDto
@@ -28,6 +29,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     val viewModel: FriendStoneViewModel by lazy {
         ViewModelProvider(requireActivity()).get(FriendStoneViewModel::class.java)
     }
+
+
 
     private lateinit var friendStatueAdapter: FriendStatueAdapter
     @SuppressLint("ResourceAsColor")
