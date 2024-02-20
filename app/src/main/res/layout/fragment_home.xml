@@ -106,9 +106,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/layout_my_habit" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_null_stone"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="아직 생성된 돌이 없어요. 돌을 생성해보세요"
+                android:textColor="#B6B6B6"
+                android:textSize="13sp"
+                android:layout_marginBottom="23dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/layout_my_habit" />
 
             <include
                 android:id="@+id/my_staue_card"
+                android:visibility="visible"
                 layout="@layout/item_statue_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,6 +135,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_my_habit" />
 
         </LinearLayout>
+
 
 <!--        <androidx.appcompat.widget.AppCompatImageView-->
 <!--            android:id="@+id/appCompatImageView"-->

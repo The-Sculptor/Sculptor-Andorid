@@ -31,9 +31,21 @@ class RockGoalFragment : BaseFragment<FragmentCreateRockGoalBinding>(R.layout.fr
 
         binding.tvStoneName.text = viewModel.getNewStone().value?.name ?: "null"
         when(viewModel.getNewStone().value?.category){
-            Category.WORKOUT -> binding.tvCategory.text = "건강"
-            Category.STUDY -> binding.tvCategory.text = "공부"
-            Category.DAILY -> binding.tvCategory.text = "기타"
+            Category.WORKOUT ->{
+                binding.tvCategory.text = "운동"
+                val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.material_symbols_exercise_outline)
+                binding.tvCategory.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
+            }
+            Category.STUDY -> {
+                binding.tvCategory.text = "공부"
+                val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.mdi_book_open_blank_variant_outline)
+                binding.tvCategory.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
+            }
+            Category.DAILY -> {
+                binding.tvCategory.text = "일상"
+                val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.lucide_lamp)
+                binding.tvCategory.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
+            }
             else -> binding.tvCategory.text = ""
         }
 

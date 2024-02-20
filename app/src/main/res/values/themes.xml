@@ -36,4 +36,9 @@
         <!-- <item name="android:datePickerStyle">@style/MyDatePickerStyle</item> -->
     </style>
 
+    <!-- res/values/styles.xml -->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/login_background_img</item>
+    </style>
+
 </resources>

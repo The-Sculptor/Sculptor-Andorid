@@ -29,13 +29,6 @@ class LoginActivity:  AppCompatActivity() {
         binding = ActiviyLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var keyHash = Utility.getKeyHash(this)
-        Log.d("키해시", " $keyHash")
-
-        KakaoSdk.init(this, BuildConfig.NATIVE_APP_KEY)
-
-        LocalDataSource.init(this)
-
 
         binding.appCompatImageView2.setOnClickListener {
             coroutineScope.launch {

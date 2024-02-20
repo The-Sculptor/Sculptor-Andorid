@@ -36,6 +36,13 @@ class NewStoneViewModel : ViewModel() {
         }
     }
 
+    fun setDDay(dday:String){
+        newStone.value?.let {
+            it.dday = dday
+            newStone.value = it
+        }
+    }
+
     fun getNewStone(): LiveData<Stone> {
         return newStone
     }

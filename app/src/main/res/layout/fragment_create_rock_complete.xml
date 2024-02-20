@@ -46,13 +46,14 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_stone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/layout_stone_card"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="48dp"
+            android:src="@drawable/icon_stone_complete"
             app:layout_constraintEnd_toEndOf="@id/layout_stone_card"
-            app:layout_constraintTop_toTopOf="@id/layout_stone_card"
-            android:src="@drawable/example_stone"
-            android:layout_marginTop="48dp"/>
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="@id/layout_stone_card"
+            app:layout_constraintTop_toTopOf="@id/layout_stone_card" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_d_day"
@@ -88,16 +89,16 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_category_health"
+                android:id="@+id/tv_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="운동"
                 android:layout_marginStart="15dp"
                 android:textSize="14sp"
                 android:fontFamily="@font/roboto_medium"
-                android:textColor="@color/purple_E8DEF8"
-                android:background="@drawable/round_4_rectangle"
-                android:drawableStart="@drawable/icon_category"
+                android:textColor="@color/gray_DFDFDF"
+                android:background="@drawable/round_4_rectangle_purple"
+                android:drawableStart="@drawable/material_symbols_exercise_outline"
                 android:paddingVertical="6dp"
                 android:drawablePadding="8dp"
                 android:paddingStart="8dp"

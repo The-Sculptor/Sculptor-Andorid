@@ -26,25 +26,27 @@ class LoginViewModel(private val kakaoLoginService: KakaoLoginService) : ViewMod
         KakaoLoginCallback {
             Timber.d("토큰!!!! $token")
             Log.d("소셜로그인", token.toString())
-            val call: Call<LoginDto> = ServicePool.loginService.kakaoLogin("Bearer "+ (token?.accessToken
-                ?: ""))
+            val call: Call<LoginDto> = ServicePool.loginService.kakaoLogin(
+                "Bearer " + (token?.accessToken
+                    ?: "")
+            )
 
             // 비동기적으로 요청 수행
             call.enqueue(object : Callback<LoginDto> {
                 override fun onResponse(call: Call<LoginDto>, response: Response<LoginDto>) {
                     if (response.isSuccessful) {
-                        Log.d("로그인 서버",response.body()?.data.toString())
+                        Log.d("로그인 서버", response.body()?.data.toString())
                         response.body()?.data?.let { it1 -> LocalDataSource.setAccessToken(it1.sessionId) }
                         response.body()?.data?.let { it1 -> LocalDataSource.setUserId(it1.userId) }
                         _isKakaoLogin.value = true
                     } else {
-                        Log.d("로그인 서버","서버통신 오류")
+                        Log.d("로그인 서버", "서버통신 오류")
                     }
                 }
 
                 override fun onFailure(call: Call<LoginDto>, t: Throwable) {
                     // 통신 실패 처리
-                    Log.d("로그인 서버",t.message.toString())
+                    Log.d("로그인 서버", t.message.toString())
                 }
             })
         }.handleResult(token, error)

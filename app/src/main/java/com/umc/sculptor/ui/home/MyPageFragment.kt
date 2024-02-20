@@ -21,6 +21,7 @@ import com.umc.sculptor.data.model.remote.home.PrivateRequestDto
 import com.umc.sculptor.data.model.remote.login.LoginDto
 import com.umc.sculptor.data.model.remote.login.LogoutDto
 import com.umc.sculptor.databinding.FragmentMypageBinding
+import com.umc.sculptor.login.KakaoLoginService
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call
 import retrofit2.Callback

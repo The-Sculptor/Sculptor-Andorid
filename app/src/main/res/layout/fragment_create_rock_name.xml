@@ -35,8 +35,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_stone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
         android:src="@drawable/example_stone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
