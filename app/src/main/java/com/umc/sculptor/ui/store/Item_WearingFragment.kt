@@ -38,7 +38,66 @@ class Item_WearingFragment: Fragment() {
         call.enqueue(object : Callback<WornItems> {
             override fun onResponse(call: Call<WornItems>, response: Response<WornItems>) {
                 if (response.isSuccessful) {
-                    itemDatas = response.body()?.data?.stoneItems!!
+                    itemDatas = response.body()?.data?.items!!
+                    if (itemDatas != null) {
+
+                        // itemDatas를 사용하여 아이템으로 처리
+                        itemWearingRVAdapter.itemList = itemDatas
+                        itemWearingRVAdapter.notifyDataSetChanged()
+                        Log.d("상점 서버", itemDatas.toString())
+                    } else {
+                        Log.d("상점 서버", response.body().toString())
+                        // 서버 응답에 오류가 있을 경우 처리
+                        Log.d("상점 서버", "서버 응답 오류")
+                    }
+                } else {
+                    // 서버에서 오류 응답을 받은 경우 처리
+                    Log.d("상점 서버", "서버 통신 오류")
+                }
+            }
+
+            override fun onFailure(call: Call<WornItems>, t: Throwable) {
+                // 통신 실패 처리
+                Log.d("상점 서버 통신 실패 처리", t.message.toString())
+            }
+        })
+
+
+        itemWearingRVAdapter = ItemWearingRVAdapter(itemDatas)
+        binding.itemwearingRv.adapter = itemWearingRVAdapter
+
+
+        itemWearingRVAdapter.setMyItemClickListener(object : ItemWearingRVAdapter.MyItemClickListener {
+            override fun onItemCLick(position: Int) {
+                for (i in itemDatas.indices) {
+                    val item = itemDatas[i]
+                    if (i == position) {
+                        //item.backImg = R.drawable.store_wearing_item_r_selected
+                        //viewModel.updateSelectedItem_item(item)
+                    } else {
+                        //item.backImg = R.drawable.store_wearingitem_r
+                    }
+                }
+                itemWearingRVAdapter.notifyDataSetChanged()
+            }
+        })
+
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
+
+        itemDatas = emptyList()
+
+        val call: Call<WornItems> = ServicePool.storeService.getWornItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString())
+
+        call.enqueue(object : Callback<WornItems> {
+            override fun onResponse(call: Call<WornItems>, response: Response<WornItems>) {
+                if (response.isSuccessful) {
+                    itemDatas = response.body()?.data?.items!!
                     if (itemDatas != null) {
 
                         // itemDatas를 사용하여 아이템으로 처리
@@ -80,8 +139,5 @@ class Item_WearingFragment: Fragment() {
                 itemWearingRVAdapter.notifyDataSetChanged()
             }
         })
-
-        return binding.root
     }
-
 }

@@ -40,7 +40,7 @@ class Item_BoughtFragment: Fragment() {
         call.enqueue(object : Callback<PurchasedItems> {
             override fun onResponse(call: Call<PurchasedItems>, response: Response<PurchasedItems>) {
                 if (response.isSuccessful) {
-                    itemDatas = response.body()?.data?.userItems!!
+                    itemDatas = response.body()?.data?.items!!
 
 
                     if (itemDatas != null) {
@@ -54,6 +54,7 @@ class Item_BoughtFragment: Fragment() {
                         Log.d("상점 서버", "서버 응답 오류")
                     }
                 } else {
+                    Log.d("상점 서버", response.body().toString())
                     // 서버에서 오류 응답을 받은 경우 처리
                     Log.d("상점 서버", "서버 통신 오류")
                 }
@@ -113,4 +114,88 @@ class Item_BoughtFragment: Fragment() {
 
         return binding.root
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
+
+
+        val call: Call<PurchasedItems> = ServicePool.storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(),viewModel.selectedStatue.value?.id.toString())
+
+        call.enqueue(object : Callback<PurchasedItems> {
+            override fun onResponse(call: Call<PurchasedItems>, response: Response<PurchasedItems>) {
+                if (response.isSuccessful) {
+                    itemDatas = response.body()?.data?.items!!
+
+
+                    if (itemDatas != null) {
+
+                        // itemDatas를 사용하여 아이템으로 처리
+                        itemBoughtRVAdapter.itemList = itemDatas
+                        itemBoughtRVAdapter.notifyDataSetChanged()
+                        Log.d("상점 서버", itemDatas.toString())
+                    } else {
+                        // 서버 응답에 오류가 있을 경우 처리
+                        Log.d("상점 서버", "서버 응답 오류")
+                    }
+                } else {
+                    // 서버에서 오류 응답을 받은 경우 처리
+                    Log.d("상점 서버", "서버 통신 오류")
+                }
+            }
+
+            override fun onFailure(call: Call<PurchasedItems>, t: Throwable) {
+                // 통신 실패 처리
+                Log.d("상점 서버",t.message.toString())
+            }
+        })
+
+
+        itemBoughtRVAdapter = ItemBoughtRVAdapter(itemDatas)
+        binding.BoughtItemRv.adapter = itemBoughtRVAdapter
+
+
+
+
+        itemBoughtRVAdapter.setMyItemClickListener(object : ItemBoughtRVAdapter.MyItemClickListener {
+            override fun onItemCLick(position: Int) {
+                val clickedItemId = itemDatas[position].itemId
+
+                val call: Call<UpdateWornItems> = ServicePool.storeService.updateWornItem("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString(), clickedItemId)
+
+                call.enqueue(object : Callback<UpdateWornItems> {
+                    override fun onResponse(call: Call<UpdateWornItems>, response: Response<UpdateWornItems>) {
+                        if (response.isSuccessful) {
+                            Log.d("상점 아이템 착용 서버", response.toString())
+                            val updatedData = response.body()?.data?.stoneItems
+                            if (updatedData != null) {
+
+                                val firstUpdatedItem = updatedData.first() // 첫 번째 아이템을 가져옴
+                                viewModel.updateWornItem(firstUpdatedItem)
+
+                                itemBoughtRVAdapter.notifyDataSetChanged()
+
+                                Log.d("상점 서버", itemDatas.toString())
+                            } else {
+                                // 서버 응답에 오류가 있을 경우 처리
+                                Log.d("상점 서버", "서버 응답 오류")
+                            }
+                        } else {
+                            // 서버에서 오류 응답을 받은 경우 처리
+                            Log.d("상점 서버", "서버 통신 오류")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<UpdateWornItems>, t: Throwable) {
+                        // 통신 실패 처리
+                        Log.d("상점 서버",t.message.toString())
+                    }
+                })
+                itemBoughtRVAdapter.notifyDataSetChanged()
+            }
+        })
+
+    }
+
+
 }

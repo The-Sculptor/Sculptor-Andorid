@@ -9,7 +9,7 @@ data class UserStones(
     @SerialName("code")
     val code: Int,
     @SerialName("data")
-    val `data`: Data,
+    val `data`: Data?,
     @SerialName("message")
     val message: String
 )

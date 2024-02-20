@@ -34,7 +34,7 @@ interface StoreService {
     fun updateWornItem(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Query("id") itemid: String): Call<UpdateWornItems>
 
 
-    @GET("store/stones/{stoneId}")//착용중 상품 조회
+    @GET("/store/stones/{stoneId}")//착용중 상품 조회
     fun getWornItems(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<WornItems>
 
     @POST("/store/stones/{stoneId}/basket")//구매할 아이템 조회

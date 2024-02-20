@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class DataXXXX(
     @SerialName("stoneItems")
-    val stoneItems: List<StoneItemX>
+    val items: List<StoneItemX>
 )

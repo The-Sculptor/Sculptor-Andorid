@@ -81,7 +81,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         call2.enqueue(object : Callback<PurchasedItems> {
             override fun onResponse(call: Call<PurchasedItems>, response: Response<PurchasedItems>) {
                 if (response.isSuccessful) {
-                    userItem = response.body()?.data!!.userItems
+                    userItem = response.body()?.data!!.items
                     if (userItem != null) {
 
                         Log.d("상점 서버", userItem.toString())
