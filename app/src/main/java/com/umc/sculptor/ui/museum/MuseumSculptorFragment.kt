@@ -10,8 +10,10 @@ import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.dto.MuseumDetail
 import com.umc.sculptor.data.model.dto.MuseumDetailViewModel
+import com.umc.sculptor.data.model.remote.home.MyRepresentStone
 import com.umc.sculptor.data.model.remote.museum.Comment
 import com.umc.sculptor.data.model.remote.museum.Comments
+import com.umc.sculptor.data.model.remote.museum.RepresentResponseDto
 import com.umc.sculptor.databinding.FragmentMuseumSculptorBinding
 import com.umc.sculptor.login.LocalDataSource
 import retrofit2.Call
@@ -27,6 +29,7 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
         ViewModelProvider(requireActivity()).get(MuseumDetailViewModel::class.java)
     }
 
+    private var isPresent : Boolean = false
 
 
     override fun initStartView() {
@@ -71,8 +74,11 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
                             }
                         }
 
-                        if(data.isRepresent)
+                        if(data.isRepresent){
+                            isPresent = true
                             binding.museumSculptorInclude.star.setBackgroundResource(R.drawable.star_fill)
+                        }
+
 
 
                         binding.museumSculptorInclude2.museumIncludeCommentText.text=data.oneComment ?: ""
@@ -159,6 +165,31 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
         binding.museumSculptorInclude2.museumIncludeBg.setOnClickListener{
             binding.museumSculptorInclude2.root.visibility = View.GONE
             binding.museumSculptorInclude.root.visibility = View.VISIBLE
+        }
+        binding.museumSculptorInclude.star.setOnClickListener {
+            if(!isPresent){
+                // 서버 통신 요청
+                val presentStoneCall: Call<RepresentResponseDto> = ServicePool.museumService.representStone("JSESSIONID="+LocalDataSource.getAccessToken().toString(), viewModel.stoneid.value.toString())
+
+                // 비동기적으로 요청 수행
+                presentStoneCall.enqueue(object : Callback<RepresentResponseDto> {
+                    override fun onResponse(call: Call<RepresentResponseDto>, response: Response<RepresentResponseDto>) {
+                        if (response.isSuccessful) {
+                            binding.museumSculptorInclude.star.setBackgroundResource(R.drawable.star_fill)
+                            Log.d("박물관 서버",response.body().toString())
+                        } else {
+                            // 서버에서 오류 응답을 받은 경우 처리
+                            Log.d("박물관 서버","서버통신 오류")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<RepresentResponseDto>, t: Throwable) {
+                        // 통신 실패 처리
+                        Log.d("박물관 서버",t.message.toString())
+                    }
+                })
+            }
+
         }
 
 

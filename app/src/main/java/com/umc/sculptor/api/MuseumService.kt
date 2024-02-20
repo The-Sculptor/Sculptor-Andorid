@@ -10,6 +10,7 @@ import com.umc.sculptor.data.model.remote.museum.EditReqeustDto
 import com.umc.sculptor.data.model.remote.museum.EditStonesDto
 import com.umc.sculptor.data.model.remote.museum.EditUserDto
 import com.umc.sculptor.data.model.remote.museum.Museum
+import com.umc.sculptor.data.model.remote.museum.RepresentResponseDto
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -43,6 +44,9 @@ interface MuseumService {
 
     @GET("/museum/stones/{stoneId}/comments")
     fun getComments(@Header("Cookie") accessToken: String,@Path("stoneId") stoneId: String): Call<Comments>
+
+    @PATCH("/user/represent-stone/{stoneId}")
+    fun representStone(@Header("Cookie") accessToken: String,@Path("stoneId") stoneId: String): Call<RepresentResponseDto>
 
     @PATCH("/museum/comments/{commentId}/like")
     fun changeCommentLike(@Header("Cookie") accessToken: String,@Path("commentId") commentId: String) :Call<CommentLike>
