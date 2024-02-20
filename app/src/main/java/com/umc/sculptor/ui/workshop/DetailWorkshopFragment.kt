@@ -128,10 +128,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
                 override fun onDismiss() {
                     // 다이얼로그가 닫힐 때 프래그먼트의 작업을 수행합니다.
                     // 여기에서는 onCreate 메서드를 호출하거나 필요한 작업을 수행할 수 있습니다.
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .detach(this@DetailWorkshopFragment)
-                        .attach(this@DetailWorkshopFragment)
-                        .commit()
+                    getRate()
                 }
             })
             dialogFragment.show(requireActivity().supportFragmentManager,"dialog")
