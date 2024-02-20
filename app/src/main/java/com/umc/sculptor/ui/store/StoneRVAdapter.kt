@@ -2,18 +2,15 @@ package com.umc.sculptor.ui.store
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
-import com.umc.sculptor.data.model.remote.store.Item
-import com.umc.sculptor.data.model.remote.store.Stone
-import com.umc.sculptor.data.model.remote.store.StoneItemX
+import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.databinding.StoreItemWearingBinding
 
-class StoneRVAdapter(itemList: List<Item>): RecyclerView.Adapter<StoneRVAdapter.ViewHolder>() {
+class StoneRVAdapter(userItemList: List<UserItem>): RecyclerView.Adapter<StoneRVAdapter.ViewHolder>() {
 
     private lateinit var viewModel: StoreViewModel
-    var itemList: List<Item> = itemList
+    var userItemList: List<UserItem> = userItemList
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -38,7 +35,7 @@ class StoneRVAdapter(itemList: List<Item>): RecyclerView.Adapter<StoneRVAdapter.
 
     override fun onBindViewHolder(holder: StoneRVAdapter.ViewHolder, position: Int) {
 
-        val item = itemList[position]
+        val item = userItemList[position]
         holder.bind(item)
         holder.itemView.setOnClickListener{
             myItemClickListener.onItemCLick(position)
@@ -46,10 +43,10 @@ class StoneRVAdapter(itemList: List<Item>): RecyclerView.Adapter<StoneRVAdapter.
         }
     }
 
-    override fun getItemCount(): Int = itemList.size
+    override fun getItemCount(): Int = userItemList.size
     inner class ViewHolder(val binding: StoreItemWearingBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: Item){
-            when(item.itemId){//stone이미지
+        fun bind(userItem: UserItem){
+            when(userItem.itemId){//stone이미지
                     "1e5b03b8-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_basic)
                     "39e97a1b-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_ruby)
                     "39f48564-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_sapphire)
@@ -60,13 +57,13 @@ class StoneRVAdapter(itemList: List<Item>): RecyclerView.Adapter<StoneRVAdapter.
                 "3a2a4295-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_bronze)
                 else -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_basic)
             }
-            if (item.isSelected==true) {
+            if (userItem.isSelected==true) {
                 binding.itemUsingbgImg.setImageResource(R.drawable.store_wearing_item_r_selected)
             } else {
                 binding.itemUsingbgImg.setImageResource(R.drawable.store_wearingitem_r)
             }
-            binding.howmuchTv.setText("${item.itemPrice}")
-            item.isSelected = false
+            binding.howmuchTv.setText("${userItem.itemPrice}")
+            userItem.isSelected = false
 
             //binding.howmuchTv.isInvisible
         }

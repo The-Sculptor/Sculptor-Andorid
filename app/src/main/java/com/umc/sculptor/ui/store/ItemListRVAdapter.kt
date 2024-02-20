@@ -3,11 +3,8 @@ package com.umc.sculptor.ui.store
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
-import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.ItemX
 import com.umc.sculptor.databinding.StoreWearinglistItemBinding
 

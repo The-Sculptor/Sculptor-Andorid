@@ -15,11 +15,10 @@ import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool.storeService
 import com.umc.sculptor.base.BaseFragment
-import com.umc.sculptor.data.model.remote.store.Item
+import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.data.model.remote.store.ItemX
 import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.data.model.remote.store.Stone
-import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.data.model.remote.store.UserMoney
 import com.umc.sculptor.databinding.FragmentStoreBinding
 import com.umc.sculptor.login.LocalDataSource
@@ -40,7 +39,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
     // StoreFragment에서 사용할 인터페이스
     interface OnItemSelectListener {
-        fun onItemSelected(item: Item)
+        fun onItemSelected(userItem: UserItem)
     }
 
 
@@ -75,7 +74,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         })
 
 
-        val call2: Call<PurchasedItems> = storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString())
+        val call2: Call<PurchasedItems> = storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString())
 
         call2.enqueue(object : Callback<PurchasedItems> {
             override fun onResponse(call: Call<PurchasedItems>, response: Response<PurchasedItems>) {
@@ -142,19 +141,19 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         val storeTabAdapter = StorePagerAdapter(this)
         val storeTabAdapter2 = StorePagerAdapter2(this)
 
-        sharedViewPager.adapter = storeTabAdapter
-        // TabLayout1 설정
-        TabLayoutMediator(binding.tabLayout1, sharedViewPager) { tab, position ->
-            tab.text = information1[position]
-            Log.d("tab", "${tab.text}")
-        }.attach()
-
-//        sharedViewPager.adapter = storeTabAdapter2
-//        // TabLayout2 설정
-//        TabLayoutMediator(binding.tabLayout2, sharedViewPager) { tab, position ->
-//            tab.text = information2[position]
+//        sharedViewPager.adapter = storeTabAdapter
+//        // TabLayout1 설정
+//        TabLayoutMediator(binding.tabLayout1, sharedViewPager) { tab, position ->
+//            tab.text = information1[position]
 //            Log.d("tab", "${tab.text}")
 //        }.attach()
+
+        sharedViewPager.adapter = storeTabAdapter2
+        // TabLayout2 설정
+        TabLayoutMediator(binding.tabLayout2, sharedViewPager) { tab, position ->
+            tab.text = information2[position]
+            Log.d("tab", "${tab.text}")
+        }.attach()
 
 //탭레이아웃전환 수정필요...
 
@@ -182,7 +181,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
         })
 
-        viewModel.selectedItem.observe(viewLifecycleOwner, Observer { selectedItem ->
+        viewModel.selectedUserItem.observe(viewLifecycleOwner, Observer { selectedItem ->
             Log.d("Observer", "selectedItem observed: $selectedItem")
 
             var itemIdToCheck = selectedItem.itemId

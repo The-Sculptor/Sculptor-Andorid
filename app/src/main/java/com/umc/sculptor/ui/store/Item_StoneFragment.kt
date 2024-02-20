@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.umc.sculptor.apiManager.ServicePool.storeService
-import com.umc.sculptor.data.model.remote.store.Item
+import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.data.model.remote.store.StoreItems
 import com.umc.sculptor.databinding.FragmentItemwearingBinding
 import com.umc.sculptor.login.LocalDataSource
@@ -18,7 +18,7 @@ import retrofit2.Response
 
 class Item_StoneFragment: Fragment() {
     lateinit var binding: FragmentItemwearingBinding
-    private var itemDatas: List<Item> = emptyList()
+    private var userItemData: List<UserItem> = emptyList()
     private lateinit var stoneRVAdapter: StoneRVAdapter
 
     private lateinit var viewModel: StoreViewModel
@@ -37,15 +37,15 @@ class Item_StoneFragment: Fragment() {
         call.enqueue(object : Callback<StoreItems> {
             override fun onResponse(call: Call<StoreItems>, response: Response<StoreItems>) {
                 if (response.isSuccessful) {
-                    itemDatas = response.body()?.data?.items!!
+                    userItemData = response.body()?.data?.userItems!!
 
 
-                    if (itemDatas != null) {
+                    if (userItemData != null) {
 
                         // itemDatas를 사용하여 아이템으로 처리
-                        stoneRVAdapter.itemList = itemDatas
+                        stoneRVAdapter.userItemList = userItemData
                         stoneRVAdapter.notifyDataSetChanged()
-                        Log.d("상점 서버", itemDatas.toString())
+                        Log.d("상점 서버", userItemData.toString())
                     } else {
                         // 서버 응답에 오류가 있을 경우 처리
                         Log.d("상점 서버", "서버 응답 오류")
@@ -61,12 +61,12 @@ class Item_StoneFragment: Fragment() {
                 Log.d("상점 서버",t.message.toString())
             }
         })
-        stoneRVAdapter = StoneRVAdapter(itemDatas)
+        stoneRVAdapter = StoneRVAdapter(userItemData)
         binding.itemwearingRv.adapter = stoneRVAdapter
 
         stoneRVAdapter.setMyItemClickListener(object : StoneRVAdapter.MyItemClickListener {
             override fun onItemCLick(position: Int) {
-                val clickedItem = itemDatas[position]
+                val clickedItem = userItemData[position]
 
                 Log.d("itemitemitem", "${clickedItem.itemId}")
                 if (clickedItem.isSelected) {

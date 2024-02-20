@@ -12,5 +12,5 @@ data class UserItem(
     val itemName: String,
     @SerialName("itemPrice")
     val itemPrice: Int,
-    val isSelected: Boolean = false
+    var isSelected: Boolean = false
 )

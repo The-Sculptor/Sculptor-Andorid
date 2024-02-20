@@ -6,13 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
-import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.PurchasedItems
-import com.umc.sculptor.data.model.remote.store.StoreItems
 import com.umc.sculptor.data.model.remote.store.UpdateWornItems
 import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.databinding.FragmentItemboughtBinding
@@ -38,7 +34,7 @@ class Item_BoughtFragment: Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
 
-        val call: Call<PurchasedItems> = ServicePool.storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString())
+        val call: Call<PurchasedItems> = ServicePool.storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(),viewModel.selectedStatue.value?.id.toString())
 
         call.enqueue(object : Callback<PurchasedItems> {
             override fun onResponse(call: Call<PurchasedItems>, response: Response<PurchasedItems>) {

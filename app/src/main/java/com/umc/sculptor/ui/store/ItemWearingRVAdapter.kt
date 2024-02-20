@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
-import com.umc.sculptor.data.model.remote.store.Item
-import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.data.model.remote.store.StoneItemX
 import com.umc.sculptor.databinding.StoreItemWearingBinding
 
