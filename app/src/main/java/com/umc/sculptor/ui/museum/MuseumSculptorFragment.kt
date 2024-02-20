@@ -51,7 +51,7 @@ class MuseumSculptorFragment : BaseFragment<FragmentMuseumSculptorBinding>(R.lay
                     if (data!=null){
                         binding.museumHabitString.text=data.name
                         binding.museumGoalDayStringInput.text=data.goal
-                        binding.museumStartDayString.text=data.startDate
+                        binding.museumStartDayStringInput.text=data.startDate
 
                         when(data.category){
                             "WORKOUT" -> {
