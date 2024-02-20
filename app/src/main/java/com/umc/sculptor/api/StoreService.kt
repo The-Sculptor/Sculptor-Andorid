@@ -2,6 +2,7 @@ package com.capjjang.rightnow.api
 
 import com.umc.sculptor.data.model.remote.store.Basket
 import com.umc.sculptor.data.model.remote.store.ItemPurchase
+import com.umc.sculptor.data.model.remote.store.PurChasedItemsDto
 import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.data.model.remote.store.StoreItems
 import com.umc.sculptor.data.model.remote.store.UpdateWornItems
@@ -41,7 +42,7 @@ interface StoreService {
     fun getBasket(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Body requestBody: RequestBody): Call<Basket>
 
     @GET("/store/stones/{stoneId}/items")//구매한 아이템 조회
-    fun getPurchasedItems(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<PurchasedItems>
+    fun getPurchasedItems(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String): Call<PurChasedItemsDto>
 
     @POST("/store/stones/{stoneId}/purchase")
     fun purchase(@Header("Cookie") accessToken: String, @Path("stoneId") stoneid: String, @Body requestBody: RequestBody): Call<ItemPurchase>

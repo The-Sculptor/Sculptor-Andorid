@@ -11,6 +11,8 @@ import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.data.model.remote.store.UpdateWornItems
 import com.umc.sculptor.data.model.remote.store.Item
+import com.umc.sculptor.data.model.remote.store.ItemXXX
+import com.umc.sculptor.data.model.remote.store.PurChasedItemsDto
 import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.databinding.FragmentItemboughtBinding
 import com.umc.sculptor.login.LocalDataSource
@@ -20,7 +22,7 @@ import retrofit2.Response
 
 class Item_BoughtFragment: Fragment() {
     lateinit var binding: FragmentItemboughtBinding
-    private var itemDatas: List<UserItem> = emptyList()
+    private var itemDatas: List<ItemXXX> = emptyList()
     private lateinit var itemBoughtRVAdapter: ItemBoughtRVAdapter
 
     //private lateinit var onItemSelectListener: StoreFragment.OnItemSelectListener
@@ -35,10 +37,10 @@ class Item_BoughtFragment: Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
 
-        val call: Call<PurchasedItems> = ServicePool.storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(),viewModel.selectedStatue.value?.id.toString())
+        val call: Call<PurChasedItemsDto> = ServicePool.storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(),viewModel.selectedStatue.value?.id.toString())
 
-        call.enqueue(object : Callback<PurchasedItems> {
-            override fun onResponse(call: Call<PurchasedItems>, response: Response<PurchasedItems>) {
+        call.enqueue(object : Callback<PurChasedItemsDto> {
+            override fun onResponse(call: Call<PurChasedItemsDto>, response: Response<PurChasedItemsDto>) {
                 if (response.isSuccessful) {
                     itemDatas = response.body()?.data?.items!!
 
@@ -60,7 +62,7 @@ class Item_BoughtFragment: Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<PurchasedItems>, t: Throwable) {
+            override fun onFailure(call: Call<PurChasedItemsDto>, t: Throwable) {
                 // 통신 실패 처리
                 Log.d("상점 서버",t.message.toString())
             }
@@ -120,10 +122,10 @@ class Item_BoughtFragment: Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(StoreViewModel::class.java)
 
 
-        val call: Call<PurchasedItems> = ServicePool.storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(),viewModel.selectedStatue.value?.id.toString())
+        val call: Call<PurChasedItemsDto> = ServicePool.storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(),viewModel.selectedStatue.value?.id.toString())
 
-        call.enqueue(object : Callback<PurchasedItems> {
-            override fun onResponse(call: Call<PurchasedItems>, response: Response<PurchasedItems>) {
+        call.enqueue(object : Callback<PurChasedItemsDto> {
+            override fun onResponse(call: Call<PurChasedItemsDto>, response: Response<PurChasedItemsDto>) {
                 if (response.isSuccessful) {
                     itemDatas = response.body()?.data?.items!!
 
@@ -144,7 +146,7 @@ class Item_BoughtFragment: Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<PurchasedItems>, t: Throwable) {
+            override fun onFailure(call: Call<PurChasedItemsDto>, t: Throwable) {
                 // 통신 실패 처리
                 Log.d("상점 서버",t.message.toString())
             }

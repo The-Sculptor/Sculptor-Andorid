@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
+import com.umc.sculptor.data.model.remote.store.ItemXXX
 import com.umc.sculptor.data.model.remote.store.UserItem
 import com.umc.sculptor.databinding.StoreItemWearingBinding
 
-class ItemBoughtRVAdapter(itemList: List<UserItem>): RecyclerView.Adapter<ItemBoughtRVAdapter.ViewHolder>() {
+class ItemBoughtRVAdapter(itemList: List<ItemXXX>): RecyclerView.Adapter<ItemBoughtRVAdapter.ViewHolder>() {
 
-    var itemList: List<UserItem> = itemList
+    var itemList: List<ItemXXX> = itemList
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -44,12 +45,12 @@ class ItemBoughtRVAdapter(itemList: List<UserItem>): RecyclerView.Adapter<ItemBo
 
     override fun getItemCount(): Int = itemList.size
     inner class ViewHolder(val binding: StoreItemWearingBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: UserItem){
-            if (item.isSelected==true) {
-                binding.itemUsingbgImg.setImageResource(R.drawable.store_wearing_item_r_selected)
-            } else {
-                binding.itemUsingbgImg.setImageResource(R.drawable.store_wearingitem_r)
-            }
+        fun bind(item: ItemXXX){
+//            if (item.isSelected==true) {
+//                binding.itemUsingbgImg.setImageResource(R.drawable.store_wearing_item_r_selected)
+//            } else {
+//                binding.itemUsingbgImg.setImageResource(R.drawable.store_wearingitem_r)
+//            }
             binding.itemUsingbgCircle.setImageResource(R.drawable.store_checkimg)
             binding.howmuchTv.text =""
             when(item.itemId){//stone이미지

@@ -36,8 +36,9 @@ class LoginViewModel(private val kakaoLoginService: KakaoLoginService) : ViewMod
                 override fun onResponse(call: Call<LoginDto>, response: Response<LoginDto>) {
                     if (response.isSuccessful) {
                         Log.d("로그인 서버", response.body()?.data.toString())
-                        response.body()?.data?.let { it1 -> LocalDataSource.setAccessToken(it1.sessionId) }
-                        response.body()?.data?.let { it1 -> LocalDataSource.setUserId(it1.userId) }
+                        LocalDataSource.setAccessToken("94006C12AAAE63C9951AC6AEB97290E5")
+//                        response.body()?.data?.let { it1 -> LocalDataSource.setAccessToken(it1.sessionId) }
+//                        response.body()?.data?.let { it1 -> LocalDataSource.setUserId(it1.userId) }
                         _isKakaoLogin.value = true
                     } else {
                         Log.d("로그인 서버", "서버통신 오류")

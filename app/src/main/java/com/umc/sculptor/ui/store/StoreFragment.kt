@@ -18,6 +18,8 @@ import com.umc.sculptor.apiManager.ServicePool.storeService
 import com.umc.sculptor.base.BaseFragment
 import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.data.model.remote.store.ItemX
+import com.umc.sculptor.data.model.remote.store.ItemXXX
+import com.umc.sculptor.data.model.remote.store.PurChasedItemsDto
 import com.umc.sculptor.data.model.remote.store.PurchasedItems
 import com.umc.sculptor.data.model.remote.store.Stone
 import com.umc.sculptor.data.model.remote.store.UserItem
@@ -32,7 +34,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
 
     private lateinit var viewModel: StoreViewModel
     private lateinit var itemRVAdapter: ItemRVAdapter
-    var userItem : List<UserItem> = ArrayList<UserItem>()
+    var userItem : List<ItemXXX> = ArrayList<ItemXXX>()
     var wantedItems :List<ItemX>  = ArrayList<ItemX>()
 
 
@@ -76,10 +78,10 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
         })
 
 
-        val call2: Call<PurchasedItems> = storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString())
+        val call2: Call<PurChasedItemsDto> = storeService.getPurchasedItems("JSESSIONID=" + LocalDataSource.getAccessToken().toString(), viewModel.selectedStatue.value?.id.toString())
 
-        call2.enqueue(object : Callback<PurchasedItems> {
-            override fun onResponse(call: Call<PurchasedItems>, response: Response<PurchasedItems>) {
+        call2.enqueue(object : Callback<PurChasedItemsDto> {
+            override fun onResponse(call: Call<PurChasedItemsDto>, response: Response<PurChasedItemsDto>) {
                 if (response.isSuccessful) {
                     userItem = response.body()?.data!!.items
                     if (userItem != null) {
@@ -94,7 +96,7 @@ class StoreFragment : BaseFragment<FragmentStoreBinding>(R.layout.fragment_store
                     Log.d("상점 서버", "서버 통신 오류")
                 }
             }
-            override fun onFailure(call2: Call<PurchasedItems>, t: Throwable) {
+            override fun onFailure(call2: Call<PurChasedItemsDto>, t: Throwable) {
                 // 통신 실패 처리
                 Log.d("상점 서버 통신 실패 처리", t.message.toString())
             }
