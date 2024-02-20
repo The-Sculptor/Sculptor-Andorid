@@ -31,15 +31,6 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
     private lateinit var recyclerView: RecyclerView
     private lateinit var dateAdapter: DateAdapter
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater , container: ViewGroup? ,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        val view = inflater.inflate(R.layout.fragment_detail_workshop, container, false)
-//        recyclerView = view.findViewById(R.id.rv_friend_statue)
-//        return view
-//    }
-
 
     override fun initStartView() {
         super.initStartView()
