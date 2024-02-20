@@ -5,5 +5,5 @@ data class Stone(
     var category: Category? = null,
     var goal:String = "",
     var start_date: String = "",
-    var dday:String="-65"
+    var dday:String="-66"
 )

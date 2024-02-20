@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                         binding.myStaueCard.tvAchievementRate.text=stone.achievementRate.toString()+"%"
                         binding.myStaueCard.tvGoal.text = stone.goal
                         binding.myStaueCard.tvStatueName.text= stone.name
-                        binding.myStaueCard.tvGoalDate.text = stone.startDate
+                        binding.myStaueCard.tvGoalDate.text = stone.startDate.take(10)
                     }
                     Log.d("홈 서버",itemList.toString())
                 } else {

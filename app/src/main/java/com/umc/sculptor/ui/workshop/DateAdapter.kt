@@ -23,47 +23,13 @@ class DateAdapter(itemList: List<Achieve>) :
 
     inner class ViewHolder(itemViewBinding: ItemDateBinding)
         : RecyclerView.ViewHolder(itemViewBinding.root){
-        val iv4: ImageView = itemView.findViewById(R.id.iv_4)
-        val tv4: TextView = itemView.findViewById(R.id.tv_4)
-
-        val achieveStatus = itemViewBinding.iv4
-        val achieveId = itemViewBinding.tvAchievement
         var layout = itemViewBinding.layoutDailyCheck
-        val date = itemViewBinding.tvNumber
-
-        fun bind(item: StonepowderFragment) {
-            val achievementCounts = when (item.clickedButtonId) {
-                R.id.icon_all -> AchievementCounts(a = 10,b = 5, c =0 )
-                R.id.icon_mid -> AchievementCounts(a = 5 , b = 15 , c = 25)
-                R.id.icon_none -> AchievementCounts(a = 0 , b = 10 , c = 20)
-                else -> AchievementCounts(a = 0 , b = 0 , c = 0)
-            }
-
-            fun bind(item: Date) {
-                tv4.text = "+" + (achievementCounts.a)
-            }
-
-            when (item.clickedButtonId) {
-                R.id.icon_all -> {
-                    iv4.setImageResource(R.drawable.icon_circle)
-                }
-
-                R.id.icon_mid -> {
-                    iv4.setImageResource(R.drawable.icon_triangle)
-                }
-
-                R.id.icon_none -> {
-                    iv4.setImageResource(R.drawable.icon_x)
-                }
-
-                else -> {
-                    iv4.setImageResource(R.drawable.black)
-                }
-            }
-
-
+        val num = itemViewBinding.tvNumber
+        val text = itemViewBinding.tvAchievement
+        val gram = itemViewBinding.tv4
+        val icon = itemViewBinding.iv4
         }
-        }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -92,11 +58,23 @@ class DateAdapter(itemList: List<Achieve>) :
     override fun getItemCount(): Int = datelist.size
 
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
-        holder.achieveStatus.setImageResource(R.drawable.icon_circle)
-        holder.date.text = datelist[position].date
-        holder.achieveId.text = datelist[position].achieveId
-        holder.layout.setOnClickListener {
-            onItemClickListener?.onItemClick(position)
+        holder.num.text = (datelist.size - position).toString()
+        when(datelist[position].achieveStatus){
+            "A"->{
+                holder.text.text = "달성"
+                holder.gram.text = "+10g"
+                holder.icon.setImageResource(R.drawable.icon_circle)
+            }
+            "B"->{
+                holder.text.text = "절반 달성"
+                holder.gram.text = "+5g"
+                holder.icon.setImageResource(R.drawable.icon_triangle)
+            }
+            "C"->{
+                holder.text.text = "미달성"
+                holder.gram.text = "+0g"
+                holder.icon.setImageResource(R.drawable.icon_x)
+            }
         }
 
 

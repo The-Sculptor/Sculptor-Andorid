@@ -67,7 +67,7 @@ class BoxAdapter(itemList: List<DataXXX>) :
 
         if (selectedCategory.isEmpty() || currentItem.category == selectedCategory){
             holder.ddayTextView.text = datalist[position].dday
-            holder.startDateTextView.text = datalist[position].startDate
+            holder.startDateTextView.text = datalist[position].startDate.take(10)
             holder.stoneGoalTextView.text =datalist[position].stoneGoal
 
             val context = holder.itemView.context
@@ -75,10 +75,10 @@ class BoxAdapter(itemList: List<DataXXX>) :
             val textColor: Int
 
             // 카테고리에 따라 배경색과 텍스트 색상 설정
-            backgroundColorSpan = when (currentItem.category) {
-                "WORKOUT" -> R.drawable.orange
-                "STUDY"-> R.drawable.black
-                "DAILY"-> R.drawable.gray
+            when (currentItem.category) {
+                "WORKOUT" -> holder.goalcardLayout.setBackgroundResource(R.drawable.workshop_back_orange)
+                "STUDY"-> holder.goalcardLayout.setBackgroundResource(R.drawable.workshop_back_black)
+                "DAILY"-> holder.goalcardLayout.setBackgroundResource(R.drawable.workshop_back_gray)
                 else -> R.drawable.gray
             }
 
@@ -90,7 +90,6 @@ class BoxAdapter(itemList: List<DataXXX>) :
             }
 
             // 배경색과 텍스트 색상을 설정한 후 ViewHolder에 적용
-            holder.goalcardLayout.setBackgroundResource(backgroundColorSpan)
             holder.ddayTextView.setTextColor(textColor)
             holder.startDateTextView.setTextColor(textColor)
             holder.stoneGoalTextView.setTextColor(textColor)

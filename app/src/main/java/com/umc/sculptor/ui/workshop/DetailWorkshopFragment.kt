@@ -3,6 +3,7 @@ package com.umc.sculptor.ui.workshop
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
 import com.umc.sculptor.base.BaseFragment
+import com.umc.sculptor.data.model.dto.Category
 import com.umc.sculptor.data.model.dto.WorkshopDetailViewModel
 import com.umc.sculptor.data.model.remote.Achieve
 import com.umc.sculptor.data.model.remote.getAllAchieves
@@ -63,13 +65,31 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
 
                     binding.tvName.text = data?.stoneName
                     binding.tvStoneDustGram.text = data?.powder.toString()
-                    binding.iconCategory.text = data?.category
                     binding.tvDDay.text = data?.dday
                     binding.tvAchievementRate.text = data?.achRate.toString()
-                    binding.tvStartDate.text = data?.startDate
+                    binding.tvStartDate.text = data?.startDate?.take(10)
                     binding.tvGoal.text = data?.stoneGoal
                     binding.ivStone.setImageResource(R.drawable.example_stone)
                     data?.stoneStatus?.let { setIcon(it) }
+
+                    when(data?.category){
+                        "WORKOUT" ->{
+                            binding.iconCategory.text = "운동"
+                            val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.material_symbols_exercise_outline)
+                            binding.iconCategory.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
+                        }
+                        "STUDY" -> {
+                            binding.iconCategory.text = "공부"
+                            val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.mdi_book_open_blank_variant_outline)
+                            binding.iconCategory.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
+                        }
+                        "DAILY" -> {
+                            binding.iconCategory.text = "일상"
+                            val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.lucide_lamp)
+                            binding.iconCategory.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
+                        }
+                        else -> binding.iconCategory.text = ""
+                    }
 
 
                     Log.d(" 공방 돌 하나 서버",itemList.toString())
@@ -86,37 +106,7 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
         })
 
         // 서버 통신 요청
-
-        val call2: retrofit2.Call<getAllAchieves> = ServicePool.workshopService.getAllAchieves(
-            accessToken = "JSESSIONID="+ LocalDataSource.getAccessToken().toString(),
-            stoneId = viewModel.id.value.toString(),
-        )
-
-        call2.enqueue(object : Callback<getAllAchieves> {
-            override fun onResponse(call: Call<getAllAchieves>, response: Response<getAllAchieves>) {
-                if (response.isSuccessful) {
-                    val itemList = response.body()?.data?.achieves
-                    itemList?.let {
-                        dateAdapter.datelist = it
-                        dateAdapter.notifyDataSetChanged()
-                        Log.d("공방 달성현황 서버",itemList.toString())
-                    }
-                    binding.numAll.text = response.body()?.data?.achievementCounts?.a.toString()
-                    binding.numMid.text = response.body()?.data?.achievementCounts?.b.toString()
-                    binding.numNone.text = response.body()?.data?.achievementCounts?.c.toString()
-
-                } else {
-                    // 서버에서 오류 응답을 받은 경우 처리
-                    Log.d("공방 달성현황 서버" , "서버통신 오류")
-                }
-            }
-
-            override fun onFailure(call: Call<getAllAchieves>, t: Throwable) {
-                // 통신 실패
-                Log.d("공방 달성현황 서버",t.message.toString())
-            }
-        })
-
+        getRate()
 
 
         // 아이템 클릭 리스너 설정
@@ -132,9 +122,32 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
     override fun initAfterBinding() {
         super.initAfterBinding()
 
-        binding.record.setOnClickListener {
-            navController.navigate(R.id.action_detailWorkshopFragment_to_todaycheckFragment)
+        binding.ivDetailworkshopPlus.setOnClickListener {
+            val dialogFragment = SculptorDialog()
+            dialogFragment.setOnDialogDismissListener(object : SculptorDialog.OnDialogDismissListener {
+                override fun onDismiss() {
+                    // 다이얼로그가 닫힐 때 프래그먼트의 작업을 수행합니다.
+                    // 여기에서는 onCreate 메서드를 호출하거나 필요한 작업을 수행할 수 있습니다.
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .detach(this@DetailWorkshopFragment)
+                        .attach(this@DetailWorkshopFragment)
+                        .commit()
+                }
+            })
+            dialogFragment.show(requireActivity().supportFragmentManager,"dialog")
+
         }
+
+        binding.record.setOnClickListener {
+            val dialogFragment = SculptorDialog()
+            dialogFragment.setOnDialogDismissListener(object : SculptorDialog.OnDialogDismissListener {
+                override fun onDismiss() {
+                    getRate()
+                }
+            })
+            dialogFragment.show(requireActivity().supportFragmentManager,"dialog")
+        }
+
 
 
         binding.btnDelete.setOnClickListener {
@@ -158,11 +171,23 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
 
     private fun setIcon(stoneStatus: StoneStatus){
         when(stoneStatus){
-            StoneStatus.MOSS -> binding.ivIcon1.visibility = View.VISIBLE
-            StoneStatus.PLANT -> binding.ivIcon1.visibility = View.VISIBLE
-            StoneStatus.S_CRACK -> binding.ivIcon2.visibility = View.VISIBLE
-            StoneStatus.L_CRACK -> binding.ivIcon2.visibility = View.VISIBLE
-            StoneStatus.BROKEN -> binding.ivIcon2.visibility = View.VISIBLE
+            StoneStatus.MOSS -> {
+                binding.ivIcon1.visibility = View.VISIBLE
+                binding.ivStone.setImageResource(R.drawable.stone_moss)
+            }
+            StoneStatus.PLANT -> {
+                binding.ivIcon1.visibility = View.VISIBLE
+                binding.ivStone.setImageResource(R.drawable.stone_moss)
+            }
+            StoneStatus.S_CRACK -> {
+                binding.ivIcon2.visibility = View.VISIBLE
+            }
+            StoneStatus.L_CRACK -> {
+                binding.ivIcon2.visibility = View.VISIBLE
+            }
+            StoneStatus.BROKEN -> {
+                binding.ivIcon2.visibility = View.VISIBLE
+            }
             else -> {
                 binding.ivIcon1.visibility = View.INVISIBLE
                 binding.ivIcon2.visibility = View.INVISIBLE
@@ -229,6 +254,39 @@ class DetailWorkshopFragment : BaseFragment<FragmentDetailWorkshopBinding>(R.lay
             }
         })
     }
-}
+
+    fun getRate(){
+
+        val call2: retrofit2.Call<getAllAchieves> = ServicePool.workshopService.getAllAchieves(
+            accessToken = "JSESSIONID="+ LocalDataSource.getAccessToken().toString(),
+            stoneId = viewModel.id.value.toString(),
+        )
+
+        call2.enqueue(object : Callback<getAllAchieves> {
+            override fun onResponse(call: Call<getAllAchieves>, response: Response<getAllAchieves>) {
+                if (response.isSuccessful) {
+                    val itemList = response.body()?.data?.achieves
+                    itemList?.let {
+                        dateAdapter.datelist = it.reversed()
+                        dateAdapter.notifyDataSetChanged()
+                        Log.d("공방 달성현황 서버",itemList.toString())
+                    }
+                    binding.numAll.text = response.body()?.data?.achievementCounts?.a.toString()
+                    binding.numMid.text = response.body()?.data?.achievementCounts?.b.toString()
+                    binding.numNone.text = response.body()?.data?.achievementCounts?.c.toString()
+
+                } else {
+                    // 서버에서 오류 응답을 받은 경우 처리
+                    Log.d("공방 달성현황 서버" , "서버통신 오류")
+                }
+            }
+
+            override fun onFailure(call: Call<getAllAchieves>, t: Throwable) {
+                // 통신 실패
+                Log.d("공방 달성현황 서버",t.message.toString())
+            }
+        })
+    }
+    }
 
 

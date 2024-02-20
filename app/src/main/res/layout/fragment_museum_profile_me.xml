@@ -45,24 +45,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.492" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/img_museum_profileimg"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/cardView"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ellipse"
+                android:layout_marginStart="21dp"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="12dp"/>
 
-        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/museum_intro_name"
@@ -93,7 +86,7 @@
             android:id="@+id/museum_btn_write"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="21dp"
             android:src="@drawable/btn_museum_write"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/museum_intro_name" />

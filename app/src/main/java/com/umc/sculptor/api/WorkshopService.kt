@@ -8,6 +8,7 @@ import com.umc.sculptor.data.model.remote.getOneStone
 import com.umc.sculptor.data.model.remote.getStones
 import com.umc.sculptor.data.model.dto.CreateStoneRequestDto
 import com.umc.sculptor.data.model.dto.CreateStoneResponseDto
+import com.umc.sculptor.data.model.remote.SculptorRequest
 import com.umc.sculptor.data.model.remote.login.LogoutDto
 import retrofit2.Call
 import retrofit2.http.Body
@@ -47,8 +48,9 @@ interface WorkshopService {
 
     @POST("/stones/{stoneId}/sculpt")
     fun sculptStone(
-        @Header("Content-Type") contentType: String ,
-        @Header("Cookie") accessToken: String
+        @Path("stoneId") stoneId: String,
+        @Header("Cookie") accessToken: String,
+        @Body body: SculptorRequest
     ): Call<sculptStone>
 
     @DELETE("/stones/{stoneId}/delete")

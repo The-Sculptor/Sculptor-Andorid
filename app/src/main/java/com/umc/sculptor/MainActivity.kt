@@ -88,6 +88,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun hideToolbar(state: Boolean){
+        if(state){
+            binding.toolbar.visibility = View.GONE
+        }else{
+            binding.toolbar.visibility = View.VISIBLE
+        }
+    }
+
+
 
     fun hideIconAndShowBack(state: Boolean){
         if(state){

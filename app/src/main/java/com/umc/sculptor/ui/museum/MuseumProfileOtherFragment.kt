@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.apiManager.ServicePool
@@ -87,6 +88,13 @@ class MuseumProfileOtherFragment : BaseFragment<FragmentMuseumProfileOtherBindin
                         binding.museumFollowingNum.text=data.followingCount.toString()
                         binding.museumIntroName.text=data.nickname
                         binding.museumIntroText.text=data.introduction
+                        context?.let {
+                            Glide.with(it)
+                                .load(data.profileImage)
+                                .placeholder(R.drawable.ellipse) // 이미지 로딩 중에 표시될 placeholder 이미지
+                                .error(R.drawable.ellipse) // 이미지 로딩 실패 시 표시될 이미지
+                                .into(binding.cardView)
+                        }
                     }
 
                     Log.d("박물관 서버",itemList.toString())

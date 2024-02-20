@@ -25,107 +25,25 @@
             android:id="@+id/x"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
             android:paddingTop="4dp"
             android:paddingEnd="4dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/x"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/x" />
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:fontFamily="@font/pretendard_semi_bold"
-            android:text="오늘도 열심히 하셨나요?"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/x" />
-
-        <TextView
-            android:id="@+id/tv_title_sub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/roboto_light"
-            android:text="목표하고자 하는 바를 어느 정도 이루셨나요"
-            android:textColor="#B7B1BB"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-
-
-
-        <TextView
-            android:id="@+id/icon_all"
-            android:layout_width="311dp"
-            android:layout_height="73dp"
-            android:layout_marginTop="85dp"
-            android:background="@drawable/round_4_rectangle_todaycheck"
-            android:drawableStart="@drawable/icon_circle"
-            android:drawablePadding="8dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="네, 완벽히 달성했어요!"
-            android:gravity="center"
-            android:textColor="#D3D3D3"
-            android:textSize="16sp"
-            android:paddingStart="42dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title_sub" />
-
-        <TextView
-            android:id="@+id/icon_mid"
-            android:layout_width="311dp"
-            android:layout_height="73dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/round_4_rectangle_todaycheck"
-            android:drawableStart="@drawable/icon_triangle"
-            android:drawablePadding="8dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="어느 정도는 달성했어요!"
-            android:gravity="center"
-            android:paddingStart="42dp"
-            android:textColor="#D3D3D3"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/icon_all" />
-
-
-        <TextView
-            android:id="@+id/icon_none"
-            android:layout_width="311dp"
-            android:layout_height="73dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/round_4_rectangle_todaycheck"
-            android:drawableStart="@drawable/icon_x"
-            android:drawablePadding="8dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="아니요..달성하지 못했어요"
-            android:gravity="center"
-            android:textColor="#D3D3D3"
-            android:textSize="16sp"
-            android:paddingStart="42dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/icon_mid" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ok_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/icon_none"
-        android:layout_marginTop="175dp"
-        android:text="확인"
+            android:id="@+id/ok_button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/white"
+            android:text="확인"
+            app:layout_constraintBottom_toBottomOf="parent"
 
-        />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
 

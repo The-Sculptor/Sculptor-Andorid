@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.umc.sculptor.MainActivity
 import com.umc.sculptor.R
 import com.umc.sculptor.api.DataXXX
 import com.umc.sculptor.api.sculptStone
@@ -37,6 +38,9 @@ class StonepowderFragment : BaseFragment<FragmentStonepowderBinding>(R.layout.fr
         savedInstanceState: Bundle?
     ): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
+        (activity as MainActivity).hideBottomNav(true)
+        (activity as MainActivity).hideToolbar(true)
+
     }
 
 
