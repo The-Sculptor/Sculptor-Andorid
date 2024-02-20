@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DataXXXXXX(
-    @SerialName("items")
+    @SerialName("userItems")
     val userItems: List<UserItem>
 )

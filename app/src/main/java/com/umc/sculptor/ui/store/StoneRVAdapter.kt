@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.sculptor.R
-import com.umc.sculptor.data.model.remote.store.UserItem
+import com.umc.sculptor.data.model.remote.store.Item
 import com.umc.sculptor.databinding.StoreItemWearingBinding
 
-class StoneRVAdapter(userItemList: List<UserItem>): RecyclerView.Adapter<StoneRVAdapter.ViewHolder>() {
+class StoneRVAdapter(itemList: List<Item>): RecyclerView.Adapter<StoneRVAdapter.ViewHolder>() {
 
     private lateinit var viewModel: StoreViewModel
-    var userItemList: List<UserItem> = userItemList
+    var itemList: List<Item> = itemList
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -35,7 +35,7 @@ class StoneRVAdapter(userItemList: List<UserItem>): RecyclerView.Adapter<StoneRV
 
     override fun onBindViewHolder(holder: StoneRVAdapter.ViewHolder, position: Int) {
 
-        val item = userItemList[position]
+        val item = itemList[position]
         holder.bind(item)
         holder.itemView.setOnClickListener{
             myItemClickListener.onItemCLick(position)
@@ -43,10 +43,10 @@ class StoneRVAdapter(userItemList: List<UserItem>): RecyclerView.Adapter<StoneRV
         }
     }
 
-    override fun getItemCount(): Int = userItemList.size
+    override fun getItemCount(): Int = itemList.size
     inner class ViewHolder(val binding: StoreItemWearingBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(userItem: UserItem){
-            when(userItem.itemId){//stone이미지
+        fun bind(item: Item){
+            when(item.itemId){//stone이미지
                     "1e5b03b8-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_basic)
                     "39e97a1b-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_ruby)
                     "39f48564-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_sapphire)
@@ -57,13 +57,13 @@ class StoneRVAdapter(userItemList: List<UserItem>): RecyclerView.Adapter<StoneRV
                 "3a2a4295-ca6a-11ee-a240-0208b3f73ebc" -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_bronze)
                 else -> binding.itemUsingitemImg.setImageResource(R.drawable.stone_basic)
             }
-            if (userItem.isSelected==true) {
+            if (item.isSelected==true) {
                 binding.itemUsingbgImg.setImageResource(R.drawable.store_wearing_item_r_selected)
             } else {
                 binding.itemUsingbgImg.setImageResource(R.drawable.store_wearingitem_r)
             }
-            binding.howmuchTv.setText("${userItem.itemPrice}")
-            userItem.isSelected = false
+            binding.howmuchTv.setText("${item.itemPrice}")
+            item.isSelected = false
         }
     }
 }
